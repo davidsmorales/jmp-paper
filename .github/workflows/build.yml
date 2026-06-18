@@ -1,29 +1,35 @@
-name: Build paper PDF
+name: Build and deploy paper PDF
 
 on:
   push:
     branches: [main, master]
 
-permissions:
-  contents: write
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout paper source
+        uses: actions/checkout@v4
 
       - name: Compile LaTeX
         uses: xu-cheng/latex-action@v3
         with:
-          root_file: main.tex   # <-- change to your real .tex filename
+          root_file: main.tex
 
-      - name: Commit PDF back to repo
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+        with:
+          repository: davidsmorales/davidsmorales.github.io
+          token: ${{ secrets.WEBSITE_DEPLOY_TOKEN }}
+          path: website
+
+      - name: Copy PDF into website and push
         run: |
+          mkdir -p website/files
+          cp main.pdf website/files/FinancialFrictions.pdf
+          cd website
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          mkdir -p build
-          mv main.pdf build/FinancialFrictions.pdf
-          git add build/FinancialFrictions.pdf
-          git diff --quiet --cached || git commit -m "Auto-build PDF"
+          git add files/FinancialFrictions.pdf
+          git diff --quiet --cached || git commit -m "Auto-update FinancialFrictions.pdf from jmp-paper"
           git push
