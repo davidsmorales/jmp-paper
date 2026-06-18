@@ -1,0 +1,29 @@
+name: Build paper PDF
+
+on:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compile LaTeX
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex   # <-- change to your real .tex filename
+
+      - name: Commit PDF back to repo
+        run: |
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          mkdir -p build
+          mv main.pdf build/FinancialFrictions.pdf
+          git add build/FinancialFrictions.pdf
+          git diff --quiet --cached || git commit -m "Auto-build PDF"
+          git push
