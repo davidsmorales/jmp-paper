@@ -1,0 +1,70 @@
+\begin{tikzpicture}[>=Latex, thick]
+
+
+% timeline
+\draw[dashed] (0,0) -- (14,0);
+\node at (1.0,0.0) {$|$};
+\node at (1.0,-0.4) {$t$};
+\node at (13.1,0.0) {$|$};
+\node at (13.1,-0.4) {$t+1$};
+
+% title
+\node at (7.9,4.8) {Exit and sell capital};
+\draw (2.2,4.6) -- (14,4.6);
+
+% left boxes
+\draw (0,2.5) rectangle (2.2,4.8);
+\node at (1.1,3.5) {Incumbents};
+
+\draw (0,0.2) rectangle (2.2,2.3);
+\node at (1.2,1.45) {Potential};
+\node at (1.2,1.05) {Entrants};
+
+% observe shocks box
+\draw (4.4,1) rectangle (7.1,3.7);
+\node at (5.75,2.55) {Observe};
+\node at (5.75,2.0) {(t+1) shocks};
+
+% labels on left
+\node[left] at (3.9,3.55) {stay};
+\node[left] at (4.1,2.45) {switch};
+\node[left] at (4.2,2.00) {enter Inf.};
+\node[left] at (4.2,0.80) {enter For.};
+
+% three clean arrows into box
+\draw[-] (2.2,3.00) -- (2.7,3.00);
+\draw[-] (2.7,3.30) -- (2.7,2.65);
+\draw[->] (2.7,3.30) -- (4.4,3.30);
+\draw[->] (2.7,2.65) -- (4.4,2.65);
+
+\draw[-] (2.2,1.40) -- (2.7,1.40);
+\draw[-] (2.7,1.10) -- (2.7,1.70);
+\draw[->] (2.7,1.10) -- (4.4,1.10);
+\draw[->] (2.7,1.70) -- (4.4,1.70);
+
+% process labels
+% \node at (5.8,3.95) {$\ln(\theta_{jt})$};
+% \node at (5.8,0.7) {$\ln(\theta_{j1})$};
+
+% stay out dashed line
+\draw (2.2,0.3) -- (14,0.3);
+\node at (7.9,0.5) {stay out};
+
+% active firms box
+\draw (7.8,1) rectangle (10.1,3.7);
+\node at (8.95,2.60) {Active};
+\node at (8.95,2.05) {Firms};
+
+% arrow observe -> active
+\draw[->] (7.1,2.45) -- (7.8,2.45);
+
+% outputs
+\draw[->] (10.1,2.45) -- (12.4,3.35);
+\draw[->] (10.1,2.45) -- (12.4,2.45);
+\draw[->] (10.1,2.45) -- (12.4,1.55);
+
+\node[right] at (12.4,3.35) {Labor};
+\node[right] at (12.4,2.45) {Investment};
+\node[right] at (12.4,1.55) {Finance};
+
+\end{tikzpicture}

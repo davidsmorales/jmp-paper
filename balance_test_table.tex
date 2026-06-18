@@ -1,0 +1,26 @@
+\centering
+\label{tab:balance_test}
+\begin{threeparttable}
+\begin{tabular}{lcccc}
+\toprule
+& \multicolumn{2}{c}{\textbf{Lagged 5 years}} & \multicolumn{2}{c}{\textbf{Lagged 10 years}} \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textit{Predetermined variable} & $\widehat{\beta}$ & SE & $\widehat{\beta}$ & SE \\
+\midrule
+Market employment share, sector 1   & $0.037$ & (0.026) & \phantom{$-$}0.036 & (0.028) \\
+Market employment share, sector 2   & $-$0.000 & (0.012) & $-$0.005 & (0.013) \\
+Bank-portfolio sector share, sector 1 & $-$0.015 & (0.031) & \phantom{$-$}0.027 & (0.049) \\
+Bank-portfolio sector share, sector 2 & \phantom{$-$}0.012 & (0.033) & $-$0.060 & (0.063) \\
+Credit-weighted interest rate       & \phantom{$-$}0.384 & (0.265) & \phantom{$-$}0.604 & (0.781) \\
+Log number of banks in market       & $-$0.062 & (0.078) & $-$0.099 & (0.074) \\
+Log number of credits in market     & \phantom{$-$}0.095 & (0.337) & $-$0.155 & (0.340) \\
+\midrule
+Observations (range)              & \multicolumn{2}{c}{1{,}200--1{,}356} & \multicolumn{2}{c}{766--934} \\
+Markets (range)                   & \multicolumn{2}{c}{521--545} & \multicolumn{2}{c}{457--515} \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} Each cell reports the coefficient and cluster-robust standard error from a separate regression of the indicated predetermined market characteristic, lagged either five or ten years relative to the outcome wave, on the leave-one-market-out shift-share bank credit-supply instrument, controlling for the full set of regressors from the main IV specification (including year fixed effects). Sample restricted to market-years with instrument coverage $\geq 0.5$. Standard errors clustered at the market (LLM) level. None of the fourteen reported coefficients is statistically distinguishable from zero at the 10\% level. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

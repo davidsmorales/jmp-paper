@@ -1,0 +1,48 @@
+\centering
+\label{tab:reduced_form}
+\begin{threeparttable}
+\begin{tabular}{lccr}
+\toprule
+\textit{Dependent variable (log unless noted)} & Reduced-Form coefficient & Standard errors & $N$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+Number of existing firms --- Total       & \phantom{$-$}0.162\sym{***} & (0.037) & 1{,}679 \\
+Number of existing firms --- Formal      & \phantom{$-$}0.083\sym{**}  & (0.035) & 1{,}675 \\
+Number of existing firms --- Informal    & \phantom{$-$}0.177\sym{***} & (0.042) & 1{,}679 \\
+Firm entry --- Total                     & \phantom{$-$}0.152\sym{***} & (0.036) & 1{,}390 \\
+Firm entry --- Formal                    & \phantom{$-$}0.086\sym{**}  & (0.039) & 1{,}378 \\
+Firm entry --- Informal                  & \phantom{$-$}0.162\sym{***} & (0.039) & 1{,}390 \\
+Firm exit --- Total                      & \phantom{$-$}0.168\sym{***} & (0.037) & 1{,}390 \\
+Firm exit --- Formal                     & \phantom{$-$}0.077\sym{*}   & (0.041) & 1{,}369 \\
+Firm exit --- Informal                   & \phantom{$-$}0.181\sym{***} & (0.039) & 1{,}390 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+Formal--Formal transitions               & \phantom{$-$}0.067\sym{*}   & (0.040) & 1{,}372 \\
+Informal--Formal transitions             & \phantom{$-$}0.109\sym{***} & (0.031) & 1{,}366 \\
+Formal--Informal transitions             & \phantom{$-$}0.067\sym{*}   & (0.038) & 1{,}372 \\
+Informal--Informal transitions           & \phantom{$-$}0.199\sym{***} & (0.051) & 1{,}390 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
+Firms with credit --- Total              & \phantom{$-$}0.132\sym{***} & (0.036) & 1{,}679 \\
+Firms with credit --- Formal             & \phantom{$-$}0.080\sym{**}  & (0.034) & 1{,}679 \\
+Firms with credit --- Informal           & \phantom{$-$}0.163\sym{***} & (0.044) & 1{,}679 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
+Number of workers --- Total              & \phantom{$-$}0.107\sym{***} & (0.033) & \phantom{1{,}}992 \\
+Number of workers --- Formal             & \phantom{$-$}0.012          & (0.035) & \phantom{1{,}}968 \\
+Number of workers --- Informal           & \phantom{$-$}0.141\sym{***} & (0.035) & \phantom{1{,}}992 \\
+Total wagebill                           & \phantom{$-$}0.128\sym{***} & (0.036) & 1{,}671 \\
+Avg.\ value added                        & $-$0.021                    & (0.026) & 1{,}679 \\
+Total value added                        & \phantom{$-$}0.140\sym{***} & (0.030) & 1{,}679 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
+Collateral                               & $-$1.047\sym{***}           & (0.163) & 1{,}287 \\
+Interest rate (pp)                       & \phantom{$-$}0.214\sym{**}  & (0.105) & 1{,}679 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\tiny
+\item \textit{Notes:} Each row reports the coefficient and cluster-robust s.e. from a separate OLS regression of outcome on (standardized) LOO-SSIV instrument, controlling for the full set of regressors from the main IV specification. Sample restricted to market-years with instrument coverage $\geq 0.5$. The reduced-form coefficient equals the product of the first-stage and second-stage coefficients in corresponding IV regression (Tables~\ref{tab:firms}--\ref{tab:collateral_rate}). 
+S.e. clustered at the market level. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

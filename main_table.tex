@@ -1,0 +1,35 @@
+\centering
+\label{tab:firms}
+\begin{threeparttable}
+\begin{tabular}{lccccccccc}
+\toprule
+& \multicolumn{9}{c}{\textbf{Dependent variable}: Log number of firms} \\
+\cmidrule(lr){2-10}
+ & \multicolumn{3}{c}{\textbf{Existing}} & \multicolumn{3}{c}{\textbf{Entering}} & \multicolumn{3}{c}{\textbf{Exiting}} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
+& Total & Formal & Informal & Total & Formal & Informal & Total & Formal & Informal \\
+\midrule
+$\widehat{\Delta_5\ln(\text{C})}$
+& 0.176\sym{***} & 0.197\sym{***} & 0.173\sym{***}
+& 0.192\sym{***} & 0.219\sym{***} & 0.190\sym{***}
+& 0.203\sym{***} & 0.183\sym{***} & 0.205\sym{***} \\
+& (0.040) & (0.039) & (0.045)
+& (0.036) & (0.042) & (0.038)
+& (0.039) & (0.042) & (0.041) \\
+& [0.078] & [0.018] & [0.090]
+& [0.029] & [0.001] & [0.043]
+& [0.036] & [0.062] & [0.039] \\
+\midrule
+FS Coeff.  & 1.309   & 1.355   & 1.355   & 1.374 & 1.374 & 1.374 & 1.374 & 1.374 & 1.374 \\
+         & (0.144) & (0.156) & (0.156) & (0.161) & (0.161) & (0.161) & (0.161) & (0.161) & (0.161) \\
+FS F & 88.96 & 88.97 & 88.96 & 86.40 & 86.43 & 86.40 & 86.40 & 86.39 & 86.40 \\
+Mean & 7,152 & 868 & 6,284 & 2,569 & 269 & 2,301 & 1,887 & 198 & 1,689 \\
+Obs. & 1,679 & 1,675 & 1,679 & 1,390 & 1,378 & 1,390 & 1,390 & 1,369 & 1,390 \\
+Markets       & 556   & 553   & 556   & 556   & 549   & 556   & 556   & 547   & 556   \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item \textit{Notes:} Two-stage least squares estimates at the market (LLM) $\times$ Economic Census wave level (2009, 2014, 2019, 2024). The endogenous regressor is the five-year log change in market credit, instrumented by the leave-one-market-out shift-share bank credit-supply shock. The mean row is in levels. All columns include year fixed effects and predetermined controls for market sectoral composition (employment- and credit-weighted), lagged interest rate, lagged collateral coverage, log number of banks, and log number of credits. Sample restricted to market-years with instrument coverage $\geq 0.5$. Inference: AKM standard errors following \citet{adao2019shiftshare} in parentheses, with stars from the corresponding $p$-values; wild cluster bootstrap $p$-values \citep{cameron2008bootstrap}, clustered at the market level, in brackets. ``FS F'' is the Kleibergen-Paap Wald statistic. The average new loan amount in a market is 96.4 billion MXN ($\approx$~6 billion USD at 16~MXN/USD). \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

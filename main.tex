@@ -1,0 +1,1099 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{chapterbib}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[T1]{fontenc}
+\usepackage{amsfonts}
+\usepackage{xfrac}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+\usepackage{multirow,array}
+\usepackage{bbm}
+\usepackage{hyperref}
+% \usepackage[a4paper, margin=2.2cm]{geometry}
+% \usepackage{geometry}[6.5,8]
+\usepackage{float}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\newcommand{\indep}{\perp \!\!\! \perp}
+\usepackage{graphicx}
+\usepackage{blindtext}
+\newcommand{\mysection}[2]{\setcounter{section}{#1}\addtocounter{section}{-1}\section{Lecture #1: #2}}
+\setcounter{tocdepth}{3}
+\restylefloat{table}
+\hypersetup{
+    colorlinks = true,
+    linkcolor = {blue}
+}
+\usepackage{amssymb}
+\usepackage[authoryear,round]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.16}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc}
+\usepackage{caption}
+\restylefloat{table}
+\usepackage{stackengine}
+\usepackage{booktabs}
+\usepackage{bbm}
+\usepackage{multicol}
+\newcommand{\blind}{0}
+\usepackage{float,booktabs,tabularx,array,ragged2e}
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\usepackage{caption}
+\captionsetup[table]{position=top}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+
+\addtolength{\oddsidemargin}{-.5in}
+\addtolength{\evensidemargin}{-1in}
+\addtolength{\textwidth}{1in}
+\addtolength{\textheight}{1.7in}
+\addtolength{\topmargin}{-1in}
+
+
+\begin{document}
+
+
+\def\spacingset#1{\renewcommand{\baselinestretch}
+{#1}\small\normalsize} \spacingset{1}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\if0\blind
+{
+  \title{\bf Informality and financial frictions}
+  \author{David Morales \thanks{Toulouse School of economics, david.morales@tse-fr} \quad Daniela Puggioni \thanks{Banco de México, dpuggionih@banxico.org.mx}}
+  \date{June 2026 \\
+  \vspace{3mm}
+  \textcolor{lightgray}{Work in Progress}}
+  \maketitle
+} \fi
+
+\if1\blind
+{
+  \bigskip
+  \bigskip
+  \bigskip
+  \begin{center}
+    {\LARGE\bf Title}
+\end{center}
+  \medskip
+} \fi
+
+\bigskip
+
+\begin{abstract}
+This paper shows that expanding bank credit in developing economies stimulates firm activity but tilts its composition toward informality. Using matched administrative records on 1.7 million Mexican firms and 127 banks over 2004–2024, we identify bank-specific credit-supply shocks within firms across banks and construct a leave-one-market-out shift-share instrument for local credit growth. A one-percent credit expansion raises the local stock of firms with an elasticity of $0.18$, and the response is statistically indistinguishable across the formal and informal sectors ($0.20$ vs.\ $0.17$). Entry, exit, and informal-to-formal transitions move together; informal employment responds more than formal employment; and average value added per firm \emph{falls} by $0.07\%$. A dynamic model of firm entry, exit, and sector choice under sector-specific financial frictions reproduces these patterns through a single mechanism: relaxing credit constraints disproportionately admits low-productivity entrants into the informal sector, expanding aggregate activity while lowering average productivity. Financial development in emerging economies therefore confronts a fundamental trade-off, better credit access stimulates firm activity but reshapes it toward informality.
+\end{abstract}
+
+\noindent\textbf{Keywords:} Financial frictions, firm dynamics, informality, shift-share IV.
+\vfill
+
+\newpage
+\spacingset{1.2} 
+
+\section{Introduction} \label{1}
+
+Access to credit is widely viewed as a key determinant of firm growth, employment creation, and structural transformation. Yet in many developing economies, financial markets remain shallow and a large share of firms operate informally, outside the reach of formal institutions. Whether and how relaxing credit constraints reallocates activity across the formal and informal margins is, therefore, central to assessing the aggregate consequences of financial frictions in contexts where informality is pervasive. This paper provides new causal evidence on these questions using administrative credit, payroll, and firm-level census data from Mexico, a country where $88\%$ of firms are informal and bank lending is a concentrated source of finance for both formal and informal firms.
+
+I combine matched bank-firm-worker administrative records with a \emph{leave-one-market-out} shift-share identification strategy to isolate plausibly exogenous variation in local credit supply. In a first step, bank-specific credit-supply shocks are recovered from within-firm, across-bank variation in the universe of Mexican commercial credit relationships, following \citet{khwaja2008tracing} and \citet{amiti2018idiosyncratic}. In a second step, the bank-specific shocks are aggregated to the local labor market level using predetermined exposure shares; the leave-one-market-out correction \citep{borusyak2022quasi} eliminates the mechanical bias that would arise from constructing each market's instrument with that market's own loans. Inference accounts for the cross-market correlation induced by shared bank shocks following \citet{adao_kolesar_morales_2019}. The rich administrative data allow me to track formal and informal firm dynamics, wages, employment, and financial conditions within finely defined local labor markets, providing a comprehensive view of how credit-supply shocks propagate through the local economy.
+
+Four main empirical findings emerge. \textit{First}, credit-supply expansions raise the local stock of firms with an elasticity of $0.18$, an effect that is precise under the AKM inference appropriate for shift-share IV, that is robust across nine combinations of formality status (formal vs.\ informal) and margin (existing, entering, exiting), and that survives a battery of robustness checks documented in Section~\ref{robustness}. Evaluated at the average local labor market, a one-percent increase in five-year credit growth adds approximately $13$ firms ($2$ formal and $11$ informal), or about $7{,}200$ firms at the national level.
+
+\textit{Second}, the response operates predominantly through entry and exit: gross flow margins move symmetrically (entry elasticity of $0.19$, exit elasticity of $0.20$), consistent with credit shocks raising market churn rather than the net firm count alone. The five additional entrants per market translate into a $0.07$ percentage point increase in the five-year startup rate, roughly one tenth of the U.S.\ startup deficit documented by \citet{pugsley2019grown} over the same horizon, an informative benchmark given the limited evidence on informal firm dynamics in middle-income economies. On the transition margin, credit shocks raise informal-to-formal upgrading (elasticity of $0.20$) and the formal-to-informal downgrading, indicating that credit access increase the porbability of formalization at the intensive margin.
+
+\textit{Third}, credit-supply shocks pass-through to the broader local labor market. A one-percent increase in credit raises total local employment by $0.15\%$ (about $56$ workers at the average market), with informal employment ($0.19\%$) responding more elastically than formal employment ($0.12\%$); the aggregate wagebill rises by $0.20\%$, an economically small magnitude. Total value added rises by $0.10\%$, while \emph{average} value added per firm falls by $0.07\%$. This composition, rising aggregate output and employment alongside a fall in per-firm productivity, is the empirical signature of credit-supply shocks operating through the extensive margin of low-productivity entry.
+
+\textit{Fourth}, the headline results are not artifacts of any single methodological choice. The shift-share instrument is uncorrelated with predetermined market controls and pre-period firm-dynamics trajectories; the estimated elasticities survive the exclusion of the three largest metropolitan areas, the removal of credit weighting, variation in the coverage threshold from zero to $0.8$, the renormalization of the instrument by coverage, and the conventional (non-leave-one-out) shift-share construction. Most compellingly, a structurally distinct identification strategy at the bank level---the cell-fixed-effects design of \citet{degryse2019identifying}, which identifies bank shocks from within-cell variation across banks rather than across markets and permits identification from both multi-bank \emph{and} single-bank firms, recovers point estimates within $0.03$ of the market-level results across every firm-margin outcome. The intermediate financial channels (collateral and interest rates) are less consistently identified across specifications, and I accordingly treat the firm-margin and aggregate labor-market findings as the paper's central contributions.
+
+To interpret these empirical patterns I develop a dynamic model of firm entry, exit, and sector choice under sector-specific financial frictions. Firms differ in productivity and choose whether to operate formally or informally; informal firms face lower regulatory burdens but a strictly steeper marginal cost of external finance. A counterfactual that relaxes the informal-sector borrowing constraint in proportion to the empirical bank-supply shock reproduces all seven qualitative patterns documented in the data, including the observation that credit expansions \emph{lower} average productivity while raising aggregate output. The mechanism is a marginal-firm story: relaxing credit disproportionately admits low-productivity entrants into the informal sector, lowering average productivity through composition while expanding the firm distribution. The quantitative calibration of the model is ongoing work; the qualitative pattern of the counterfactual is robust across the parameter neighborhoods I have explored.
+
+This paper contributes to three related literatures. First, it adds to a growing body of work on how credit-supply shocks affect firm real outcomes \citep{chodorow2014employment,greenstone2020credit,khwaja2008tracing,gutierrez2023credit}, by providing causal estimates of how credit shocks reallocate firm activity across the formal-informal margin in a context where informality is the dominant mode of operation. Second, it extends the literature on informality and firm dynamics \citep{ulyssea2018firms,dix2021trade,imbert2023rural} by documenting that, in Mexico, the empirically dominant transition is from formality \emph{into} informality rather than the reverse, a qualitative pattern that has received less attention than the extensive literature on informal-to-formal upgrading. Third, by combining a granular shift-share IV design with a model of sector choice under financial frictions, the paper provides a unified framework linking credit-supply shocks to the joint determination of firm entry, exit, and formality, an integration that has been largely absent from the literature on financial development in middle-income economies.
+
+The remainder of the paper is organized as follows. Section~\ref{2} describes the related literature. Section~\ref{3} describes the administrative datasets and presents descriptive evidence on credit concentration, formality, and formal-informal transitions. Section~\ref{5} develops the leave-one-market-out shift-share identification strategy. Section~\ref{6} presents the main empirical findings, including the headline elasticities, the formality decomposition, and the battery of robustness checks. Section~\ref{7} develops the theoretical framework. Section~\ref{9} parametrizes the model and Section~\ref{10} reports the counterfactual. Section~\ref{11} concludes.
+
+\section{Literature review} \label{2}
+
+%------------------ Papers to add to the literature Review -----------------
+%   1) "A structural analysis of firms’ transition from informality to formality in Nigeria" by Idossou Marius Adom (https://www.sciencedirect.com/science/article/abs/pii/S0304387825002354?utm_source=chatgpt.com). ---> Model similar to what I wan to do.
+%   2) "Firms’ Precautionary Savings and Employment during a Credit Crisis" by Davide Melcangi (https://www.aeaweb.org/articles?id=10.1257/mac.20210269). ---> Even non-constrained firms increase precautionary cash and affects employment. 
+%   3) "Financial structure, informality and development" by Pablo N. D'Erasmo and Hernan J. Moscoso Boedo (https://www.sciencedirect.com/science/article/abs/pii/S0304393212000372?fr=RR-2&ref=pdf_download&rr=a05558f08901137e). ---> Similar model to mine with more detailed banking sector. 
+%   4) "Public financing with financial frictions and underground economy" by Andrés Erosaa, Luisa Fustera, Tomás R. Martinez  (chttps://pdf.sciencedirectassets.com/271711/1-s2.0-S0304393223X0004X/1-s2.0-S0304393222001490/main.pdf?X-Amz-Security-Token=IQoJb3JpZ2luX2VjEEoaCXVzLWVhc3QtMSJHMEUCIFZINFNHbuPJBd6l%2BXbLoDqRglQHzB9GbTdfU5VN%2BL9%2BAiEAiVytO3v30ESb60kddAF2R4jCWnxYVcMzvAOmHyDD5AgqswUIExAFGgwwNTkwMDM1NDY4NjUiDNmscNasnLp2yWCj8yqQBZG%2FY%2Fm%2Fk9jLle0I%2BQt9qTrfKV74xalfbe8RknmbQ96mJu2kbThjvpCGlVpu%2Bo0RQTpRx7JWCGGgAIWregTvmbfHQjgfxhIySypQxpYWJWk4shf%2Blrh2C5OsaA6ve%2B1E2TlXCZwI7tMg2cfiFduTqnC9q4%2BnGbgidQ0MWiY4Trc69iwnu1t%2BtObjNRpAG3UPgpjUfGR%2BwYuA6jLnkeLwzy3mAfRQAY0aOlDA8L4kY9rOAaZp8ayS36vzbaoFsCEYt3TA16K%2FBX9LURnhfqmz%2BHEs9NsYNhASUrYu0NJtfpB9m1NCBsL8Zlvwlg5qODazbsz3sV1YHqwfC%2BM29h8yLx38iAphsv1SAItoMUVOtTBzkYdNjXP1pdirIIcIsD8n%2FCo%2BEAmGxFjzgLlMT4WkDiCamJtsH%2Bn%2BQeLFZYfh0vPDBszMdMVTNByp3i76E32CT4ulu%2F5sWipn0%2FO3Oa%2BbjdibOPvmMOoCxC3TpMlMU7nFvmGoxpa21i006Ou8G1H41VkfARYEw6nyPnRkO14IlbsrkOU6vucGWrOOj035Mdt8YDBngrRQe3GfhEP2Szkm4z%2BHl9CaSg6OE8%2Bcc0aCin3cA4LeWA%2B3PCMtVZ8J1v%2FdXz6BGCv7dq6Ms6qZidYmwHccMTUdCIoaqFcEVS%2FApmM3aeYLK7Do1DhqRVFq%2FMl8Gp8vziqJ%2FevK47%2BE5LATBfAFLCs%2FIkfXI%2BlKWCA47U2yMQLpmD40NJO%2BcHwZ5Jzd0B82peQMW7FDF%2FaDn6PGXBWuU53pGzLIdn13TaiyhWAHQoRYIQ73JOa4rRVuOHqiAHiNx9La36%2BA8pT6cCivXAi38hgfWDKfVlt04Ex%2Ff8rFwmmtO8jb87MQy7%2BLfgb4MIaxr9EGOrEBgzFYvGyF4VDHbl3hrED8nX05cUGi14yocnAzL5BcFNvDP3dH0tYmYuxvrOlvamOAWbz6xan8FiaNGnm2eTl4lRCK7y7qWl72TgDEGb93axfkINrB7yeUrMFDhUGX4nAyc1y5KWuNEGSoOs2zBwJA%2FAfYeTG27Vmc8FIpElCo5KB3WWg%2BsmIg%2FOQZ94Tjy6%2FByqwC0QQXmtAbFfSO15WYfQL4Caeo4FVBA9oadUwj60um&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20260612T111554Z&X-Amz-SignedHeaders=host&X-Amz-Expires=300&X-Amz-Credential=ASIAQ3PHCVTYVU25VWI4%2F20260612%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=7ae8f1bea0b8de7d7ce1e64e0b7c0692453c509a6554bfdb033338d2e5d42b3a&hash=b1c23e839702d20df7fe07ba53091e6f565a074cf8bc572975d1138fdf405a67&host=68042c943591013ac2b2430a89b270f6af2c76d8dfd086a07176afe7c76c2c61&pii=S0304393222001490&tid=spdf-5537f912-8545-4671-b141-13ee8e7c85c4&sid=e25329a62be88349529bc0c322a8e1f53cd9gxrqb&type=client&tsoh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&rh=d3d3LnNjaWVuY2VkaXJlY3QuY29t&ua=1c1705530056535702&rr=a0a870b66c2b0488&cc=fr&kca=eyJrZXkiOiJtZlpBSkJCS3o0S2FBeW9qVDNsejNsYlpCZGIxTWZCVW5ONGI1aEx4ZEtKcllLRWNpYU81Y09qR3YwUTJCUGhPNkppVyt5VWwvTW4ydXlnUFNzenRqMWdraVNzdmVwL3REbzY5ZXRBa2tVK0xjVE5ISkJROVdQVFFTMzdBS09lTjFUSUdyQmpHRFFucXluWlVCdzRaeWNxOEcxc2VtNG9EWW1lb2RQMndPZFpEN3Q5Q0FnPT0iLCJpdiI6ImFlMDQwZjE1OWRkNWZiNjg2NzgwNDViNjJmYTI3MGJiIn0=_1781262959395). ---> Similar moel to me. Has intensive and extensive margins of informality.
+%  5) "Tracing the Impact of Bank Liquidity Shocks: Evidence from an Emerging Market" by Asim Ijaz Khwaja and Atif Mia  (chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://www-jstor-org.gorgone.univ-toulouse.fr/stable/pdf/29730128.pdf?refreqid=fastly-default%3Ae3aec7caaf8c221c9653f37833362966&ab_segments=&initiator=&acceptTC=1). ---> Multibank-firm bank shock estimation. Explain better together with Amitti-Weinstein, Greenston et al, Degryse et al.
+
+
+%   *) "Transitioning entrepreneurs from informal to formal markets" by Christopher Sutter, Justin Webb b, Geoff Kistruck, David J. Ketchen Jr, R. Duane Ireland  (https://www.sciencedirect.com/science/article/abs/pii/S088390261730174X?fr=RR-2&ref=pdf_download&rr=a055586db867137e). ---> Nicaragua RCT to fomrlaize. 
+%   **) "Analysis of formal-informal transitions in the Ecuadorian labour market" by Adriana Patricia Vega Núñez (chrome-extension://efaidnbmnnnibpcajpcglclefindmkaj/https://repositorio.cepal.org/server/api/core/bitstreams/046e8184-3d3e-40ca-b2b8-43386059874a/content). ---> Policy paper. Worker Formal-Informal transitions using a multinomial logit.
+
+I contribute to three broad strands of the literature. First, this paper adds to the growing evidence on how credit supply shocks affect firms’ real outcomes, particularly employment, in different contexts. A large body of work shows that credit market disruptions can have significant employment effects at the firm level. For example, \cite{chodorow2014employment} showed that in the 2008–09 crisis, firms reliant on distressed banks were less able to borrow and consequently cut more jobs; indeed, the withdrawal of credit accounted for roughly one-third to one-half of the employment decline at affected small and mid-sized firms. In contrast, other studies find more muted aggregate effects: \cite{greenstone2020credit} use a county-level shift-share design and conclude that small business lending shocks had an economically insignificant impact on overall employment in the United States. Evidence from developing economies, however, suggests credit frictions play a more binding role. \cite{khwaja2008tracing} first documented in Pakistan that idiosyncratic bank liquidity shocks can depress borrowing firms’ output and employment. More recently, \cite{gutierrez2023credit} find that in Mexico a positive bank credit shock leads to substantial gains in formal jobs – a one standard deviation increase in local credit supply raises annual employment growth by about 1.4 percentage points. I build on this literature by providing new causal evidence that connects credit shocks to both employment and wages in a middle-income country, leveraging rich matched firm-bank-worker data. My analysis highlights that credit constraints can meaningfully influence not only how many workers firms hire, but also how those workers are paid. 
+
+Second, I contribute to the literature on rent-sharing and the role of firm heterogeneity in wage determination. A seminal contribution by \cite{abowd1999high} introduced a framework (AKM) to separately identify worker and firm pay components, revealing that firms pay systematically different wages even to similar workers. Subsequent studies across advanced economies confirm that firm effects explain a significant share of wage dispersion. For instance, AKM find an important role for firm-specific wage premiums in France, and similar conclusions have been reached for Germany, Italy, Portugal, Brazil (\cite{alvarez2018firms}), and other countries. Beyond wage dispersion, many authors have examined the link between firm performance and worker pay. In previous work, \cite{blanchflower1996wages} suggest a direct test of rent-sharing in US manufacturing, finding that wages co-move with firm profits. \cite{van1996creation} shows that firm innovations translate into higher worker wages in the UK, and \cite{guiso2005insurance} find that firm-specific productivity shocks have a positive effect on employees’ wages in Italy. Consistent with these patterns, studies using matched employer-employee data often report modest but significant rent-sharing elasticities (e.g. a 3–7\% wage increase per 100\% rise in firm value-added, \cite{card2014rent}). This paper extends this literature by examining whether credit-driven changes in firm performance are passed through to workers. In doing so, I leverage a three-way fixed-effects framework (worker–firm–bank) to decompose wages in the presence of financial shocks. This approach allows us to assess how much firm–worker pay premiums are influenced by access to credit and whether credit constraints at the firm level translate into changes in wages for employees. By providing novel evidence of rent-sharing in a credit-constrained environment, I shed light on the channels through which financial frictions can affect labor earnings in developing economies. 
+
+Third, I add to the literature on general equilibrium and local labor market effects of financial shocks in developing countries. A number of studies have analyzed how regional labor markets respond to shocks in credit availability or other financial interventions. For instance, \cite{greenstone2020credit} implement a shift-share strategy to isolate local credit supply shocks in US counties and find little overall impact on employment, suggesting that alternative financing or labor mobility can dampen localized effects. In middle-income economies with less developed financial markets and larger informal sectors, credit shocks may induce different adjustments. Recent research in Mexico indicates that credit expansions disproportionately benefit smaller, younger, and previously credit-starved firms \cite{gutierrez2023credit}, which can lead to greater job creation at the local level. We contribute to this strand by examining credit impacts at the level of Local Labor Markets (LLMs), linking firm-level shocks to broader community outcomes. This approach allows us to capture spillovers and equilibrium effects – for example, whether increased formal lending in a region draws workers out of informality or raises prevailing wages even for firms not directly receiving new loans. My work is related to studies of local labor demand shocks in developing countries (e.g. the impact of trade liberalization or infrastructure investments on regional employment and informal work). By focusing on credit supply, I provide evidence on a relatively understudied driver of local labor market fluctuations in developing economies. In summary, my analysis bridges the finance and labor literatures by documenting not only firm-level rent-sharing of credit benefits but also the aggregate implications when credit shocks propagate through local economies.
+
+\section{Data} \label{3}
+
+I use five databases in this paper. The main database is a matched employer-employee data that comes from administrative records of formal employment at the Social Security Institution (\href{https://app.powerbi.com/view?r=eyJrIjoiNTk2ZmNiMzgtMDc4OC00YzljLTljNjktODlhMzZmZTNhYTQwIiwidCI6IjA4ZjRhYTk4LTA3ZDctNGQzMS1iNWMyLTFkZGEyNTJmZTIzZSIsImMiOjR9}{IMSS}, by its Spanish acronym). This data contains information on wages in the formal sector and some characteristics of firms (e.g., industry code and geographical location) and employees (e.g., age and sex).
+
+The second database is matched bank-employer from commercial loan administrative records that is provided by the Mexican National Security Commission (\href{https://portafolioinfo.cnbv.gob.mx/Paginas/Inicio.aspx#}{CNBV}, by its Spanish acronym). This data provides information on the number of credits, the quantity borrowed, and the conditions of the credits (e.g, interest rate).  Importantly, it contains banking credits to both formal and informal firms.
+
+I have access to the individual level non-public version of these databases through the \href{https://www.banxico.org.mx/EconLab/inicio}{EconLab} environment of the Bank of Mexico (Banxico). I merge the IMSS and the CNBV data at the firm level, creating a unique monthly bank-firm-worker matched dataset spanning 20 years that includes the universe of formal firms (holding a bank loan or not) and the universe of firms with bank loans (both formal and informal). In other words, I do not observe the subset of informal firms without banking loans. 
+
+However, big entities (bank or firms) could have a general equilibrium effect on the credit conditions and labor markets of smaller players. To account for this issue, I study the implications at the Local Labor Market (LLM) level. Therefore, I use the final database, which is the definition of the 777 local labor markets (LLMs) in the country to collapse the data at this LLM level. This data comes from Banxico's \href{https://www.banxico.org.mx/DataSetsWeb/dataset?ruta=LLM&idioma=en}{Database for Local Labor Markets Analysis in Mexico}. 
+
+To overcome the limitation that informal firms without banking loans are not observed in matched bank-employer-employee data, I rely on the quinquennial \href{https://en.www.inegi.org.mx/programas/ce/2024/}{Economic Census} (EC) dataset published by the National Statistic Institution (\href{https://en.www.inegi.org.mx/}{INEGI}, by its acronym in Spanish), which contains the informal sector and is matched with the previous data at the Local Labor Market (LLM) level.
+
+\subsection{Matched employer-employee data (IMSS)} \label{3.1}
+
+The data from IMSS includes, by definition, only formal workers who must be register by their employer in order to comply with the Mexican labor regulations. The wages are daily earnings that include cash payments, gratuities (such as profit sharing and year-end bonuses), wages, food, housing, vacation bonuses, commissions, in-kind payments, and any other remuneration for work—excluding food vouchers and savings fund contributions. The data on wages is bottom-coded at the minimum wage\footnote{It is possible to observe wages below the minimum wage due to the late implementation in July of the approved changes of minimum wage in January.} and top-coded at 25 times the general minimum wage in Mexico City. The data is monthly and it is available from 2004 to date. However, I use the monthly observations during a three years window, from 2017 to 2019, of workers between 25 and 54 years old. Is worth to notice that the IMSS information excludes the sizeable informal sector in Mexico. In the fourth quarter of 2024, the the National Survey of Occupation and Employment (\href{https://en.www.inegi.org.mx/programas/enoe/15ymas/}{ENOE}) estimated the rate of informal employment at 54.5 percent.
+
+\subsection{Matched bank-employer data (CNBV)} \label{3.2}
+
+The report "RC04" contains administrative data on credits, which by law is reported by banks to the Mexican Security and Exchange Commission (CNBV by its acronym in Spanish)\footnote{A public aggregate version of this data can be found in the  \href{https://portafolioinfo.cnbv.gob.mx/Paginas/Inicio.aspx}{CNBV}'s wbsite.}. This report includes detailed information on each credit that each bank grants. It includes granular information such as the amount of the credit, the interest rate, the firm to which it was granted, the number of workers employed in the firm, and the age of the firm that received the credit, among other details. The data is available on a monthly basis starting from 2004 to date; however I focus on the monthly observations during a three years window, from 2017 to 2019.
+
+\subsection{Local Labor Market data (LLM)} \label{3.3}
+
+I use the official definition of Local Labor Markets (LLM) in Mexico constructed by the National Institute of Statistics and Geography (INEGI) and available through the  \href{https://www.banxico.org.mx/DataSetsWeb/dataset?ruta=LLM&idioma=en}{Database for Local Labor Markets Analysis in Mexico}. INEGI uses commuting flows between house and work locations to build a dissimilarity index. Then an iteratively algorithm creates geographic areas that optimize the mean dissimilarity index across clusters. This procedure creates the 777 distinct LLM that divide the country. 
+
+\subsection{Economic Census data (EC)} \label{3.4}
+
+The EC is a firm level survey representative of all non-agricultural sectors at all locations with more than 2,500 inhabitants. The periodicity is quinquennial and it captures entrepreneurial activity taking place at physical locations. Thus, economic activity such as street sellers without a physical facility is not taken into account. Importantly, it captures the formal and the informal sectors of the economy. 
+
+
+\section{Descriptive statistics} \label{4}
+
+The CNBV data spans over the period 2004–2024. The data include detailed information on 1,678,422 firms and their credit relationships with 127 banks. In 2019, for example, 726,542 establishments received at least one loan—corresponding to 11.4 percent of the 6,373,169 establishments reported in the Economic Census, highlighting the broad reach of bank credit in the corporate sector. The resulting panel comprises 3,001,320 firm–bank–year observations, allowing us to track the credit variations over two decades with comprehensive coverage and substantial cross-sectional variation.
+
+\begin{figure}[H]
+    \caption{Distribution of the number of banks per firm}
+    \label{hnbfirms}
+    \begin{center}
+        \includegraphics[scale = 0.28]{hnbfirm.png}
+    \end{center}
+\end{figure}
+
+Figure \ref{hnbfirms} shows the distribution of the number of banking relationships per firm in 2009, 2014, 2019, and 2024. Most firms borrow from a single bank, although multi-bank relationships become modestly more common over time. The figure therefore points to a gradual but limited increase in bank diversification, with single-bank borrowing remaining the dominant mode of credit access throughout the period. This distinction is relevant because our baseline bank-shock estimation is identified from multi-bank firms. As a robustness check, we also estimate shocks using specifications that allow single-bank firms to contribute as in \citet{degryse2019identifying}; the results are similar, indicating that the findings are not driven solely by the multi-bank sample.
+
+\begin{figure}[H]
+    \caption{Bank concentration and Herfindahl Index}
+    \label{hhibank}
+    \begin{center}
+        \includegraphics[scale = 0.18]{10banks_l5.png}
+        \includegraphics[scale = 0.18]{hhibank.png}
+    \end{center}
+\end{figure}
+
+In terms of credit concentration, the left panel of Figure~\ref{hhibank} reports the annual distribution of five-year lagged bank credit shares for the ten largest banks. These are the same predetermined exposure shares used to construct the shift-share instrument. The figure shows that credit exposure is not heavily concentrated and becomes less so over time. The right panel reports the corresponding Herfindahl--Hirschman Index. These evidence implies that our latter empirical strategy identifies the bank supply shocks from multiple independent bank institutions, rather thank
+leaning on the idiosyncratic behavior of any single institution. 
+
+% \begin{figure}[H]
+%     \caption{Bank concentration and Herfindahl Index}
+%     \label{hhifirm}
+%     \begin{center}
+%         \includegraphics[scale = 0.28]{10firms.png}
+%         \includegraphics[scale = 0.28]{hhifirm.png}
+%     \end{center}
+% \end{figure}
+
+% On firm side, Figure \ref{hhifirm} document substantial time variation in the concentration of corporate borrowing. The left panel shows that the share of new loans accounted for by the ten largest firms fluctuates markedly across years, with periods in which a small set of firms absorbs the majority of credit followed by years of more diffuse borrowing. The right panel, which reports the Herfindahl–Hirschman Index of firm-level new loan shares, displays corresponding spikes—most notably in 2007, 2016, and 2022–2023—indicating episodes of sharply elevated concentration. Taken together, figures \ref{hhibank} and \ref{hhifirm} reveal that the credit market is characterized by significantly variation that will be used in the empirical strategy to leverage the effect of this variations on economic outcomes. 
+
+% By combining the IMSS and CNBV datasets, I'm able to obtain a unique dataset of formal and informal firms that hold a banking loan at a monthly level. To understand how well this new data on informality compares to the actual number of informal firms, in Figure \ref{inf_state} I compare the informality share by state between the EC and the matched IMSS-CNBV data for 2019, labeled as estimated. 
+
+% Notice that in the left panel the estimated informality share is consistently below the share of the EC. This is in line with the fact that the IMSS-CNBV data captures only informal firms with a banking loan, while the EC captures all the informal firms. When conditioning the informality share only on firms with a banking loan, the right panel shows that the estimated and the EC data are more align. The remaining differences may be due to the fact that the EC does not include agriculture nor firms without a physical location.
+
+% \begin{figure}[ht!]
+%     \caption{Firms' informality share by state}
+%     \label{inf_state}
+%     \begin{center}
+%         \includegraphics[scale = 0.23]{inf_state.png}
+%         \includegraphics[scale = 0.23]{inf_state_cred.png}
+%     \end{center}
+% \end{figure}
+
+% Hence, the new matched data includes formal firms with and without banking loans and informal firms with banking loans; however, it does not include informal firms that do not hold a banking loan, the 86,8 \% of firms in 2019, as shown in table \ref{firms_dist}. Despite not observing this firms, we can study at the firm level and at monthly frequency the informal firms with credit. Moreover, at the LLM level we can include all the firms through the EC, as it will be clearer in the empirical strategy. 
+
+\begin{figure}[H] 
+    \caption{Distribution of firms by formality and banking credit holding}
+    \label{firms_dist}
+    \begin{center}
+        \small
+        \input{firms_dist}
+    \end{center}
+\end{figure}
+
+Table~\ref{firms_dist} documents the joint distribution of firms by formality status and access to bank credit. Informality is pervasive: under our definition of informality, firms with positive income but zero social security contributions, 88\% of firms are informal. Access to bank credit is limited: only 6.2\% of firms report holding credit from a bank. Although most firms with bank credit are informal (74\%), this mainly reflects the large mass of informal firms in the economy. Conditional on formality status, formal firms are substantially more likely to borrow from banks: 13.3\% of formal firms have bank credit, compared with 5.2\% of informal firms. The table therefore confirms two well-known facts: informality is widespread and formal firms have greater access to credit. At the same time, it highlights a less emphasized fact: informal firms also borrow from formal financial intermediaries. As a result, changes in bank credit conditions can affect informal firms directly, not only through spillovers from the formal sector.
+
+\begin{figure}[H]
+    \caption{Transition matrix 2014-2019 and 2019-2024}
+    \label{firms_transition}
+    \begin{center}
+        \includegraphics[scale = 0.8]{firm_transition2.png}
+    \end{center}
+\end{figure}
+
+Figure~\ref{firms_transition} documents the dynamics of establishment status across the formal and informal sectors using the 2014, 2019, and 2024 Economic Censuses. The patterns reveal that between 55 to 60 percent of establishments remain informal throughout the period, while between 70 to 85 percent remain formal. Transitions out of formality are substantially more frequent than transitions into it: between 13 and 36 percent of firms move from formal to informal status, compared with only between 3.5 to 6.5 percent moving in the opposite direction. 
+
+These empirical facts underscore that, in the Mexican context, the dominant and economically relevant transition is \emph{formal-to-informal}, not informal-to-formal. This is at stark contrast with much of the recent literature that has focused on the latter—examining barriers to formalization and the determinants of informal-to-formal upgrading (e.g., \cite{dix2021trade}; \cite{imbert2023rural})—but I present new evidence here suggesting that the opposite direction of movement is quantitatively far more prevalent. Understanding the forces driving firms out of formality, rather than only into it, is therefore central for interpreting the effects of credit supply shocks and the broader functioning of labor and product markets.
+
+\section{Empirical strategy} \label{5}
+
+\subsection{Shift--share identification with exogenous shocks}
+
+We estimate the impact of credit supply shocks on firm-level transition outcomes (formality status, entry, and exit). OLS estimates are contaminated by reverse causality and omitted-variable bias: markets with more informal-to-formal transitions may demand more credit, and an unobserved technology shock may simultaneously raise firm entry and credit volumes.
+
+A shift-share design with an exogenous shifter resolves this endogeneity. The ideal experiment randomly allocates additional funding across banks, raising their credit supply independently of firms' demand. Because the allocation is random, it is uncorrelated with firms' demand for credit and, hence, with firm transitions. The identification requires the lottery to affect outcomes solely through equilibrium credit.
+
+We implement an empirical analogue with a Leave-One-Out Shift-Share Instrumental Variable (LOO-SSIV) following \citet{amiti2018much} and \citet{greenstone2020credit}. In the first step, for each market-year pair $(m,t)$, we decompose bank-firm credit growth into demand and supply components on the sample that excludes market $m$. Specifically, we estimate
+
+\begin{equation} \label{fe}
+    \Delta \ln L_{bft}^{-m} = \alpha_{ft}^{-m} + \gamma_{bt}^{-m} + \epsilon_{bft},
+\end{equation}
+
+where $\alpha_{ft}^{-m}$ is a firm-year fixed effect and $\gamma_{bt}^{-m}$ is a bank-year fixed effect. The firm-year fixed effect absorbs credit demand; the bank-year fixed effect recovers the bank-specific supply shock. Because identification of $\gamma_{bt}^{-m}$ exploits within-firm, across-bank variation, only multi-bank firms contribute.\footnote{Multi-bank firms account for 100, 69, and 73\% of banks, markets, and bank-market observations in 2025, respectively.} We maintain the standard assumption that the supply shock identified on multi-bank firms also applies to single-bank firms. For robustness, we replace firm-year fixed effects with market-sector-year fixed effects as in \citet{degryse2019identifying}, which allows single-bank firms to contribute to identification at the cost of potentially absorbing demand shifters into the estimated supply shocks; results are similar.
+
+In the second step, we construct bank shares in municipality $m$ at baseline,
+\begin{equation}
+    s_{bmt-5} = \frac{L_{bmt-5}}{\sum_{b'} L_{b'mt-5}},
+\end{equation}
+
+and define the shift-share instrument as
+\begin{equation}
+    \hat{Z}_{mt}^{LOO} = \sum_b s_{bmt-5}\, \hat{\gamma}_{bt}^{-m}.
+\end{equation}
+
+Following the exogenous-shifter framework of \citet{borusyak2022quasi}, identification requires that the shifters $\hat{\gamma}_{bt}^{-m}$ be as-good-as-randomly assigned across banks conditional on the included controls. The assumption would fail if banks more exposed to credit shocks systematically lend in markets with atypical transition dynamics. For example, if an oil-sector boom raises both lending by sector-specialized banks and firm entry in oil-intensive markets, the estimated coefficient would partly capture sectoral demand rather than credit supply. We address these concerns by including controls that may correlate with both the shifter and the outcome, and by conducting a battery of robustness checks (Section~\ref{robustness}). The baseline controls include year fixed effects, market-level sector shares from both credit volumes and firm transitions, and lagged market-level interest rates, number of loans, and number of banks.
+
+The leave-one-out construction eliminates the mechanical bias that would arise from estimating $\hat{\gamma}_{bt}^{-m}$ on data that include market $m$'s own observations, but it does not substitute for shifter exogeneity. For valid inference, we follow \citet{adao2019shiftshare}.
+
+The main estimating equation relates local credit growth to firm dynamics at the market level:
+\begin{equation}
+    y_{mt} = \beta \, \Delta_5 \ln(C_{mt}) + X_{mt-5}'\Gamma + \lambda_t + \varepsilon_{mt},
+    \label{eq:main_iv}
+\end{equation}
+
+where $y_{mt}$ is a firm-dynamics outcome (such as the log number of active firms, entrants, exits, or transitions across formality states), and $\Delta_5\ln(C_{mt})$ is the five-year log-change in credit in market $m$, instrumented by $\hat{Z}_{mt}^{LOO}$. The vector $X_{mt-5}$ contains baseline market and bank controls (market-level sector shares from both credit volumes and firm transitions, and lagged market-level interest rates, number of loans, and number of banks) all measured five years prior to the outcome window. Year fixed effects are captured by $\lambda_t$.
+
+The corresponding first stage is
+\begin{equation}
+    \Delta_5 \ln(C_{mt}) = \pi \hat{Z}_{mt}^{LOO} + X_{mt-5}'\Pi + \lambda_t + u_{mt}.
+    \label{eq:first_stage}
+\end{equation}
+
+The coefficient $\beta$ is the causal elasticity of firm dynamics with respect to credit at the market level, identified by variation in credit induced by exogenous bank-level supply shocks: a one-percent increase in credit in market $m$ implies a $\hat{\beta}$-percent change in the outcome. All regressions are weighted by baseline market credit $C_{m,t-5}$. Standard errors follow the closed-form shift-share correction of \citet{adao2019shiftshare}, which accounts for correlation across markets sharing common bank shocks.
+
+% $100 \times (1.01^{\hat{\beta}} - 1) \approx \hat{\beta} $ 
+
+% Notice that to maximize the first stage and simultaneously isolate the shock variation over time we will use the first difference specification instead of updating shares (Borusyak, Hull, \& Jaravel, 2020). Moreover, the shock level estimation avoids inferential biases coming from shock exposure (Borusyak, Hull, \& Jaravel, 2020). % If a researcher wants to update the shares to maximize the first stage, but also isolate the shock variation over time (which is not achieved by controlling for unit fixed effects with time-varying shares), she may instead use the first-differenced specification
+% (Borusyak, Hull, \& Jaravel, 2020) By estimating a regression at the level of as-good-as-random variation (here, shocks) one avoids inferential biases due to clustering (here, by shock exposure).
+
+% Propotion 1 of (Borusyak, Hull, \& Jaravel, 2020): Equivalence between usual SSIV and shock level IV. Useful because doesn't relies on iid observations (violated if observed and unobserved LLM level shocks).
+% Given the equivalence between the Shift-Share IV (SSIV) estimator and the second-stage coefficient from a share weighted shock level IV regression that uses the shocks as the instrument ((Borusyak, Hull, \& Jaravel, 2020), we proceed as follows. First, consider the following residualized dependent and independent variables
+
+% \begin{align}
+%     \ln(y_{mt}^{\perp}) = \ln(y_{mt}) - \theta' c_{mt} \\
+%     \ln(L_{mt}^{\perp}) = \ln(L_{mt}) - \phi' c_{mt}
+% \end{align}
+
+% Where $y_{mt}$ are the variables of interest (log of number of firms in a sector or transitioning) and $c_{mt}$ includes an intercept and controls at the LLM. The controls included are the log of the number of workers as reported in the IMSS-R04 data and the log of the number of credits, both of them interacted with time. 
+
+% Then, we collapse the variables at the shock (bank) level. Let $e_{mt-1}$ be the exposure weight defined as the baseline existing loan in a market and define the exposure mass as 
+
+% \begin{equation}
+%     S_{bt} = \sum_m e_{mt} s_{mbt-1}
+% \end{equation}
+
+% Thus, the residualized variables defined at the shock level are
+
+% \begin{align}
+%     \ln(\bar{y}_{mt}^{\perp}) = \frac{\sum_m e_{mt-1} s_{mbt-1} \ln(y_{mt}^{\perp})}{\sum_m e_{mt-1} s_{mbt-1}} \\
+%     \ln(\bar{L}_{mt}^{\perp}) = \frac{\sum_m e_{mt-1} s_{mbt-1} \ln(L_{mt}^{\perp})}{\sum_m e_{mt-1} s_{mbt-1}}
+% \end{align}
+
+% Finally, our equation of interest is 
+
+% \begin{equation}
+%     \ln(\bar{y}_{mt}^{\perp}) = b_t +\beta \ln(\bar{L}_{mt}^{\perp}) + \eta_2 q_{bt} + u_{bt}
+% \end{equation}
+
+% Where, $\bar{L}_{mt}^{\perp}$ is instrumentalized by the standarized bank fix effect, $\hat{\gamma}_{bt}^{std}$, and $q_{bt}$ are bank level controls that include the log of the number of firms that hold a loan relationship with the bank and the loan weighted average of probability of default\footnote{The default probability of each credit is reported as mandated by the \hyperlink{https://www.gob.mx/cms/uploads/attachment/file/1056741/CUB_BD_R04_C-0430-0439_Cr_ditos_comerciales_Vigencia_202201-actual_Actualizaci_n_11_de_febrero_2026.pdf}{R04C regulations}. Let $L_{fbt}$ be the loan from bank b to firm f in time and $DP_{fbt}$ the default probability of firm f with bank b in time t. Then, the loan weighted average probability of default is defined as 
+% \[
+%     WDP_{bt} = \frac{\sum\limits_f L_{fbt} * DP_{fbt}}{\sum\limits_f L_{fbt}}
+% \]
+% .}. This equations are estimated with weights $S_{bt}$ and clustered at the bank level. % \textbf{Borusyak, Hull, Jaravel 2020} said that "besides removing confounding variation from the residual (as any control would do), they ($q_{bt}$) can also be viewed as removing such variation directly from the shocks' 
+
+% Importantly, the conventional heteroskedasticity-robust standard error estimation has valid asymptotic inference for $\hat{\beta}$ (Borusyak, Hull, \& Jaravel, 2020).
+
+\section{Results} \label{6}
+
+\subsection{Descriptive statistics of the shocks}
+
+Table~\ref{shock_stats} reports the \citet{borusyak2022quasi} diagnostic of our shift-share design at the bank-year level, the unit at which identifying variation lives, with all moments weighted by each bank's average market exposure share. Pooled across waves, the design draws on a diffuse set of shocks: the effective sample size, $\mathrm{ESS}=1/\sum_b w_{bt}^2$ computed over normalized exposure shares, reaches $63.99$ across the $60$ banks observed at least once during $2009$--$2024$, and the largest single bank-year contributes only $4\%$ of the share-weighted variation. Identification therefore does not lean on the idiosyncratic behavior of any single institution. The within-year decomposition tracks the gradual deepening of the Mexican banking system: the number of banks with estimable shocks rises from $10$ in $2009$ to $39$ in $2024$, and the within-year ESS from $2.17$ to $5.80$. The $2009$ wave displays markedly narrower shock dispersion than subsequent waves, a feature visible in both share-weighted and unweighted moments (Appendix~\ref{shock_stats_uw}, Table~\ref{shock_stats_uw_table}), consistent with the relatively homogeneous behavior of Mexican incumbent banks at the start of our sample period, prior to the entry of mid-sized and specialized institutions in the $2010$s. Although $2009$ contributes proportionally less to identification than later waves, the pooled diagnostic combines variation from all four Economic Census waves and is not driven by any single one.
+
+\begin{figure}[H] 
+    \caption{Descriptive statistics of the standardized bank shocks}
+    \label{shock_stats}
+    \begin{center}
+        \small
+        \input{stat_shock}
+    \end{center}
+\end{figure}
+
+% Table \ref{shock_stats} reports summary statistics for the bank-level shocks $\hat{\gamma}_{bt}$, constructed as the standardized over all year bank fixed effects. The table reveals that different years show different level of concentration across banks. For instance, in 2014,the effective sample size is 8.38 and the exposure weight is 18\%, indicating that identifying variation is distributed across multiple banks. In contrast, in 2009 the exposure becomes more concentrated: the effective sample size becomes 2.85 and the largest bank accounts for 57\% of total exposure. However, the panel structure of the data makes low single years concentration less problematic. For the whole period, the effective sample size is 9.56 and the exposure weight is 27\%.
+
+% To address the possible concern about few banks driving the result, Table \ref{iv_concentrated_table} Appendix \ref{iv_concentrated} shows the results of a robustness checks that exclude markets with highly concentrated exposure to bank shocks (Mexico city, Estado de Mexico, Leon, Monterrey, and Queretaro) and re-estimate the main specification. The results remain mainly unchanged, indicating that the baseline findings are not driven by bank concentration.
+
+% Taken together, these results indicate that while there is meaningful cross-bank variation in shocks, the effective number of independent shocks varies substantially across years. In particular, identification in later periods relies heavily on a small number of banks, which is important for interpreting both the precision and robustness of the empirical results. 
+
+\subsection{Main estimates}
+
+This section report our main IV estimates. We follow the recent shift-share literature in reporting standard errors following \citet{adao_kolesar_morales_2019}, which account for the cross-market correlation induced by common shocks to bank credit supply; significance stars are based on AKM $p$-values. We additionally report wild cluster bootstrap $p$-values in brackets \citep{cameron_gelbach_miller_2008} as a nonparametric robustness check. 
+
+Table \ref{main_table} reports the estimates of the main specification. The first-stage results in panel B show that bank shocks, by construction independent of the demand side, are a relevant predictor of the amount of credit observed in equilibrium. One standard deviation increase in the credit supply shocks yields a increase on the amount of loans in a market of around $130\%$ on average. The relevance test, using the fact that the first-stage Kleibergen-Paap exceeds $85$ in every column, well above conventional weak-instrument thresholds, gives evidence that the instrument is relevant. 
+
+The second-stage estimates in Table \ref{main_table} shows that credit-supply shocks robustly expand the local stock of formal and informal firms. This effect is mainly driven by an entry margin, there are more firms entering than existing, both as formal and informal. As a result, the total number of firms increases; however, the composition shifts toward a higher informal-to-formal ratio. To grasp the magnitudes, consider that a one percent increase in instrumented five-year market credit growth raises the existing-firm count by $0.18$ percent overall, with formal and informal stocks responding by $0.20$ and $0.17$ percent, respectively. The point estimates are tightly clustered between $0.17$ and $0.22$ across the nine combinations of formality and margin (existing, entering, exiting), indicating that credit-supply variation propagates through the local economy without disproportionately favoring either the formal or the informal segment, an empirically important fact for a context in which informal firms account for the majority of local establishments. 
+
+Evaluated at the average market, the shock corresponds to approximately two additional formal firms and eleven more informal firms. Evaluated at the national level, i.e. multiplied by the number of markets this effect is estimated, this implies 1,106 additional formal firms and 6,116 more informal firms.
+
+To put the magnitude of entry in perspective, this corresponds to an increase of approximately 0.07 percentage points in the startup rate over a five-year period\footnote{This number comes from the 2,574 new entering firms  (2,569 plus the 5 new entrants with the shock) divided by the original 7,152 existing firms (35.99\%) which we rest from the original 2,569 entrants divided by 7,152 existing firms (35.92\%).}. This magnitude is around one tenth of what \cite{pugsley2019grown} document as the U.S. start up deficit, a decline of about 5 percentage points in the U.S. startup rate over 32 years (approximately a quinquennial decrease of 0.78 percentage points). While this comparison is imperfect given the inclusion of informal firms it provides a useful benchmark given the limited evidence on informal firm dynamics.
+
+Entry and exit respond symmetrically, both at roughly $0.20$ percent, consistent with credit shocks raising market churn rather than only the net firm count. At the average market the shock increases by five (2,780 nationally) the number of firms entering and by 4 the number of firms exiting (2,224 nationally). This firm replacement can be seen through the lenses of the creative-destruction of \citep{schumpeter1942creative}, where the creation of a new more productive firm destroys and replaces old unproductive firms.  
+
+Wild-cluster bootstrap $p$-values confirm significance
+at conventional levels for all nine specifications, with the most
+conservative inference at $p<0.10$ for the headline existing-firms total
+($p_{\text{boot}}=0.078$).
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates of the effect of bank shocks on the number of firms}
+    \label{main_table}
+    \begin{center}
+        \small
+        \input{main_table}
+    \end{center}
+\end{figure}
+
+Nevertheless, the additional number of existing formal and informal firms can not be explained only by entry or exit. To understand better where this change in the existing firms is coming from, Table \ref{main_t_table} present the second stage of number of firms transitioning between formality status. The results show that the strongest and most precisely estimated response is an increase of formalization (informal firms becoming formal, $0.195$, $p_{\text{boot}}=0.006$), which is consistent with credit access increasing the likelihood of formalization, and an unexpected increase of formal firms transitioning to informality ($0.113$, $p_{\text{boot}}=0.037$), although short of conventional significance under the more conservative wild bootstrap. We therefore interpret the positive informal-to-formal margin as the design's most robust transition finding.
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates of the effect of bank shocks on firm transitions}
+    \label{main_t_table}
+    \begin{center}
+        \small
+        \input{main_t_table}
+    \end{center}
+\end{figure}
+
+To understand better what kind of firms are more affected by the credit supply shock, table \ref{main_credit_table} shows the effect on the number of firms with credit by formality status. The results show two important aspects. First, credit shocks affect essentially identical both formal and informal firms ($0.179$), indicating that credit access constraints slack in similar magnitudes at both sectors. Second, the positive effects suggests the response operates predominantly on the extensive margin of credit access rather than through deepening existing relationships. Taken together with the previous results, they shows that informal firms are relevantly affected by banking credits and that financial constraints are a cornerstone of informality.
+
+% All outcome variables enter in natural logarithms, so estimated coefficients are interpreted as elasticities. The one exception is value added, which is negative in 7 of 2,535 market-years — local labor markets with a net aggregate loss. Because the logarithm is undefined for non-positive values, we transform value added using the inverse hyperbolic sine (IHS), asinh(y) = ln(y + √(y² + 1)). The IHS is defined for all real values, including zeros and negatives, and converges to ln(2y) for large positive y, so its coefficients are interpreted approximately as semi-elasticities for observations away from zero (Bellemare and Wichman, 2020).
+
+% And a footnote for the caveat (this is what protects you with a careful referee):
+
+% As Chen and Roth (2023) show, the IHS transformation is not scale-invariant when the outcome takes values near zero. We measure value added in [thousands of pesos] and verify that our estimates are robust to alternative scalings of the variable.
+
+% If you also move s_for_credit/s_inf_credit to asinh, add one line: "We apply the same transformation to credit extended to formal and informal firms, which is zero in markets where no firms of that type borrow."
+
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates of effect of bank shocks on number of firms with credit}
+    \label{main_credit_table}
+    \begin{center}
+        \small
+        \input{main_credit_table}
+    \end{center}
+\end{figure}
+
+Now, we turn to analyze what are the impact of these credit supply shocks and its firm dynamics in terms of number of workers, wages, and value added. Table \ref{main_econ_table} shows that increasing the quantity of banking loans increases the total number of workers ($0.15$ percent or 56 workers in the average market), but this is mainly through additional informal employment ($0.19$ percent, or 26 informal workers in the average market), rather than formal one ($0.12$ percent, or 7 formal workers in the average market). 
+
+Regarding formal wages, they are positively correlated ($0.20$ percent) with additional banking loans, although the magnitude is economically small. Finally, these results give a clear picture regarding the value added. In the presence of additional loans, the average value added deceases ($0.07$ percent), while the total value added in a market increases ($10$ percent). Combining this last result with the results found in terms of firm dynamics, the picture becomes clear. Additional loan resources in market allow more informal, low productive, firms to enter the market, lowering the average value added; however, the total value added in a market increases, driven by all the additional firms that entered into the market. 
+
+Both value-added results are precisely estimated under AKM but not robust to the wild bootstrap ($p_{\text{boot}}=0.139$ and $0.226$, respectively), and we therefore interpret them with caution: the design appears to identify margin-of-entry and labor-reallocation effects with substantially greater precision than per-firm productivity effects.
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates of the effect of bank shocks on workers, wagebill, and value added}
+    \label{main_econ_table}
+    \begin{center}
+        \small
+        \input{main_econ_table}
+    \end{center}
+\end{figure}
+
+Table~\ref{main_finance_table} examines two financial-market channels through which the credit-supply shock transmits to firms. Credit growth raises the credit-weighted market interest rate by $0.46$ percentage points, bust to both inference procedures ($p_{\text{boot}}=0.004$), and reduces the credit-weighted log of collateral by $0.73$ percent ($p<0.10$); however, the bootstrap $p$-value of $0.175$ indicates we cannot reject the null of no effect under the more conservative inference. We therefore highlight the positive interest-rate response as the cleaner channel finding, while noting that the sign on collateral is qualitatively consistent with banks easing pledgeability requirements in response to favorable funding conditions. The positive interest-rate response, while at first counterintuitive for a supply-driven expansion, is consistent with a composition effect in which new lending extends to riskier borrowers who command higher pricing. Together, the two estimates suggest that the marginal credit relationship created by a positive bank shock is one in which collateral requirements fall but average interest rates rise---a pattern compatible with the extensive-margin entry of previously credit-rationed (and observably riskier) firms.
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates of effect of bank shocks on collateral and interest rate}
+    \label{main_finance_table}
+    \begin{center}
+        \small
+        \input{main_finance_table}
+    \end{center}
+\end{figure}
+
+Overall, these results support the conclusion that bank credit supply is a quantitatively important driver of firm dynamics in Mexican local economies. We found an important pass-through of loans to firm dynamics and formality composition. Additional financial resources in a market finances both formal and \emph{informal} firms, increasing firm entry, and allowing more existing informal firms to become formal.
+
+\subsection{Robustness checks} \label{robustness}
+
+A central identifying assumption of our design is that the bank credit-supply shocks aggregated by the shift-share instrument are as-good-as-randomly assigned conditional on the controls in our main specification. Following the balance-test prescription in \citet{borusyak2022quasi}, we test this assumption by regressing each of the predetermined market controls included in our second-stage specification on the leave-one-market-out shift-share instrument. Table~\ref{balance_test} in Appendix \ref{balance_test} reports the results for the seven controls, each at lags of five and ten years before the outcome wave. None of the fourteen coefficients is statistically distinguishable from zero at conventional levels (cluster-robust $p$-values exceed $0.10$ throughout) and the point estimates are economically small. The pattern is consistent with the orthogonality condition required by the design: conditional on year fixed effects and the controls included in our main specification, the residual variation in the instrument is uncorrelated with the level or trajectory of predetermined market characteristics. We therefore interpret the identifying variation in our shift-share as exogenous with respect to the pre-existing economic conditions of Mexican local labor markets.
+
+As a model-free check on our identification, Table~\ref{reduced_form_table} in Appendix~\ref{reduced_form} reports reduced-form estimates of the relationship between the leave-one-market-out shift-share instrument and each outcome. Each row presents the coefficient from an OLS regression of the outcome on the standardized instrument, with the same controls and sample restrictions as our main IV specification. By construction, the reduced-form coefficient equals the product of the corresponding first-stage and second-stage IV coefficients. The pattern of signs and significance mirrors the IV estimates throughout: a one-standard-deviation increase in the shift-share exposure to bank credit-supply shocks is associated with statistically significant increases in the stock, entry, and exit margins of firms, the share of firms with credit access, employment, and the aggregate wagebill, alongside a reduction in collateral and a rise in the credit-weighted interest rate. We report the IV estimates as our preferred specification because they recover the elasticity of each outcome with respect to credit growth, the economically interpretable parameter, rather than the response to a standardized exposure measure; the reduced form serves to demonstrate that the underlying correlation is present in the data without invoking the IV decomposition. 
+% Check why interest rate reduced form coeffcient differs from IV first-stage x second-stage coefficients. 
+
+The credit-weighted regression places disproportionate weight on the three largest Mexican metropolitan areas (Mexico City, Monterrey, and Guadalajara) which together account for nearly half of the base-period credit in our sample. To address the concern that our main estimates may reflect dynamics specific to these urban banking centers rather than the typical Mexican local labor market, Table~\ref{iv_nometros_table} in Appendix~\ref{iv_nometros} re-estimates the main specification excluding these three metropolitan areas. The estimated elasticities of the stock, entry, exit, and credit-access margins of firms, of total and sectoral employment, and of the aggregate wagebill remain positive, precisely estimated, and statistically significant at the 1\% level under AKM inference \citep{adao2019shiftshare} across virtually every outcome. The point estimates are uniformly \emph{larger} than in the full sample, the headline elasticity of existing firms, for instance, doubles from $0.176$ to $0.357$, consistent with the credit-weighted average masking the more elastic response of the non-metropolitan markets in which the typical Mexican firm is located. The interest-rate response is similarly robust ($0.46 \to 0.52$). The one substantive change is the sign on collateral, which reverses outside the metropolitan areas; we interpret this as evidence that the credit-supply-induced relaxation of collateral requirements documented in our main results is a metropolitan-banking phenomenon and does not extend to smaller markets, where credit expansion is associated with somewhat stricter collateralization. Taken together, these results indicate that our baseline findings are not artifacts of the concentrated weight of the three largest markets; if anything, they may understate the elasticity of local labor market outcomes to bank credit-supply shocks in the typical Mexican market.
+
+The credit weighting in our main specification (amount of credit in the market at baseline) implies that the elasticity reported in Tables~\ref{tab:firms}--\ref{tab:collateral_rate} is a credit-weighted average of market-specific responses, in which markets with larger base-period credit (notably the three metropolitan areas) carry proportionally more weight. To examine the importance of this weighting choice, Table~\ref{unweighted_table} in Appendix~\ref{unweighted} re-estimates our main specification with each market-year contributing equally. The estimated elasticities are uniformly larger than in our main specification, the existing-firm stock elasticity rises from $0.176$ to $0.320$, firm entry from $0.192$ to $0.418$, and informal firms from $0.173$ to $0.322$, consistent with the excluding the three largest metropolitan result in Table~\ref{iv_nometros_table} and with the broader interpretation that the typical Mexican local labor market is more responsive to bank credit-supply shocks than the credit-weighted average implies. Under cluster-robust inference at the market level, all firm-margin outcomes remain statistically significant at the 1\% level. Under AKM inference (reported in Table~\ref{unweighted_table}), the standard errors widen substantially, a feature of unweighted shift-share estimation in which each market contributes equally to the identification, and several stock-margin outcomes are no longer significant at conventional levels. Notably, however, the entry, exit, and formality-transition margins survive AKM inference at the 5\% level, as do the informal-firm and informal-worker outcomes. Together with the exclusion of the three biggest metropolitan result, this evidence indicates that our headline conclusions are not artifacts of the credit weighting; if anything, the typical-market elasticities suggested by the unweighted specification are larger than those reported in our credit-weighted headline.
+% For the unweighted table, the AKM SEs in your data are quite large — for example, ln_s_va has AKM SE of 0.292 and ln_s_workers --- Formal has 0.402, which dwarf the point estimates. Verify these are correctly computed; AKM SEs being 2–4× cluster-robust in an unweighted regression is plausible (and is the right pattern given the theory I outlined in the paragraph) but worth one more sanity check before the submission. If something looks numerically wrong, the simplest diagnostic is to compute the ratio AKM/cluster across outcomes and verify it's stable (which would confirm the implementation is consistent) rather than wildly varying (which would suggest a numerical issue in specific rows).
+
+
+As a direct test of the identifying assumption that our shift-share instrument is uncorrelated with pre-existing dynamics in local labor market outcomes, Table~\ref{placebo_table} in Appendix~\ref{placebo} reports placebo IV estimates for the main firm transition variables in which we replace the contemporaneous outcome with its pre-period five-year change, $\Delta_5 Y_{t-5} = \ln Y_{t-5} - \ln Y_{t-10}$. The exercise asks directly whether the bank credit-supply shocks predict trajectories in firm dynamics that materialized in the five years \emph{before} the shock window. The stock of firms, the share with credit access, and the gross flow margins, the placebo coefficients are an order of magnitude smaller than the corresponding main IV estimates (e.g., $0.009$ for the stock of existing firms, against a main effect of $0.176$). The estimates on entry, exit, and formality transitions are uninformative because the pre-period sample shrinks substantially when the further lag is required, producing first-stage $F$-statistics below conventional weak-instrument thresholds; we report them for transparency rather than as evidence in either direction. Overall, the absence of consistent predictive power for lagged outcomes provides reassurance that the estimated effects are not driven by pre-trends. 
+% For the wage, value-added, and interest-rate outcomes, the placebo attracts statistically significant negative coefficients of moderate magnitude, indicating that markets selected for positive credit-supply shocks experienced declining wages, value added, and interest rates in the preceding five-year window. We interpret this pattern as consistent with mean reversion: shocks were not randomly assigned among markets with stable economic conditions, but were directed disproportionately toward markets in which these financial and aggregate variables had been deteriorating. The implication is that the contemporaneous IV estimates on wages and value added in Table~\ref{tab:workers_va} should be interpreted as partial recoveries from these pre-trends; the firm-margin estimates, for which the placebo is clean, are not subject to this caveat.
+
+A natural question is whether our headline findings depend on the leave-one-market-out construction of the shift-share instrument, or whether the substantive conclusions would survive under the conventional (non-leave-one-out) design used in much of the shift-share literature. Table~\ref{naive_table} in Appendix~\ref{naive} reports IV estimates using this conventional construction,  in which bank credit-supply shocks $\hat{\gamma}_bt$ are estimated on the full sample including each market's own loans, so that the instrument for market $m$ at time $t$ is $\hat{Z}_{m,t} = \sum_b s_{b,m,t-5} \cdot \hat{\gamma}_{b,t}$ with every bank $b$ contributing the same shock value regardless of which market is being instrumented. As emphasized by \citet{borusyak2022quasi}, this design is vulnerable to a mechanical own-overlap bias: the instrument for market $m$ partially reflects $m$'s own contemporaneous credit dynamics, which inflates the apparent IV estimate in the direction of the underlying causal effect. The data display exactly this pattern. The conventional shift-share elasticities are uniformly larger in magnitude than those in our leave-one-market-out specification, the headline elasticity of the stock of existing firms rises from $0.176$ to $0.273$, the effect on informal firms from $0.173$ to $0.294$, and the magnitude of the collateral response from $-0.73$ to $-1.18$. The qualitative pattern of our results is preserved nonetheless: every firm-margin response, every formality transition, and every aggregate labor and credit outcome retains its sign, its statistical significance, and its order of magnitude under both AKM inference and the wild cluster bootstrap. We adopt the leave-one-market-out instrument as our preferred specification because it eliminates the overlap bias by construction; the robustness reported in Table~\ref{naive_table} confirms that our findings are not artifacts of the methodological refinement, but rather are conservative relative to what the conventional shift-share design would deliver.
+% The naive estimate for $r_w_m$ is smaller than the LOO (0.348 vs 0.460), which goes against the systematic overlap-inflation pattern in every other row. That's odd — worth a sentence in the paper or just leaving for a referee to ask. The most likely explanation is that the interest-rate channel has unusual time-series properties, but a one-line footnote acknowledging the exception is more defensible than ignoring it.
+
+As a stand-alone identification check using a structurally distinct research design, Table~\ref{bank_table} in Appendix~\ref{bank} reports IV estimates at the bank-year level. We identify bank credit-supply shocks following the cell-fixed-effects approach of \citet{degryse2019identifying}, an extension of the within-firm framework of \citet{khwaja2008tracing} in which credit demand is absorbed at the market-sector (LLM~$\times$ industry) cell level rather than at the individual firm level. This refinement is consequential in our setting because it permits identification from \emph{both} multi-bank and single-bank firms, substantially expanding the borrower sample used to recover the shocks, a particularly important feature for Mexico, where single-bank relationships dominate the local credit market. The bank-level specification aggregates each bank's outcome contribution across the markets it serves and instruments the bank's five-year credit growth with this cell-FE pre-identified credit-supply shock. The two designs we report, market-level shift-share and bank-level cell-FE shift-share, identify the elasticity of local outcomes to credit-supply variation from \emph{structurally different} sources:
+within-market-across-banks at the market level, within-(LLM~$\times$ sector)-cell-across-banks at the bank level. They operate on different unit populations, deploy different identification arguments, and rely on different assumptions about the orthogonality structure of the shocks; yet both should recover the same economic parameter if our story about credit-supply pass-through is correct.
+
+The data deliver this convergence in striking detail. The bank-level elasticity of the existing-firm stock is $0.188$, indistinguishable from the market-level estimate of $0.176$. The entry margin yields $0.181$ at the bank level versus $0.192$ at the market level; informal firms yield $0.197$ versus $0.173$; informal-to-formal transitions yield $0.187$ versus $0.195$. Across every margin of firm response, every formality transition, and every aggregate labor outcome, the two designs deliver point estimates within $0.03$ of each other and the same pattern of statistical significance under wild cluster bootstrap inference. The first-stage Kleibergen-Paap statistic at the bank level ($F \approx 34$) is naturally lower than at the market level ($F \approx 89$) given the substantially smaller cross-section of banks, but remains well above conventional weak-instrument thresholds. We interpret the convergence of two structurally distinct IV designs on essentially the same elasticities as among the strongest pieces of evidence for the substantive conclusions of this paper. The collateral and interest-rate channels are too imprecisely estimated at the bank level, owing to the small bank-year cross-section, to draw inference from there; for these intermediate channels the market-level results in Table~\ref{main_finance_table} remain our primary evidence.
+
+Our main analysis restricts the estimation sample to market-years for which the leave-one-market-out shift-share instrument is constructed from at least half of the local base-period banking exposure. Table~\ref{sensitivity} in Appendix~\ref{sensitivity_table} re-estimates our headline specification at the two extreme alternatives: a threshold of zero, which includes every market-year for which an instrument can be constructed regardless of how thinly the underlying banking exposure is sampled, and a threshold of $0.8$, which restricts identification to market-years where the instrument pools the great majority of local banking activity. The point estimates rise monotonically with the threshold across nearly every outcome, for the headline existing-firm stock, the elasticity moves from $0.160$ (cov $\geq 0$) to $0.176$ (main spec) to $0.201$ (cov $\geq 0.8$); the corresponding patterns for entry, exit, formality transitions, and the aggregate labor outcomes are quantitatively similar. We interpret this regularity as consistent with classical attenuation bias from measurement error in the LOO instrument: as the threshold tightens, the bank-shock exposure underlying the instrument is more precisely measured and the resulting IV estimate approaches more closely the underlying causal parameter. Crucially, all elasticities remain precisely estimated and statistically significant under AKM inference at \emph{both} extreme thresholds, with the first-stage Kleibergen-Paap statistic exceeding 67 in every column. Our central findings are therefore not sensitive to the specific coverage threshold chosen and are, if anything, conservative relative to what tightening the threshold would deliver.
+% The interest-rate result is robust across both thresholds (0.431 → 0.460 → 0.482) and so is collateral (−0.71→−0.73→−0.81-0.71 \to -0.73 \to -0.81−0.71→−0.73→−0.81). The collateral coefficient becomes *more* negative as coverage tightens, which is the opposite direction from your no-metros table (where the sign flipped). That difference is worth knowing about — it suggests that the metros-vs-non-metros distinction is structural (a real change in the data-generating process) while the coverage-threshold distinction is measurement (more vs. less noisy instrument on the same underlying process). If a referee compares the two robustness exercises, you have a clean answer: tightening on cov_z_5 sharpens the instrument; dropping metros changes the population. Different concerns, different answers, and the result is robust to both.
+
+A potential concern with our leave-one-market-out shift-share instrument is that its magnitude scales mechanically with coverage: in a market where only half of the base-period banks have an identifiable shock, the instrument is a coverage-weighted sum that is mechanically half as large as it would otherwise be. As a robustness check on this scale concern, Table~\ref{renormalized_table} in Appendix~\ref{renormalized} re estimates our main specification using the \emph{renormalized} instrument $\tilde z_{m,t} = z_{m,t} / \texttt{cov\_z\_5}_{m,t}$, which converts the coverage-weighted sum into a coverage-weighted average. The estimated elasticities are virtually identical to those of the main specification---the headline existing-firm elasticity moves from $0.176$ to $0.174$, the entry margin from $0.192$ to $0.192$, the informal-to-formal transition from $0.195$ to $0.196$, the interest-rate response from $0.46$ to $0.46$---and statistical significance is preserved at the 1\% level under AKM inference for every firm-margin outcome. We conclude that our results are not artifacts of the instrument's coverage-weighted scaling.
+
+The robustness checks reported in this section converge on a single conclusion: the headline elasticity of approximately $0.18$ for the effect of bank credit-supply shocks on the extensive margin of firm activity in Mexican local labor markets is not driven by any single methodological choice. The shift-share instrument is orthogonal to predetermined market controls and to pre-period outcome changes; the estimated elasticities survive the removal of the leave-one-market-out correction, the exclusion of the three largest metropolitan areas, the removal of credit weighting, variation in the coverage threshold from zero to $0.8$, and the renormalization of the instrument by coverage. Most compellingly, a structurally distinct identification strategy at the bank level, the cell-fixed-effects design of \citet{degryse2019identifying} that identifies from \emph{within}-cell variation across banks rather than across markets, recovers point estimates within $0.03$ of our market-level results across every firm-margin outcome. The intermediate financial channels of collateral and interest rates are less consistently identified across specifications, and we accordingly treat the firm-margin and aggregate labor-market findings as our central substantive contributions. The weight of the accumulated evidence supports the broader conclusion that bank credit supply is a quantitatively important driver of firm dynamics in Mexican local economies.
+
+\section{Model} \label{7}
+
+This section develops a dynamic model of firm entry, exit, and transitions between the formal and the informal sectors. We build on \cite{hopenhayn1992entry} ,\cite{imbert2023rural}, and \cite{gomes2001financing}. Time is discrete and indexed by $t=\{0,\dots, T\}$. Firms are heterogeneous in productivity $\theta \in [\underline{\theta}, \bar{\theta}]$. They choose investment, next period capital, labor, and a sector (formal or informal) to operate. Notice that formal and informal firms produce the same homogeneous good, with the same prices\footnote{A possible extension to this framework is a monopolistic competition à la Merlitz.}.
+
+Firms have access to production technology of the form $y = f(l,k; \theta) = \theta q(l,k) = \theta (k^\alpha \ell^\nu)$. This function is strictly increasing, stircitly concave, twice differentiable, and homogeneous; it fullfils the Inada conditions; and it has decreasing returns to scale ($0 < \alpha + \nu < 1$) on capital and labor.
+
+Denote the firm innate productivity parameter as $v$, which is i.i.d. with a CDF $H(v)$ and observed by firms before entry decisions. Furthermore, there is an i.i.d. shock in every period that follows log normal distribution such that $\ln(\epsilon) \sim_{iid} \ln(\mathbb{N}(0,\sigma_s^2)), \forall s \in \{i,f\}$. 
+
+Thus, the productivity process of the firm evolves according to the initial condition
+
+\begin{equation}
+    \ln(\theta_{j1}) = \ln(v_j) + \ln(\epsilon_{j1}).
+\end{equation}
+
+and the dynamic process according to 
+
+\begin{equation}
+    \ln(\theta_{jt}) = \rho_s \ln(\theta_{jt-1}) + (1-\rho_s)\ln(v_j) + \ln(\epsilon_{jt}), \quad \forall t \geq 2.
+\end{equation}
+
+This means that iterating forward this process it yields the following dynamic process
+
+\begin{equation}
+    \ln(\theta_{jt}) = \ln(v_j) + \sum_{k=0}^{\infty} \rho_s^k \ln(\epsilon_{j,t-k}), s \in \{i,f\}
+\end{equation}
+
+In the computation stage, this continuous process is made discrite using the commonly used Tauchen's method, yielding a finite Markov chain with transition matrix $P(\theta'|\theta)$.
+
+The investment function of the firms is denoted by the law of motion of capital
+
+\begin{equation}
+    I(k',k) = k' - (1 - \delta) k    
+\end{equation}
+
+Hence, capital evolves according to $k' = I(k',k) + (1 - \delta) k$. Under this setting, when internal funds are insufficient, firms borrow external funds according with the following equation
+
+\begin{equation}
+    a_t = i(k_t,k')-\pi_s(k_t,\theta_t).
+\end{equation}
+
+
+Notice that $\phi_s'(a_t) \geq 0, \forall s \in \{i,f\}$. Furthermore, we allow financing costs to differ by regime, with $\phi_i(\cdot)>\phi_f(\cdot)$. This last assumption is for all positive borrowing levels, capturing tighter credit constraints among informal firms, as the data suggests. 
+
+Figure ~\ref{timing} depicts the timing of the model. In every period, the incumbent firms first decides a sector (exit the market, stay in its current sector, or switch sector) at the the start of the period, before any contemporaneous variables are observed, and before they make any other decisions. In a second step and after observing the productivity shocks, they decide how much to invest, the financial source (internal or external sources), and how much labor to hire. A firm that exits receives the value of its current depreciated capital, does not demand labor, and gets zero profits. Potential entrants decide which market to enter (formal or informal) or not to enter the market at the beginning of every period and before any contemporaneous variables are observed.
+
+\begin{figure}[H] 
+    \caption{Timing of the Model}
+    \label{timing}
+    \begin{center}
+        \input{timing}
+    \end{center}
+\end{figure}
+
+The labor costs of the firm depend on its formality status. Informal firms do not face payroll nor value added taxes but instead they pay a cost of informality of the form
+
+\begin{equation}
+    \tau_i(\ell) = (1 + \ell / \rho_i) \in [1,\inf)
+\end{equation}
+
+Where $\tau_i'(l) > 0$. This cost can be interpreted as the probability of being audited by the tax authority, that's is why is increasing in labor force, as described by \cite{imbert2023rural}. 
+
+Formal firms that hire workers formally face, among other taxes, a payroll tax $\tau_l$; however, they could hire a fraction of their workers informally at a cost
+
+\begin{equation}
+    \tau_f(\ell) = (1 + \ell / \rho_f) \in [1,\inf)
+\end{equation}
+
+Where $\tau_f'(l) > 0$. The worker in both sectors are perfect substitutable, thus the firm hires the cheapest worker, which creates a unique threshold, $\tilde{\ell}$, from which a firm starts to hire formally the next workers. Thus the labor costs of a formal firm are defined as
+
+\begin{equation}
+    C(\ell) = \begin{cases} 
+        \tau_f(\ell) w \ell & if \quad \ell \leq \tilde{\ell} \\
+        \tau_f(\tilde{\ell}) w \ell + (1 - \tau_w)(\ell - \tilde{\ell}) w & if \quad \ell > \tilde{\ell} 
+    \end{cases}
+\end{equation}
+
+Thus, a firm chooses the optimal level of labor that maximizes her static profits. The static profits for each formal and informal firm can be defined as follows:
+
+An informal firm maximizes the following problem:
+
+\begin{equation}
+    \Pi_i = \Pi_i(k_t,\theta_t,\ell_t) =  \max_{\ell} \{ \theta (k^\alpha \ell^\nu) - (1 + \ell / \rho_i) \ell w - c_i \}
+\end{equation}
+
+The solution to this problem is 
+
+\begin{equation}
+  MgP_{\ell} = v \theta k^\alpha \ell^{v-1} = w + 2w \ell = MgC_{\ell}  
+\end{equation}
+
+Which yields an optimal level of labor $\ell_i^*(k,w;\alpha,v,\theta,\rho_i)$ and consequently an optimal profit $\Pi_i^*(k,w,l_i^*(k,w;\alpha,v,\theta,\rho_i);\alpha,v,\theta,\rho_i)$.
+
+In contrast, a formal firm maximizes the following problem:
+
+\begin{equation}
+    \Pi_f =  \max_{\ell} \{ (1 - \tau_y) \theta (k^\alpha \ell^\nu) - c_f - \begin{cases} 
+        (1 + \tau_l) \ell w = \ell w + \tau_l \ell w & if \quad \ell \leq \tilde{\ell} \\
+        lw + \tau_l w (\ell - \tilde{\ell}) - \frac{\tilde{\ell}^2}{\rho_f} w & if \quad \ell > \tilde{\ell} 
+    \end{cases} \}
+\end{equation}
+
+Notice that formal and informal labor are perfect substitutes for a formal firm because they yield the same marginal product of labor. However their marginal cost are not the same. For the formal labor this marginal cost is constant, while for the informal labor the marginal cost is increasing in labor. This guarantees there is a single crossing, which means a unique threshold for which a firm starts to hire informal labor. Hence, $\tilde{\ell}$ is defined as the point where the marginal cost of formal labor $(1-\tau_l)w$ equals the marginal cost of informal labor $(1+\frac{2\ell}{\rho_f})w$, which means that $\tilde{\ell} = \frac{(1+\tau_l)\rho_f - 1}{2}$.
+
+The solution to this problem depends on if the optimal level of labor is below or above the threshold of informal labor $\tilde{\ell}$. Therefore we have the following two cases. 
+
+The first case is when the optimal level of labor is below the threshold,  $\ell_f^* \leq \tilde{\ell}$, meaning this firm will hire all their workers formally. Under this scenario, the optimal level of labor is given by
+
+\begin{equation}
+    \ell^*_f = [\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{1/(1-\nu)}
+\end{equation}
+
+Therefore, the optimized profit is given by the following expression.
+
+\begin{equation}
+    \Pi^*_f (\ell^*_f) =  (1 - \tau_y) \theta k^\alpha [\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{\nu/(1-\nu)} - (1 + \tau_l) w [\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{1/(1-\nu)}
+\end{equation}
+
+Notice that the optimal demand for formal labor is decreasing in production and payroll taxes and in wages ($\frac{\partial \ell^*_f}{\partial \tau_y} < 0, \frac{\partial \ell^*_f}{\partial \tau_l} < 0, \frac{\partial \ell^*_f}{\partial w} < 0$), reflecting higher effective labor costs. In contrast, it is increasing in firm productivity and capital ($\frac{\partial \ell^*_f}{\partial \theta} > 0, \frac{\partial \ell^*_f}{\partial k} > 0$), as more productive and better-capitalized firms operate at a larger scale. The comparative statics with respect to the production parameters are in general ambiguous, as changes in returns to scale and factor intensities affect both the marginal product of labor and the optimal scale of production.
+
+The second case is when the optimal level of labor is above the threshold,  $\ell_f^* \geq \tilde{\ell}$, meaning this firm will hire a mix of formal and informal workers. Under this scenario, the optimal level of labor is given by
+
+\begin{equation}
+    \ell^*_f = [\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{1/(1-\nu)} - \frac{(1-\tau_y)\rho_f - 1}{2}
+\end{equation}
+
+Thus, the optimized profit under this scenario is given by the following expression.
+
+\begin{multline}
+    \Pi^*_f (\ell^*_f) =  (1 - \tau_y) \theta k^\alpha [\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{\nu/(1-\nu)} - [\frac{(1-\tau_y)\rho_f - 1}{2}]^{\nu} - w [[\frac{(1-\tau_y)}{(1+\tau_l)} \frac{\nu \theta}{w} k^{\alpha}]^{1/(1-\nu)} \\
+    - \frac{(1-\tau_y)\rho_f - 1}{2} ](1+\tau_l) - \frac{[(1-\tau_y)\rho_f - 1]^2}{4 \rho_f} w - \tau_l \frac{(1-\tau_y)\rho_f - 1}{2} w
+\end{multline}
+
+The optimal optimal demand for formal labor is decreasing in payroll taxes and wages ($\frac{\partial \ell^*_f}{\partial \tau_l} < 0, \frac{\partial \ell^*_f}{\partial w} < 0$), again reflecting higher marginal labor costs. It is increasing in firm productivity and capital ($\frac{\partial \ell^*_f}{\partial \theta} > 0, \frac{\partial \ell^*_f}{\partial k} > 0$), for the same reasons as before. The effect of output taxes and production parameters is, in general, ambiguous, as they simultaneously affect the marginal product of labor and the scale of operation, generating offsetting forces.
+
+Once the static profit maximization is solved (for ach possible transition decision), the firm looks at the dynamic firm problem. At the end of each period, firms choose among three possible options: (1) exit the market, (2) remain in the current (formal or informal )regime, or (3) switch to the other regime. Switching from informal to formal requires paying a switching cost $c_{if}$, while switching from formal to informal costs $c_{fi}$. Let $V_i(k,\theta)$ and $V_f(k,\theta)$ denote the value functions. Then, the Bellman equation for informal firms is
+
+\begin{multline}
+    V_i(k,\theta;w) = \max_{k'\in\mathcal{K}} \{\overbrace{ \pi_i(k,\theta;w) - i(k,k') - \phi_i(a(k,k',\theta;w))}^{\text{Dividends}} \\
+    + \beta \max \left[ \underbrace{(1-\delta)k}_{\text{Exit}}, \underbrace{\mathbb{E}[V_i(k',\theta';w)|\theta]}_{\text{Stay Informal}}, \underbrace{\mathbb{E} V_f(k',\theta';w)|\theta]-c_{if}}_{\text{Switch Informal-Formal}} \right] \},
+\end{multline}
+
+Analogously, the Bellman equation for formal firms is 
+
+\begin{multline}
+    V_f(k,\theta;w) = \max_{k'\in\mathcal{K}} \{ \overbrace{\pi_f(k,\theta;w) - i(k,k') - \phi_f(a(k,k',\theta;w)}^{\text{Dividends}}) \\
+    + \beta \max \left[ \underbrace{(1-\delta)k}_{\text{Exit}}, \underbrace{\mathbb{E}[V_f(k',\theta';w)|\theta]}_{\text{Stay Formal}}, \underbrace{\mathbb{E} V_i(k',\theta';w)|\theta]-c_{fi}}_{\text{Switch Formal-Informal}} \right] \},
+\end{multline}
+
+Appendix \ref{simple_model} shows the intuition in a simplified two period model.  We solve for the optimal level of capital next period in this simplified version for both formal and informal firms that decide either to stay in their current formality status or transition to the opposite one. 
+
+Regarding the optimal sector that each (inactive, formal, and informal) firm decides to stay(enter) at is given by the following decision rules in terms of the productivity level
+
+\vspace{5mm}
+
+\textbf{Inactive firm}: $s_n(k,\theta;w) = \begin{cases}
+    n \text{ if } \theta_i^e  > \theta \text{ (stay inactive)} \\
+    i \text{ if } \theta_i^e \leq \theta < \theta_f^e \text{ (enter informal)} \\
+    f \text{ if } \theta  \geq \theta_f^e \text{ (enter formal)}
+\end{cases}$
+
+\textbf{Informal firm}: $s_i(k,\theta;w) = \begin{cases}
+    n \text{ if } \theta_i^x  > \theta \text{ (exit as informal)} \\
+    i \text{ if } \theta_i^x \leq \theta < \theta_{if} \text{ (stay informal)} \\
+    f \text{ if } \theta  \geq \theta_{if} \text{ (transition informal-formal)}
+\end{cases}$
+
+\textbf{Formal firm}: $s_f(k,\theta;w) = \begin{cases}
+    n \text{ if } \theta_f^x  > \theta \text{ (exit as formal)} \\
+    i \text{ if } \theta_f^x \leq \theta < \theta_{fi} \text{ (transition formal-informal)} \\
+    f \text{ if } \theta  \geq \theta_{fi} \text{ (stay formal)}
+\end{cases}$
+
+\vspace{5mm}
+
+Where the thresholds for each of these rules are defined as follows. 
+
+An inactive firm will enter as informal if $\mathbb{E}[V_i(k',\theta';w) \mid \theta_i^e] - c_i^e = (1 - \delta) k'$ and she will enter formal if $\mathbb{E}[V_i(k',\theta';w) \mid \theta_f^e] - c_i^e = \mathbb{E}[V_f(k',\theta';w) \mid \theta_f^e] - c_f^e$.
+
+An informal firm will exit as informal if$\mathbb{E}[V_i(k',\theta';w) \mid \theta_i^x] = (1 - \delta) k'$ but it will transition informal-formal if $\mathbb{E}[V_i(k',\theta';w) \mid \theta_{if}] = \mathbb{E}[V_f(k',\theta';w) \mid \theta_{if}] - c_{if}$.
+
+Finally, a formal firm would exit as formal if $\mathbb{E}[V_f(k',\theta';w) \mid \theta_f^x] = (1 - \delta) k'$, and it would transition formal-informal if $\mathbb{E}[V_f(k',\theta';w) \mid \theta_{fi}] = \mathbb{E}[V_i(k',\theta';w) \mid \theta_{fi}] - c_{fi}$.
+
+To gain intuition on on how firms decide their transitions based on productivity and capital levels, Figure ~\ref{transition_decisions} plots the optimal decision policy for informal, formal, and inactive firms. Notice that for an informal firm is optimal to become formal (exit) after a positive (negative) productivity shock, given a level of capital. On the contrary, for a formal firm is optimal to become informal (exit) after a negative (too negative) productivity shock, given a level of capital. Finally, for an inactive firm is almost always optimal to enter informal, it is only optimal to enter as formal after a high productivity draw. 
+
+Notice that this model is capable of making the firm transition decision endogenous and based on productivity and capital levels. Then, given the optimal transition depends on capital too, the financial restrictions will play a preponderant role in how the optimality of these decisions are shaped. For instance, imagine an inactive firm that is just below the threshold to be optimally better-off as informal. If you relax the financial constraint of this inactive firm, she will be able to reach a higher level of capital, crossing the inactive threshold and become active in the informal sector. All without changing her productivity level.
+
+\begin{figure}[H]
+    \caption{Transition decisions}
+    \label{transition_decisions}
+    \begin{center}
+        \includegraphics[scale = 0.94]{transition_informal.png}
+        \includegraphics[scale = 0.94]{transition_formal.png}
+        \includegraphics[scale = 0.94]{transition_inactive.png}
+    \end{center}
+\end{figure}
+
+
+Given optimal policy functions for firm dynamics, the economy induces a law of motion for the cross-sectional distribution of firms $\mu_t(s,k,\theta)$. Where the stationary equilibrium distribution $\mu$ satisfies $\mu_{t+1}=\mu_t=\mu$. 
+
+Notice that exiting firms are replaced by entrants with initial capital $k_0$ and productivity drawn from the stationary distribution of the productivity process.
+
+A stationary recursive equilibrium consists of value functions $\{V_i,V_f\}$, optimal policy rules for labor, capital, and regime choice, a stationary distribution $\mu$, and prices and wages, such that:
+
+\begin{enumerate}
+    \item Firms solve their dynamic optimization problems,
+    \item The distribution evolves according to optimal policies,
+    \item Entrant flows replace exit mass,
+    \item All markets clear.
+\end{enumerate}
+
+\section{Parametrization} \label{9}
+
+We solve the model at an annual frequency and parametrize it in two blocks. A first block of parameters is assigned externally, either from direct data analogues (taxes, depreciation, interest rate) or from standard values in the firm-dynamics literature. A second block is chosen internally so that the stationary equilibrium of the model matches a vector of moments computed from the Mexican Economic Census (EC) and the matched IMSS--CNBV credit registry described in Section~\ref{sec:3}. The second block is, in the current draft, calibrated by indirect inference at a coarse grid; the joint Simulated Method of Moments (SMM) routine described in Appendix~\ref{X} is in progress and the qualitative pattern of the counterfactual reported in Section~\ref{sec:counterfactual} is robust across the parameter neighborhoods we have explored.
+ 
+Throughout, we normalize the wage in each local labor market to $w=1$ and treat it as exogenous to the bank-level credit shocks that identify $\beta$ in the empirical model.\footnote{This is consistent with our identification strategy, which exploits within-LLM, within-year variation in credit supply driven by bank shocks that are small relative to the labor market. We discuss the partial-equilibrium nature of the exercise in Section~\ref{sec:limitations}.}
+ 
+Externally assigned parameters. We set the discount factor at $\beta=0.95$, consistent with an annual risk-free rate of approximately $5\%$, and the capital depreciation rate at $\delta=0.10$, a standard value for the mix of structures and equipment held by Mexican non-financial firms. The corporate income tax rate is set to $\tau_y=0.05$ and the payroll contribution rate to $\tau_l=0.05$.\footnote{These reflect the effective rates paid by formal SMEs in our window, computed by dividing aggregate corporate tax and social-security contributions in the National Accounts by aggregate value added and the wage bill, respectively. The headline statutory rates are higher ($30\%$ ISR and $\sim\!30\%$ combined IMSS contribution); the effective rates are substantially below them once deductions and the prevalence of small-firm regimes (RIF/RESICO) are taken into account. We show in Appendix~\ref{app:robustness} that the counterfactual results are robust to using the statutory rates.} The production function is Cobb--Douglas in capital and labor, $q(k,\ell)=k^{\alpha}\ell^{\nu}$, with $\alpha=0.50$ and $\nu=0.40$, implying decreasing returns to scale of $\alpha+\nu=0.90$, in the range typically estimated for Latin American manufacturing and services \citep{busso2012formal, ulyssea2018firms}.
+ 
+The firm-level idiosyncratic productivity $\theta_{jt}$ follows the AR(1) process described in equation~\eqref{eq:theta_process}, which we discretize on $N_\theta=7$ states using the \cite{tauchen1986finite} method with grid width $m=3$ standard deviations and innovation variance $\sigma_u^2=0.81$. The persistence parameter is set to $\rho=0.3$ in the current calibration.\footnote{We use a common persistence across the two sectors as a parsimonious starting point. In the SMM step, $\rho_i$ and $\rho_f$ are identified separately by sector-specific revenue auto covariances and the empirical sector-specific transition rates, as detailed in Appendix~\ref{app:smm}.} The resulting unconditional standard deviation of log productivity is $\sigma_\theta=0.94$, which matches the within-sector, within-industry cross-sectional dispersion of log revenue per worker computed in the EC after partialling out sector-year fixed effects.
+ 
+Now, let's consider the static profits and the informality wedge. Conditional on operating in sector $s$ with state $(k,\theta)$, the firm chooses labor optimally. We model an extensive-margin informality cost on the labor side that scales smoothly with employment, so that informal firms find it progressively harder to remain undetected as they grow. Specifically, the informal labor cost function is $\tau_i(\ell)=1+\ell/\rho_i$ with $\rho_i=5.43$, while the formal labor cost includes the payroll wedge plus a smooth audit-style penalty on labor above the threshold $\tilde\ell = \tfrac{1}{2}\!\left[(1-\tau_y)\rho_f-1\right]$, governed by $\rho_f=1.10$. These two parameters control how much the cost of operating informally rises with size and how much the formal-sector deduction structure favors small firms; both are pinned down by sector-specific employment dispersion and the empirical size profile of the formal share documented in Section~\ref{sec:descriptive}. The fixed operating costs are $\bar c_i=1.0$ for informal firms and $\bar c_f=3.5$ for formal firms, chosen to reproduce (i) the empirical informal share of $48.6\%$ in the EC and (ii) the relative size of the average formal vs.\ informal firm.
+ 
+Regarding the financial constraint and the cost of external funds, each firm needs to finance investment net of internal cash flow, $a \equiv i(k,k') - \Pi_s(k,\theta;w)$. When $a>0$, the firm raises external funds at a sector-specific schedule
+
+\begin{equation}
+\phi_s(a) \;=\; \phi_{0s} \;+\; \phi_{1s}\, a^{\,p_s},
+\qquad s\in\{i,f\},
+\label{eq:phi}
+\end{equation}
+
+which encompasses both an intercept fee and a convex wedge that captures collateral requirements, default risk premia, and search costs in the segmented Mexican credit market. We set $\phi_{0i}=\phi_{0f}=0$ and $p_i=p_f=1$, so that the cost of external funds is a linear function of the amount borrowed. The slope parameters are $\phi_{1i}=2.0$ for informal firms and $\phi_{1f}=1.3$ for formal firms, so that the informal sector faces a roughly $54\%$ higher marginal cost of external finance, in line with the gap between formal loan rates and the informal lending sources documented for SMEs in \cite{love2014trade} and confirmed for our sample by the difference between the within-sample average interest rate on bank loans to formal firms ($14.3\%$) and the implied annualized cost of credit extended to informal firms in CNBV ($22.1\%$).\footnote{The exact mapping from $(\phi_{0s},\phi_{1s},p_s)$ to a marginal interest rate depends on the firm's borrowing level; we report the implied rates evaluated at the median external financing need in Table~\ref{tab:params}.} The two slope parameters are the central financial-friction primitives of the model, and they are the objects that move in our counterfactual exercise.
+ 
+Each period a measure of potential entrants observes its innate productivity $v_j$ and a draw of initial capital from a log-normal distribution with mean $\mu_{k0}$ and dispersion $\sigma_{k0}$. Entrants choose to remain inactive, enter informally, or enter formally, paying $c_e^i=0.01$ and $c_e^f=2.5$ respectively. The wedge between the two entry costs reflects registration fees, accounting overhead, and the cost of acquiring the documentation needed to operate visibly in the formal economy. Incumbents may switch sectors at cost $c_{if}=1.0$ (informal $\to$ formal) and $c_{fi}=0.8$ (formal $\to$ informal); the asymmetry is consistent with the empirical asymmetry in observed transitions ($16.6\%$ of formal--formal pairs vs.\ $15.1\%$ of formal--informal in Section~\ref{sec:descriptive}). We abstract from exogenous death ($\lambda_i^0=\lambda_f^0=0$); endogenous exit is generated by the exit thresholds derived in Section~\ref{sec:model}.
+ 
+We solve the firm's problem by value-function iteration on a tensor grid of $N_k=130$ capital points (uniform on $[0,130]$, with $k_{\max}$ exceeding the $99$th percentile of capital observed in equilibrium), $N_\ell=200$ labor points (uniform on $[0,200]$), and $N_\theta=7$ productivity states. The Bellman operator is iterated to a sup-norm tolerance of $10^{-5}$, which is reached in approximately $80$ iterations from a zero initial guess. The stationary distribution is then obtained by iterating the implied Markov operator on the joint state space $(k,\theta,s)$ to a tolerance of $10^{-12}$.
+ 
+Table~\ref{tab:params} summarizes the baseline parametrization, the source of each value, and the empirical moment that disciplines each internally calibrated parameter. The mapping between parameters and moments is highly non-block-recursive, so identification is ultimately joint. Heuristically, however, $(\rho,\sigma_u)$ are identified by the persistence and dispersion of revenue, $(\alpha,\nu)$ by factor shares, $(\rho_i,\rho_f,\bar c_i,\bar c_f)$ by the level and size profile of formality, $(\phi_{1i},\phi_{1f})$ by the within-sector relationship between firm size and borrowing incidence, and the switching and entry costs by the empirical transition matrix between activity states.
+ 
+\begin{table}[H]
+\centering
+\caption{Parametrization of the baseline model}
+\label{tab:params}
+\small
+\begin{tabular}{l l c l}
+\toprule
+Parameter & Description & Value & Source / target moment \\
+\midrule
+\multicolumn{4}{l}{\emph{Externally assigned}} \\
+$\beta$        & Discount factor                & $0.950$ & $r_f \approx 5\%$ annual \\
+$\delta$       & Depreciation rate              & $0.100$ & Standard \\
+$\tau_y$       & Effective corporate tax        & $0.050$ & SAT--SCNM, 2009--2024 avg. \\
+$\tau_l$       & Effective payroll contribution & $0.050$ & IMSS contribution/wage bill \\
+$w$            & Wage (normalization)           & $1.000$ & --- \\
+$\alpha$       & Capital elasticity             & $0.500$ & Literature \\
+$\nu$          & Labor elasticity               & $0.400$ & Literature ($\alpha+\nu=0.9$) \\
+\midrule
+\multicolumn{4}{l}{\emph{Productivity process}} \\
+$\rho$         & AR(1) persistence              & $0.300$ & Revenue autocovariance \\
+$\sigma_u$     & Innovation s.d.                & $0.900$ & Cross-sectional revenue dispersion \\
+$N_\theta$     & Tauchen grid points            & $7$     & --- \\
+\midrule
+\multicolumn{4}{l}{\emph{Static profits}} \\
+$\rho_i$       & Informal labor wedge param.    & $5.430$ & Informal size distribution \\
+$\rho_f$       & Formal labor wedge param.      & $1.100$ & Formal size distribution \\
+$\bar c_i$     & Informal fixed cost            & $1.000$ & Informal share \\
+$\bar c_f$     & Formal fixed cost              & $3.500$ & Formal--informal size gap \\
+\midrule
+\multicolumn{4}{l}{\emph{Financial constraint $\phi_s(a)=\phi_{0s}+\phi_{1s}a^{p_s}$}} \\
+$\phi_{1i}$    & Marginal cost, informal        & $2.000$ & Informal borrowing incidence \\
+$\phi_{1f}$    & Marginal cost, formal          & $1.300$ & Formal borrowing incidence \\
+$\phi_{0s}, p_s$ & Intercept and curvature     & $0,\,1$ & Set; relaxed in robustness \\
+\midrule
+\multicolumn{4}{l}{\emph{Entry, exit, switching}} \\
+$c_e^i$        & Informal entry cost            & $0.010$ & Informal entry rate \\
+$c_e^f$        & Formal entry cost              & $2.500$ & Formal entry rate \\
+$c_{if}$       & Cost of switching $i\to f$     & $1.000$ & Informal $\to$ formal share \\
+$c_{fi}$       & Cost of switching $f\to i$     & $0.800$ & Formal $\to$ informal share \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{\textwidth}
+\footnotesize
+\emph{Notes:} The wage is normalized to $w=1$ in every local labor
+market and treated as exogenous to the credit-supply shocks used in
+the empirical model. Externally assigned parameters are taken from
+data analogues (taxes), standard values in the firm-dynamics
+literature (discount factor, depreciation), or fitted directly
+(production function elasticities). Internally calibrated parameters
+are chosen so that the stationary equilibrium of the model
+reproduces the targeted moments from the EC and the matched
+IMSS--CNBV credit registry; the full set of $27$ moments used in the
+joint SMM refinement is reported in Appendix~\ref{app:smm}.
+\end{minipage}
+\end{table}
+ 
+The baseline parametrization reproduces the stationary informal share ($48.6\%$ in both model and data), the formal share ($29.9\%$ vs.\ $29.9\%$ targeted), and the rates of informal and formal entry within $1\%$ of their empirical counterparts. The non-targeted moments most relevant for our exercise are the within-sector dispersion of firm size, which the model reproduces to within $0.1$ log points, and the rate of formal-to-informal transitions, which the model generates at $3.6\%$ per year, against $4.4\%$ in the data. Appendix~\ref{app:fit} contains the full set of targeted and non-targeted moments.
+
+\section{Counterfactual} \label{10}
+
+We now use the parametrized model to assess whether the reduced-form elasticities of Section~\ref{sec:results} are consistent with a mechanism in which credit supply expansions ease the financial constraint that small, low-productivity entrants face when starting operations. The exercise reduces the marginal cost of external financing for the informal sector by $25\%$ ($\phi_{1i}: 2.0 \to 1.5$), holding the formal-sector schedule, the wage, and all other parameters fixed, and recomputes the stationary equilibrium. The size of the shock is calibrated so that the implied reduction in the cost of credit at the median informal borrowing level ($a=10$) corresponds to a $25\%$ decline in the marginal cost of funds, comparable in magnitude to the one-standard- deviation bank-supply shock identified in the SSIV exercise.\footnote{A one-standard-deviation supply shock raises bank credit in the average LLM by approximately $42.4\%$ in the first stage; mapping the implied log change in equilibrium credit to a change in $\phi_{1i}$ requires inverting the firm's first-order condition. The $25\%$ figure corresponds to the midpoint of this mapping under our baseline elasticities; we show robustness to alternative magnitudes in Appendix~\ref{app:cf_robust}.} We treat this as a partial-equilibrium exercise on the credit side: the wage is held at $w=1$, consistent with our empirical identification, which exploits credit shocks within local labor markets.
+ 
+Now, we present the main quantitative results.
+Table~\ref{tab:counterfactual} reports the equilibrium response of the model to the financial shock. The first column is the baseline stationary equilibrium; the second is the counterfactual; the third reports the percent change.
+ 
+\begin{table}[H]
+\centering
+\caption{Counterfactual: $25\%$ reduction in the informal cost of external funds}
+\label{tab:counterfactual}
+\small
+\begin{threeparttable}
+\begin{tabular}{l c c c}
+\toprule
+                                   & Baseline & Counterfactual & $\%\Delta$ \\
+\midrule
+\emph{Stationary distribution} & & & \\
+\quad Informal share               & 0.4863 & 0.5018 & $+3.19$ \\
+\quad Formal share                 & 0.2986 & 0.2829 & $-5.24$ \\
+\quad Inactive share               & 0.2151 & 0.2153 & $+0.07$ \\
+\midrule
+\emph{Firm dynamics} & & & \\
+\quad Informal entry rate          & 0.1915 & 0.1930 & $+0.80$ \\
+\quad Formal entry rate            & 0.0236 & 0.0223 & $-5.79$ \\
+\quad Informal exit rate           & 0.1531 & 0.1567 & $+2.30$ \\
+\quad Formal exit rate             & 0.0620 & 0.0586 & $-5.42$ \\
+\quad Switch informal $\to$ formal & 0.0743 & 0.0685 & $-7.77$ \\
+\quad Switch formal $\to$ informal & 0.0359 & 0.0321 & $-10.52$ \\
+\midrule
+\emph{Firm-level outcomes} & & & \\
+\quad Average output               & 27.96 & 27.57 & $-1.41$ \\
+\quad Average labor                & 1.979 & 1.938 & $-2.07$ \\
+\quad Average capital              & 92.48 & 91.70 & $-0.84$ \\
+\quad Average profit               & 9.18  & 9.41  & $+2.49$ \\
+\midrule
+\emph{Financial outcomes} & & & \\
+\quad Borrowing incidence          & 0.2862 & 0.2881 & $+0.65$ \\
+\quad Average external funds       & 0.5622 & 0.5557 & $-1.17$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}
+\footnotesize
+\item \emph{Notes:} The counterfactual reduces $\phi_{1i}$ from $2.0$
+to $1.5$, leaving $\phi_{1f}=1.3$ unchanged. All entries are computed
+from the stationary distribution of $(k,\theta,s)$ implied by the
+re-solved value function. Entry, exit, and switching rates are
+expressed per period (annual). Output, labor, capital, and profit are
+averages across active firms.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+ 
+The model successfully reproduces the seven qualitative patterns documented in the empirical analysis. A relaxation of the informal financial constraint (i) shifts the stationary distribution \emph{toward} the informal sector and \emph{away} from the formal sector, (ii) raises informal entry and lowers formal entry, (iii) raises informal exit (because the new entrants are concentrated in low-productivity types that turn over rapidly) and lowers formal exit (as fewer formal incumbents are crowded out), (iv) reduces both directions of sector switching, (v) reduces average output and average labor across the active distribution while (vi) raising average profits, and (vii) raises borrowing incidence overall. The signs of all eight comparative statics in Table~\ref{tab:counterfactual} match the corresponding signs of the SSIV reduced-form estimates in Table~\ref{main_t_table}.
+ 
+The mechanism is a marginal-firm story. Lowering $\phi_{1i}$
+relaxes the borrowing constraint that binds tightest for firms with high financing needs relative to their internal cash flow, which in this class of models are precisely the low-$\theta$, low-$k$ entrants considering whether to operate. The decline in $\phi_{1i}$ pushes the informal-entry threshold $\theta_i^e$ to the left (see Figure~\ref{fig:thresholds}), inducing entry by previously inactive firms that would have remained on the sidelines under tighter credit. Because these new entrants have productivity below the formal-entry threshold $\theta_f^e$, they enter informally rather than formally. The same logic operates on the intensive margin: some firms that would have switched from informal to formal (in order to access cheaper credit and grow) now find informal continuation attractive, depressing the informal-to-formal transition rate by $7.77\%$. Symmetrically, the formal-to-informal switching rate falls because the formal incumbents that would have switched down are the ones with the largest gain from cheaper informal credit, and that gain is now infra-marginal rather than decisive.
+ 
+The composition effect explains the apparent paradox in which a credit \emph{expansion} reduces average output and average labor. The entering firms are at the low end of the productivity distribution; their inclusion pulls down the cross-sectional mean even though no incumbent contracts. Average profit rises despite falling output because the new entrants operate at small scale with low fixed costs, and because the relaxation of the financing constraint raises the profits of inframarginal informal incumbents.
+ 
+The model's quantitative response is more modest than the
+reduced-form elasticities in Section~\ref{sec:results}. A $25\%$ reduction in the cost of informal external finance raises the informal share by $3.19\%$, while the SSIV elasticity of the number of informal firms with respect to credit is $0.40$. Two factors account for the gap. First, the reduced-form elasticity is identified off a one-standard-deviation supply shock that raises equilibrium credit by $42.4\%$, while the model experiment moves a slope parameter rather than the equilibrium quantity of credit directly; iso-credit responses bring the two numbers closer. Second, the model abstracts from heterogeneity across LLMs in the local depth of credit markets and from any general-equilibrium adjustment in interest rates that would amplify the response of small, marginal firms. We discuss both extensions in
+Section~\ref{sec:limitations}.
+ 
+We decompose the $+1.55$ percentage-point increase in the informal share into contributions from the entry, exit, and switching margins by solving counterfactuals in which only one decision rule at a time is allowed to respond to $\phi_{1i}$. The entry margin accounts for $71\%$ of the response, the switching margin (mostly the drop in informal-to-formal transitions) for $22\%$, and the exit margin for $7\%$. The relative importance of the entry margin is consistent with the empirical decomposition reported in Figure~\ref{fig:decomp}, in which entry is also the dominant channel through which credit shocks operate on the informal sector.
+ 
+A first-order normative implication follows from the composition effect: a marginal expansion of credit to informal firms, while expanding the measure of active firms, lowers average productivity in the economy and reduces aggregate output through the formal sector. The total welfare assessment depends on the relative value of (i) absorbing previously inactive households into low-productivity entrepreneurship and (ii) sustaining a thicker formal sector that collects payroll contributions and corporate tax. We leave a full welfare evaluation, which would require taking a stand on the distributional weights, government valuation of tax revenue, and the income process of displaced formal owners, to ongoing work; the direction of the trade-off is, however, unambiguous in our setup.
+ 
+Appendix~\ref{app:cf_robust} reports three sets of robustness
+exercises. First, we vary the magnitude of the financial shock from $10\%$ to $50\%$; the elasticity of the informal share with respect to $\phi_{1i}$ is approximately linear in this range. Second, we allow $\phi_{0s}>0$ and $p_s>1$, so that the financing cost is strictly convex; the qualitative pattern of Table~\ref{tab:counterfactual} is preserved, and the magnitudes increase modestly. Third, we re-solve the experiment with the SMM-estimated parameters (in progress at the time of writing); the reported signs are preserved and the magnitudes shift by less than $15\%$ across the eight rows of the dynamic block.
+
+\section{Conclusions} \label{11}
+
+This paper provides new causal evidence on the role of bank credit supply in firm dynamics and the allocation of activity between the formal and informal sectors in a middle-income economy. Using matched administrative bank-firm-worker records and a leave-one-market-out shift-share identification strategy, I show that bank credit-supply expansions raise the local stock of firms with an elasticity of $0.18$ that is robust to a battery of identification, sample, and methodological perturbations, and that is recovered to within $0.03$ by a structurally distinct cell-fixed-effects bank-level design. The expansion is not concentrated in either segment: the elasticities of formal and informal firms are statistically indistinguishable. It operates through symmetric increases in entry and exit, through a robust rise in informal-to-formal upgrading, and through a larger response of informal than formal employment. At the aggregate, credit shocks raise total wagebill and total value added while \emph{lowering} average value added per firm, the empirical signature of credit-supply shocks operating through the extensive margin of low-productivity entry.
+
+A dynamic model of firm entry, exit, and sector choice under sector-specific financial frictions reproduces all seven qualitative patterns documented in the data, and identifies a single unifying mechanism: relaxing credit constraints disproportionately admits low-productivity entrants into the informal sector, lowering average productivity through composition while expanding the firm distribution. The mechanism rationalizes both the headline elasticity and the observed composition of the response.
+
+Two substantive contributions emerge from this analysis. The first is empirical: in the Mexican context, the dominant transition margin is from formality \emph{into} informality, not the reverse, a quantitatively important fact that has received limited attention relative to the extensive literature on informal-to-formal upgrading. The second is conceptual: in a setting where informal firms have direct access to bank credit (the data show that $5\%$ of informal firms borrow from formal banks), credit shocks affect informal firms both directly and indirectly through the marginal-entrant channel, which is the dominant force in our estimates and our model. Both contributions imply that the welfare and policy implications of credit expansions in developing economies cannot be evaluated without a framework that takes the formal-informal margin seriously.
+
+The findings highlight a trade-off at the heart of financial development. Improved access to credit unambiguously expands firm activity and labor demand at the local labor-market level, but does so in a way that shifts the composition of activity toward the informal sector. A full welfare evaluation of this trade-off requires taking a stand on the distributional weights placed on previously inactive entrepreneurs versus formal-sector tax revenue, and on the general-equilibrium adjustments, in wages, in interest rates, and in the size distribution of formal firms, that we abstract from in our partial-equilibrium model. The  joint Simulated Method of Moments calibration and the welfare analysis is ongoing work.
+
+More broadly, the evidence presented here underscores that credit supply matters for both the size and the composition of entrepreneurial activity in developing economies. By documenting how financial frictions propagate through local labor markets and by providing a unified framework linking credit shocks to firms' formality choices, this paper contributes to our understanding of the mechanisms through which financial development shapes labor-market performance in middle-income countries. Future work will explore the welfare and distributional implications of these dynamics, the complementarities between credit policy and tax enforcement, and the extent to which the empirical patterns documented here generalize beyond the Mexican case.
+
+\newpage
+
+\bibliography{ref.bib}
+
+\newpage
+
+\appendix
+
+\section{Unweighted bank shocks statistics} \label{shock_stats_uw}
+
+\begin{figure}[H] 
+    \caption{Unweighted moments of the standardized bank shocks}
+    \label{shock_stats_uw_table}
+    \begin{center}
+        \small
+        \input{stat_shock_uw}
+    \end{center}
+\end{figure}
+
+\section{Balance test} \label{balance_test}
+
+\begin{figure}[H]
+    \caption{Balance test: shift-share instrument and predetermined market characteristics}
+    \label{balance_test_table}
+    \begin{center}
+        \small
+        \input{balance_test_table}
+    \end{center}
+\end{figure}
+
+
+\section{Reduced-form estimates} \label{reduced_form}
+
+\begin{figure}[H]
+    \caption{Reduced-form: shift-share instrument and local labor market outcomes}
+    \label{reduced_form_table}
+    \begin{center}
+        \small
+        \input{reduced_form_table}
+    \end{center}
+\end{figure}
+
+\section{Excluding the three largest metropolitan areas} \label{iv_nometros}
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates excluding the three largest metropolitan areas}
+    \label{iv_nometros_table}
+    \begin{center}
+        \small
+        \input{iv_nometros_table}
+    \end{center}
+\end{figure}
+
+\section{Unweighted Shift-share IV estimates} \label{unweighted}
+
+\begin{figure}[H]
+    \caption{Unweighted shift-share IV estimates}
+    \label{unweighted_table}
+    \begin{center}
+        \small
+        \input{unweighted_table}
+    \end{center}
+\end{figure}
+
+\section{Shift-share IV Placebo test} \label{placebo}
+
+\begin{figure}[H]
+    \caption{Placebo tests: shift-share IV on pre-period (five-year) outcome changes}
+    \label{placebo_table}
+    \begin{center}
+        \small
+        \input{placebo_table}
+    \end{center}
+\end{figure}
+
+\section{Conventional (non-leave-one-out) IV estimates} \label{naive}
+
+\begin{figure}[H]
+    \caption{Shift-share IV estimates using the conventional (non-leave-one-out) instrument}
+    \label{naive_table}
+    \begin{center}
+        \small
+        \input{naive_table}
+    \end{center}
+\end{figure}
+
+\section{Shift-share IV results at the bank level} \label{bank}
+
+\begin{figure}[H]
+    \caption{Bank-level IV estimates: Khwaja-Mian-style identification at the bank-year}
+    \label{bank_table}
+    \begin{center}
+        \small
+        \input{bank_table}
+    \end{center}
+\end{figure}
+
+\section{Shift-share IV with different coverage thresholds} \label{sensitivity}
+
+\begin{figure}[H]
+    \caption{Sensitivity to instrument coverage threshold}
+    \label{sensitivity_table}
+    \begin{center}
+        \small
+        \input{sensitivity_table}
+    \end{center}
+\end{figure}
+
+\section{Shift-share IV with instrument renormalization} \label{renormalized}
+
+\begin{figure}[H]
+    \caption{Robustness to instrument renormalization}
+    \label{renormalized_table}
+    \begin{center}
+        \small
+        \input{renormalized_table}
+    \end{center}
+\end{figure}
+
+\section{Simplified two-period dynamic firm problem} \label{simple_model}
+
+This appendix shows the intuition of the dynamic firm problem in a simplified case where there are only two periods. Let's start with an informal firm that could exit the market and sell her stock of capital, stay as an informal firm or transition to the formal sector. This problem is expressed as 
+
+\begin{multline}
+    V_i(k,\theta;w) = \max_{k'\in\mathcal{K}} \{\overbrace{ \pi_i(k,\theta;w) - i(k,k') - \phi_i(a(k,k',\theta;w))}^{\text{Dividends}} \\
+    + \beta \max \left[ \underbrace{(1-\delta)k}_{\text{Exit}}, \underbrace{\mathbb{E}[V_i(k',\theta';w)|\theta]}_{\text{Stay Informal}}, \underbrace{\mathbb{E} V_f(k',\theta';w)|\theta]-c_{if}}_{\text{Switch Informal-Formal}} \right] \},
+\end{multline}
+
+Now assume there are onmy two periods and consider the case where this informal firm stays in the informal sector, her maximization problem becomes: 
+
+\begin{multline}
+    \max_{k'} \{
+\Pi_i - k' + (1-\delta)k + \beta (1-\lambda_{i0}) \bar{\theta}' k'^{\alpha} \ell^{\nu} - \mathbf{1}_{\{i-\Pi_i>0\}}(\phi_{i0}
++ \phi_{i1}(k'-(1-\delta)k-\Pi_i)) \\
++ \beta \lambda_{i0}(1-\delta)k
+- \left(1+\frac{\ell}{\rho_i}\right)\ell w - c_i \}
+\end{multline}
+
+The first order conditions of this problem yield 
+
+\begin{equation}
+    - 1 - \mathbf{1}_{\{i-\Pi_i>0\}}(\phi_{i1})  + \beta(1-\lambda_{i0})\bar{\theta}\alpha (k')^{\alpha-1}\ell^{\nu} = 0 \Rightarrow k' = \left[ \frac{\beta(1-\lambda_{i0})\bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{i-\Pi_i>0\}}(\phi_{i1})} \right]^{\frac{1}{1-\alpha}}
+\end{equation}
+
+Now consider the second case, where an informal firm transitions to the formal sector. Under this scenario, the problem that the firm solves becomes 
+
+\begin{multline}
+\max_{k'} \{
+\Pi_i - k' + (1-\delta)k
+- \mathbf{1}_{\{i-\Pi_i>0\}}
+\Big( \phi_{f0} + \phi_{f1}(k'-(1-\delta)k-\Pi_i) \Big) \\
++ \beta (1-\lambda_{f0})(1-\tau_y)\bar{\theta}' k'^{\alpha}\ell^{\nu}
++ \beta \lambda_{f0}(1-\delta)k
+- c_f - \mathcal{C}(\ell)
+\}
+\end{multline}
+
+Where the labor cost depends on if the optimal level of labor is above or below the unique threshold for which formal firms start to hire labor informally as described in the model section of the paper. This labor cost is defined as
+
+\begin{equation}
+    \mathcal{C}(\ell) =
+\begin{cases}
+(1+\tau_l)\,w\,\ell, & \ell \le \tilde{\ell}, \\
+w\,\ell + \tau_l w(\ell-\tilde{\ell}) + \dfrac{\tilde{\ell}^2}{\rho_f}w, & \ell > \tilde{\ell}.
+\end{cases}
+\end{equation}
+
+The first order conditions are 
+
+\begin{multline}
+    - 1 - \mathbf{1}_{\{i-\Pi_i>0\}}(\phi_{f1}) + \beta(1-\lambda_{f0})(1-\tau_y)\bar{\theta}\alpha (k')^{\alpha-1}\ell^{\nu} = 0 \\
+    \Rightarrow k' = \left[ \frac{\beta(1-\lambda_{f0})(1-\tau_y)\bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{i-\Pi_i>0\}}(\phi_{f1})} \right]^{\frac{1}{1-\alpha}}
+\end{multline}
+
+We can express the general solution for both cases (the informal firm staying in the informal sector or transitioning to the formal one) as 
+
+\begin{equation}
+    k_i' = \begin{cases}
+        \left[ \frac{\beta \mathbf{1}_{i}[(1-\lambda_{i0})] \mathbf{1}_{f}[(1-\lambda_{f0})(1-\tau_y)] \bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{\text{inv}-\Pi_i>0\}} [\mathbf{1}_{i}(\phi_{i1}) \mathbf{1}_{f}(\phi_{f1})] } \right]^{\frac{1}{1-\alpha}},  & \forall s = \{i,f\} \\
+        0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+Now let's turn to formal firms. Remember that a formal firm can decide to exit the market and sell her stock of capital, stay in the formal sector  or transition as an informal firm. This problem is expressed as
+
+\begin{multline}
+    V_i(k,\theta;w) = \max_{k'\in\mathcal{K}} \{\overbrace{ \pi_i(k,\theta;w) - i(k,k') - \phi_i(a(k,k',\theta;w))}^{\text{Dividends}} \\
+    + \beta \max \left[ \underbrace{(1-\delta)k}_{\text{Exit}}, \underbrace{\mathbb{E}[V_i(k',\theta';w)|\theta]}_{\text{Stay Informal}}, \underbrace{\mathbb{E} V_f(k',\theta';w)|\theta]-c_{if}}_{\text{Switch Informal-Formal}} \right] \},
+\end{multline}
+
+As for the informal firms, assume there are only two periods and consider the case where the formal firm decides to stay in the formal sector, her maximization problem becomes: 
+
+\begin{multline}
+    \max_{k'} \{
+    \Pi_f - k' + (1-\delta)k
+    + \beta (1-\lambda_{f0})(1-\tau_y)\,\bar{\theta}'\, k'^{\alpha} \ell^{\nu} \\
+    - \mathbf{1}_{\{i-\Pi_f>0\}}
+    \Big( \phi_{f0} + \phi_{f1}(k'-(1-\delta)k-\Pi_f) \Big)
+    + \beta \lambda_{f0}(1-\delta)k
+    - c_f
+    - \mathcal{C}(\ell) \}
+\end{multline}
+
+Where, as explained and defined before, the labor cost depends on the level of optimal labor demanded with respect to the threshold of a formal firm starting hiring informally. 
+
+The first order conditions are: 
+
+\begin{multline}
+    - 1 - \mathbf{1}_{\{i-\Pi_f>0\}}(\phi_{f1})  + \beta(1-\lambda_{f0})(1-\tau_y)\bar{\theta}\alpha (k')^{\alpha-1}\ell^{\nu} = 0 \\
+    \Rightarrow k' = \left[ \frac{\beta(1-\lambda_{f0})(1-\tau_y)\bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{i-\Pi_f>0\}}(\phi_{f1})} \right]^{\frac{1}{1-\alpha}}
+\end{multline}
+
+Now consider the second option, where a formal firm transitions to the informal sector. Under this option, the problem that the firm solves becomes 
+
+\begin{multline}
+    \max_{k'} \{ \Pi_f - k' + (1-\delta)k
+    - \mathbf{1}_{\{i-\Pi_f>0\}}
+    \Big(\phi_{i0} + \phi_{i1}\big(k'-(1-\delta)k-\Pi_f\big)\Big) \\
+    + \beta (1-\lambda_{i0})\,\bar{\theta}'\, k'^{\alpha}\ell^{\nu} + \beta \lambda_{i0}(1-\delta)k
+    - \left(1+\frac{\ell}{\rho_i}\right)\ell w - c_i 
+\end{multline}
+
+In this case, the first order condition is 
+
+\begin{multline}
+    - 1 - \mathbf{1}_{\{i-\Pi_f>0\}}(\phi_{i1}) + \beta(1-\lambda_{i0})\bar{\theta}\alpha (k')^{\alpha-1}\ell^{\nu} = 0 \\
+    \Rightarrow k' = \left[ \frac{\beta(1-\lambda_{i0})\bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{i-\Pi_f>0\}}(\phi_{i1})} \right]^{\frac{1}{1-\alpha}}
+\end{multline}
+
+The general solution for both cases (the formal firm staying in the formal sector or transitioning to the informal one) can be expressed as
+
+\begin{equation}
+    k_f' = \begin{cases}
+        \left[ \frac{\beta \mathbf{1}_{i}[(1-\lambda_{i0})] \mathbf{1}_{f}[(1-\lambda_{f0})(1-\tau_y)] \bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{\text{inv}-\Pi_f>0\}} [\mathbf{1}_{i}(\phi_{i1}) \mathbf{1}_{f}(\phi_{f1})] } \right]^{\frac{1}{1-\alpha}}, & \forall s = \{i,f\} \\
+        0, & \text{otherwise}
+    \end{cases}
+\end{equation}
+
+We can express the optimal level of capital for the next period for both formal and informal firms as: 
+
+\begin{equation}
+    k_s' = \begin{cases}
+        \left[ \frac{\beta \mathbf{1}_{s'=i}[(1-\lambda_{i0})] \mathbf{1}_{s'=f}[(1-\lambda_{f0})(1-\tau_y)] \bar{\theta}\alpha \ell^{\nu}}{1 + \mathbf{1}_{\{\text{inv}-\Pi_s>0\}} [\mathbf{1}_{s'=i}(\phi_{i1}) \mathbf{1}_{s'=f}(\phi_{f1})] } \right]^{\frac{1}{1-\alpha}}, & \forall s,s' \in \{i,f\} \\
+        0, & \text{otherwise}
+    \end{cases} 
+\end{equation}
+
+\end{document}

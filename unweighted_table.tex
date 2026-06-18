@@ -1,0 +1,47 @@
+\centering
+\label{tab:unweighted}
+\begin{threeparttable}
+\begin{tabular}{lccr}
+\toprule
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & First-stage $F$ & $N$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+Log existing firms --- Total    & \phantom{$-$}0.320          (0.228) & 38.07 & 1{,}679 \\
+Log existing firms --- Formal   & \phantom{$-$}0.276          (0.227) & 41.46 & 1{,}675 \\
+Log existing firms --- Informal & \phantom{$-$}0.322          (0.224) & 38.07 & 1{,}679 \\
+Log firm entry --- Total        & \phantom{$-$}0.418\sym{**}  (0.190) & 38.52 & 1{,}390 \\
+Log firm entry --- Formal       & \phantom{$-$}0.358\sym{*}   (0.192) & 49.43 & 1{,}378 \\
+Log firm entry --- Informal     & \phantom{$-$}0.420\sym{**}  (0.190) & 38.52 & 1{,}390 \\
+Log firm exit --- Total         & \phantom{$-$}0.400\sym{**}  (0.204) & 38.52 & 1{,}390 \\
+Log firm exit --- Formal        & \phantom{$-$}0.297          (0.214) & 43.57 & 1{,}369 \\
+Log firm exit --- Informal      & \phantom{$-$}0.412\sym{**}  (0.204) & 38.52 & 1{,}390 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+Formal--Formal                  & \phantom{$-$}0.274          (0.182) & 43.95 & 1{,}372 \\
+Informal--Formal                & \phantom{$-$}0.351\sym{**}  (0.178) & 44.79 & 1{,}366 \\
+Formal--Informal                & \phantom{$-$}0.286\sym{*}   (0.160) & 48.48 & 1{,}372 \\
+Informal--Informal              & \phantom{$-$}0.327\sym{**}  (0.154) & 38.52 & 1{,}390 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
+Firms with credit --- Total     & \phantom{$-$}0.397          (0.268) & 38.07 & 1{,}679 \\
+Firms with credit --- Formal    & \phantom{$-$}0.269          (0.176) & 38.07 & 1{,}679 \\
+Firms with credit --- Informal  & \phantom{$-$}0.368          (0.226) & 38.07 & 1{,}679 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
+Workers --- Total               & \phantom{$-$}0.304          (0.264) & 33.92 & \phantom{1{,}}992 \\
+Workers --- Formal              & \phantom{$-$}0.406          (0.402) & 38.54 & \phantom{1{,}}968 \\
+Workers --- Informal            & \phantom{$-$}0.424\sym{*}   (0.253) & 33.92 & \phantom{1{,}}992 \\
+Total wagebill                  & \phantom{$-$}0.376          (0.381) & 38.01 & 1{,}671 \\
+Avg.\ value added               & $-$0.160\sym{*} (0.094) & 38.07 & 1{,}679 \\
+Total value added               & \phantom{$-$}0.118          (0.292) & 38.07 & 1{,}679 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
+Log collateral                  & $-$0.296          (0.495) & 41.69 & 1{,}287 \\
+Interest rate (pp)              & \phantom{$-$}0.580          (0.758) & 38.07 & 1{,}679 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\tiny
+\item \textit{Notes:} Two-stage least squares estimates re-estimating the main specification \emph{without} the credit weights ($\texttt{aw=lag\_credit\_my\_5}$), so that each market-year contributes equally to the regression. All other specification details follow Table~\ref{tab:firms}. AKM standard errors in parentheses following \citet{adao_kolesar_morales_2019}; stars based on AKM $p$-values. Under cluster-robust inference at the market level, all firm-margin outcomes are statistically significant at the 1\% level; we report the more conservative AKM inference here for consistency with the main results. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

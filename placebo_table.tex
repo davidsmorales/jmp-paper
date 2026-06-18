@@ -1,0 +1,47 @@
+\centering
+\label{tab:placebo}
+\begin{threeparttable}
+\begin{tabular}{lccr}
+\toprule
+\textit{Pre-period outcome ($\Delta_5 Y_{t-5}$, log)} & $\widehat{\Delta_5\ln(\text{loans})}$ & 1st-stage $F$ & $N$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+Number of existing firms --- Total      & \phantom{$-$}0.009\sym{*}    (0.007) & 84.65 & \phantom{1{,}}979 \\
+Number of existing firms --- Formal     & $-$0.005                     (0.013) & 84.65 & \phantom{1{,}}975 \\
+Number of existing firms --- Informal   & \phantom{$-$}0.013\sym{**}   (0.009) & 84.65 & \phantom{1{,}}979 \\
+Firm entry --- Total                    & $-$0.328                     (0.669) & 0.22  & \phantom{1{,}}512 \\
+Firm entry --- Formal                   & $-$0.364                     (0.702) & 0.22  & \phantom{1{,}}506 \\
+Firm entry --- Informal                 & $-$0.320                     (0.661) & 0.22  & \phantom{1{,}}512 \\
+Firm exit --- Total                     & \phantom{$-$}0.092           (0.233) & 0.22  & \phantom{1{,}}512 \\
+Firm exit --- Formal                    & $-$0.438                     (0.860) & 0.22  & \phantom{1{,}}493 \\
+Firm exit --- Informal                  & \phantom{$-$}0.228           (0.477) & 0.22  & \phantom{1{,}}512 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+Formal--Formal                          & $-$0.187                     (0.261) & 0.34  & \phantom{1{,}}486 \\
+Informal--Formal                        & $-$0.115                     (0.287) & 0.22  & \phantom{1{,}}494 \\
+Formal--Informal                        & $-$0.136                     (0.300) & 0.22  & \phantom{1{,}}483 \\
+Informal--Informal                      & \phantom{$-$}0.028           (0.093) & 0.22  & \phantom{1{,}}512 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
+Firms with credit --- Total             & \phantom{$-$}0.069           (0.066) & 84.65 & \phantom{1{,}}979 \\
+Firms with credit --- Formal            & \phantom{$-$}0.056\sym{*}    (0.050) & 84.65 & \phantom{1{,}}979 \\
+Firms with credit --- Informal          & \phantom{$-$}0.025           (0.123) & 84.65 & \phantom{1{,}}979 \\
+% \midrule
+% \multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
+% Workers --- Total                       & --- (sample failed)                  & ---   & ---   \\
+% Workers --- Formal                      & --- (sample failed)                  & ---   & ---   \\
+% Workers --- Informal                    & --- (sample failed)                  & ---   & ---   \\
+% Total wagebill                          & $-$0.021\sym{***}            (0.010) & 84.67 & \phantom{1{,}}966 \\
+% Avg.\ value added                       & $-$0.141\sym{***}            (0.028) & 84.65 & \phantom{1{,}}979 \\
+% Total value added                       & $-$0.132\sym{***}            (0.030) & 84.65 & \phantom{1{,}}979 \\
+% \midrule
+% \multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
+% Collateral                              & $-$19.12                     (39.02) & 0.21  & \phantom{1{,}}400 \\
+% Interest rate                           & $-$0.367\sym{***}            (0.098) & 84.44 & \phantom{1{,}}929 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\tiny
+\item \textit{Notes:} Each row reports a placebo IV estimate in which the dependent variable is the five-year log change in the indicated outcome \emph{before} the credit-supply shock window---specifically, $\Delta_5 Y_{t-5} = \ln Y_{t-5} - \ln Y_{t-10}$. The endogenous regressor and instrument follow the main specification. Sample restricted to market-years with shift-share instrument coverage $\geq 0.5$ and non-missing lagged outcome ten years prior. AKM-based standard errors following \citet{adao_kolesar_morales_2019} in parentheses. ``1st-stage $F$'' is the Kleibergen-Paap Wald statistic on the restricted sample; the entry/exit/transition outcomes are limited by the availability of the further-lagged $\ln Y_{t-10}$ value in the Economic Census panel, leading to sharply reduced samples and weak first stages in these rows. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

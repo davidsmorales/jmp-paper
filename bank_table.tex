@@ -1,0 +1,47 @@
+\centering
+\label{tab:bank_level_iv}
+\begin{threeparttable}
+\begin{tabular}{lccr}
+\toprule
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{loans})}$ & First-stage $F$ & $N$ \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+Log existing firms --- Total     & \phantom{$-$}0.188\sym{***} (0.041) [0.004] & 33.99 & 151 \\
+Log existing firms --- Formal    & \phantom{$-$}0.168\sym{***} (0.035) [0.002] & 33.99 & 151 \\
+Log existing firms --- Informal  & \phantom{$-$}0.197\sym{***} (0.047) [0.012] & 33.99 & 151 \\
+Log firm entry --- Total         & \phantom{$-$}0.181\sym{***} (0.031) [0.001] & 34.18 & 131 \\
+Log firm entry --- Formal        & \phantom{$-$}0.177\sym{***} (0.039) [0.001] & 34.18 & 131 \\
+Log firm entry --- Informal      & \phantom{$-$}0.188\sym{***} (0.034) [0.004] & 34.18 & 131 \\
+Log firm exit --- Total          & \phantom{$-$}0.196\sym{***} (0.039) [0.007] & 34.18 & 131 \\
+Log firm exit --- Formal         & \phantom{$-$}0.152\sym{***} (0.038) [0.002] & 34.18 & 131 \\
+Log firm exit --- Informal       & \phantom{$-$}0.208\sym{***} (0.043) [0.008] & 34.18 & 131 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+Formal--Formal                   & \phantom{$-$}0.147\sym{***} (0.039) [0.004] & 34.18 & 131 \\
+Informal--Formal                 & \phantom{$-$}0.187\sym{***} (0.028) [0.000] & 34.18 & 131 \\
+Formal--Informal                 & \phantom{$-$}0.131\sym{***} (0.033) [0.007] & 34.18 & 131 \\
+Informal--Informal               & \phantom{$-$}0.196\sym{***} (0.060) [0.023] & 34.18 & 131 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
+Firms with credit --- Total      & \phantom{$-$}0.154\sym{***} (0.033) [0.010] & 33.99 & 151 \\
+Firms with credit --- Formal     & \phantom{$-$}0.142\sym{***} (0.035) [0.001] & 33.99 & 151 \\
+Firms with credit --- Informal   & \phantom{$-$}0.180\sym{***} (0.043) [0.012] & 33.99 & 151 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
+Workers --- Total                & \phantom{$-$}0.124\sym{***} (0.031) [0.003] & 23.73 & 105 \\
+Workers --- Formal               & \phantom{$-$}0.096\sym{**}  (0.045) [0.061] & 23.73 & 105 \\
+Workers --- Informal             & \phantom{$-$}0.216\sym{***} (0.036) [0.000] & 23.73 & 105 \\
+Total wagebill                   & \phantom{$-$}0.184\sym{***} (0.046) [0.001] & 33.99 & 151 \\
+Avg.\ value added                & $-$0.102\sym{***}           (0.035) [0.041] & 33.99 & 151 \\
+Total value added                & \phantom{$-$}0.085\sym{*}   (0.044) [0.098] & 33.99 & 151 \\
+\midrule
+\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
+Log collateral                   & \phantom{$-$}0.225 (1.659) [0.923] & 28.61 & \phantom{1}80 \\
+Interest rate (pp)               & \phantom{$-$}0.063 (0.892) [0.953] & 33.99 & 151 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\tiny
+\item \textit{Notes:} Two-stage least squares estimates at the bank-year level. The unit of observation is a bank-census year; market variables are aggregated to the bank-year via bank's market exposure shares. The endogenous regressor is the bank's five-year log change in credit, instrumented by its pre-identified credit-supply shock following \citet{khwaja2008tracing}. Same controls as in the main specification. Cluster-robust s.e. at bank level in parentheses; wild cluster bootstrap $p$-values in brackets. The 1st-stage Kleibergen-Paap Wald statistic is reported. Sample size varies because of unavailable outcomes in earlier waves. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

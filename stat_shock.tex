@@ -1,0 +1,24 @@
+\label{tab:bank_shocks_desc}
+\begin{threeparttable}
+\begin{tabular}{lccccccccc}
+\toprule
+\textbf{Year} & Mean & Std. deviation & IQR &  \textbf{No. banks} & \textbf{ESS} & \textbf{Largest w} \\
+\midrule
+2009 & -0.08 & 0.02 & 0.00 & 10 & 2.17 & 0.66 \\
+2014 & 0.04 & 0.77 & 1.58 & 17 & 5.75 & 0.25 \\
+2019 & -0.45 & 1.61 & 3.26 & 29 & 2.72 & 0.57 \\
+2024 & -0.21 & 0.43 & 0.78 & 39 & 5.80 & 0.36 \\
+\midrule
+All & 0.00 & 1.00 & 1.05 & 60 & 63.99 & 0.04 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\item This table summarizes the distribution of standardized (overall the years) bank-level credit shocks (bank fix-effects), $\hat{\gamma}_{bt}^{std}$, across banks $b$ and years $t$.
+
+No. banks is the number of banks with non missing estimated shocks.
+
+The effective sample size (ESS) is computed as $1/\sum w_{bt}^2$, and the largest weight is the maximum exposure share.
+
+The Inter-Quartile Range (IQR) is defined as the difference between the 25 and the 75 percentiles.
+\end{tablenotes}
+\end{threeparttable}
