@@ -1,47 +1,44 @@
-\centering
-\label{tab:naive_ssiv}
 \begin{threeparttable}
-\begin{tabular}{lccr}
+\begin{tabular}{lccccr}
 \toprule
-\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{loans})}$ & First-stage $F$ & $N$ \\
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & AKM s.e. & Boot.\ $p$ & First-stage $F$ & $N$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
-Log existing firms --- Total    & \phantom{$-$}0.273\sym{***} (0.022) [0.000] & 67.20 & 1{,}240 \\
-Log existing firms --- Formal   & \phantom{$-$}0.161\sym{***} (0.025) [0.078] & 67.21 & 1{,}236 \\
-Log existing firms --- Informal & \phantom{$-$}0.294\sym{***} (0.022) [0.002] & 67.20 & 1{,}240 \\
-Log firm entry --- Total        & \phantom{$-$}0.265\sym{***} (0.021) [0.001] & 65.89 & \phantom{1{,}}964 \\
-Log firm entry --- Formal       & \phantom{$-$}0.175\sym{***} (0.026) [0.018] & 65.90 & \phantom{1{,}}957 \\
-Log firm entry --- Informal     & \phantom{$-$}0.280\sym{***} (0.021) [0.001] & 65.89 & \phantom{1{,}}964 \\
-Log firm exit --- Total         & \phantom{$-$}0.283\sym{***} (0.023) [0.002] & 65.89 & \phantom{1{,}}964 \\
-Log firm exit --- Formal        & \phantom{$-$}0.162\sym{***} (0.028) [0.084] & 65.88 & \phantom{1{,}}952 \\
-Log firm exit --- Informal      & \phantom{$-$}0.300\sym{***} (0.023) [0.004] & 65.89 & \phantom{1{,}}964 \\
+Log existing firms --- Total    & \phantom{$-$}0.001          (0.010) & [0.005]          & 0.960 & 264.47 & 1{,}390 \\
+Log existing firms --- Formal   & \phantom{$-$}0.036\sym{**}  (0.013) & [0.008]\sym{***} & 0.067 & 264.42 & 1{,}385 \\
+Log existing firms --- Informal & $-$0.002          (0.012) & [0.006]          & 0.901 & 264.47 & 1{,}390 \\
+Log firm entry --- Total        & \phantom{$-$}0.007          (0.019) & [0.009]          & 0.781 & 272.77 & \phantom{1{,}}992 \\
+Log firm entry --- Formal       & \phantom{$-$}0.043\sym{*}   (0.024) & [0.010]\sym{***} & 0.120 & 272.58 & \phantom{1{,}}975 \\
+Log firm entry --- Informal     & \phantom{$-$}0.006          (0.020) & [0.010]          & 0.808 & 272.77 & \phantom{1{,}}992 \\
+Log firm exit --- Total         & \phantom{$-$}0.049\sym{***} (0.010) & [0.009]\sym{***} & 0.002 & 272.77 & \phantom{1{,}}992 \\
+Log firm exit --- Formal        & \phantom{$-$}0.023          (0.021) & [0.018]          & 0.442 & 272.58 & \phantom{1{,}}961 \\
+Log firm exit --- Informal      & \phantom{$-$}0.060\sym{***} (0.011) & [0.008]\sym{***} & 0.000 & 272.77 & \phantom{1{,}}992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
-Formal--Formal                  & \phantom{$-$}0.136\sym{***} (0.027) [0.183] & 65.90 & \phantom{1{,}}951 \\
-Informal--Formal                & \phantom{$-$}0.168\sym{***} (0.018) [0.024] & 64.94 & \phantom{1{,}}946 \\
-Formal--Informal                & \phantom{$-$}0.138\sym{***} (0.025) [0.024] & 65.93 & \phantom{1{,}}949 \\
-Informal--Informal              & \phantom{$-$}0.309\sym{***} (0.025) [0.004] & 65.89 & \phantom{1{,}}964 \\
+Formal--Formal                  & \phantom{$-$}0.027\sym{**}  (0.014) & [0.004]\sym{***} & 0.145 & 272.52 & \phantom{1{,}}966 \\
+Informal--Formal                & \phantom{$-$}0.050\sym{**}  (0.024) & [0.020]\sym{**}  & 0.102 & 271.75 & \phantom{1{,}}953 \\
+Formal--Informal                & $-$0.044\sym{*}   (0.025) & [0.013]\sym{***} & 0.279 & 272.53 & \phantom{1{,}}954 \\
+Informal--Informal              & $-$0.003          (0.012) & [0.003]          & 0.865 & 272.77 & \phantom{1{,}}992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
-Firms with credit --- Total    & \phantom{$-$}0.205\sym{***} (0.027) [0.010] & 67.20 & 1{,}240 \\
-Firms with credit --- Formal   & \phantom{$-$}0.124\sym{***} (0.024) [0.132] & 67.20 & 1{,}240 \\
-Firms with credit --- Informal & \phantom{$-$}0.249\sym{***} (0.029) [0.010] & 67.20 & 1{,}240 \\
+Firms with credit --- Total     & \phantom{$-$}0.025          (0.029) & [0.007]\sym{***} & 0.568 & 264.47 & 1{,}390 \\
+Firms with credit --- Formal    & \phantom{$-$}0.018          (0.026) & [0.011]\sym{*}   & 0.594 & 264.47 & 1{,}390 \\
+Firms with credit --- Informal  & \phantom{$-$}0.031          (0.039) & [0.009]\sym{***} & 0.617 & 264.47 & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
-Workers --- Total              & \phantom{$-$}0.199\sym{***} (0.017) [0.000] & 63.40 & \phantom{1{,}}620 \\
-Workers --- Formal             & \phantom{$-$}0.156\sym{***} (0.024) [0.110] & 63.37 & \phantom{1{,}}602 \\
-Workers --- Informal           & \phantom{$-$}0.255\sym{***} (0.015) [0.000] & 63.40 & \phantom{1{,}}620 \\
-Log total wagebill             & \phantom{$-$}0.225\sym{***} (0.024) [0.006] & 67.20 & 1{,}232 \\
-Log avg.\ value added          & $-$0.079\sym{***} (0.012) [0.247] & 67.20 & 1{,}240 \\
-Log total value added          & \phantom{$-$}0.193\sym{***} (0.016) [0.001] & 67.20 & 1{,}240 \\
+Formal workers (IMSS)           & \phantom{$-$}0.015          (0.010) & [0.004]\sym{***} & 0.219 & 264.44 & 1{,}382 \\
+Formal wage bill (IMSS)         & \phantom{$-$}0.014          (0.015) & [0.007]\sym{**}  & 0.523 & 264.44 & 1{,}382 \\
+Mean daily wage (IMSS)          & $-$0.010          (0.006) & [0.003]\sym{***} & 0.269 & 264.44 & 1{,}382 \\
+Avg.\ value added               & \phantom{$-$}0.014          (0.025) & [0.016]          & 0.645 & 264.47 & 1{,}390 \\
+Total value added               & \phantom{$-$}0.014          (0.025) & [0.016]          & 0.613 & 264.47 & 1{,}390 \\
+Formal value added              & $-$0.004          (0.036) & [0.028]          & 0.921 & 264.47 & 1{,}390 \\
+Informal value added            & $-$0.030          (0.050) & [0.012]\sym{**}  & 0.684 & 264.47 & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
-Log collateral                 & $-$1.180\sym{***} (0.128) [0.033] & 65.85 & \phantom{1{,}}899 \\
-Interest rate (pp)             & \phantom{$-$}0.348\sym{***} (0.031) [0.036] & 67.20 & 1{,}240 \\
+Log borrowers                   & \phantom{$-$}0.101          (0.074) & [0.028]\sym{***} & 0.379 & 264.47 & 1{,}390 \\
+Log loans per borrower          & \phantom{$-$}0.220\sym{***} (0.030) & [0.024]\sym{***} & 0.000 & 264.47 & 1{,}390 \\
+Log credit per loan             & \phantom{$-$}0.679\sym{***} (0.066) & [0.025]\sym{***} & 0.000 & 264.47 & 1{,}390 \\
+Log collateral                  & $-$2.441\sym{***} (0.829) & [0.432]\sym{***} & 0.085 & 271.17 & \phantom{1{,}}816 \\
+Interest rate (pp)              & \phantom{$-$}0.330\sym{**}  (0.143) & [0.064]\sym{***} & 0.043 & 264.47 & 1{,}390 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \tiny
-\item \textit{Notes:} 2SLS estimates using the conventional naive shift-share instrument. Same specification and inference than Table~\ref{tab:firms}. AKM s.e. following \citet{adao_kolesar_morales_2019} in parentheses; wild cluster bootstrap $p$-values clustered at the market level in brackets. Stars based on AKM $p$-values. The estimation sample is slightly smaller than the corresponding LOO regressions ($N = 1{,}240$ vs.\ $1{,}679$ for the headline outcomes) due to differences in instrument coverage. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Two-stage least squares estimates using the conventional (non-leave-one-out) shift-share instrument, in which the bank shocks are estimated on the full sample including each market's own loans, standardized to unit variance. Specification, controls, baseline-credit weights, and sample condition follow Table~\ref{main_table}; the estimation samples are identical to the corresponding leave-one-out regressions. Standard errors clustered at the market level in parentheses, with stars on coefficients based on them; exposure-robust standard errors following \citet{adao2019shiftshare} in brackets, with stars on brackets based on exposure-robust $p$-values; wild cluster bootstrap $p$-values in the third column. The credit-deepening decomposition sums to one ($0.101+0.220+0.679$). First-stage $F$ is the Kleibergen--Paap rk Wald statistic; the tighter first stage relative to the leave-one-out design reflects the mechanical own-market overlap in the conventional shocks. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

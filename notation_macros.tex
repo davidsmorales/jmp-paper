@@ -1,0 +1,81 @@
+% ======================================================================
+% notation_macros.tex — shared notation for the model & estimation sections
+% Informality and financial frictions (Morales & Puggioni)
+% \input this file once in the preamble of the main document.
+% All definitions are guarded so they do not clash with an existing preamble.
+% ======================================================================
+ 
+% ---- theorem environments (guarded: skipped if already defined) ------
+\makeatletter
+\@ifundefined{proposition}{%
+  \newtheorem{proposition}{Proposition}[section]
+  \newtheorem{lemma}[proposition]{Lemma}
+  \newtheorem{corollary}[proposition]{Corollary}
+  \newtheorem{assumption}{Assumption}
+  \newtheorem{remark}[proposition]{Remark}
+  \newtheorem{definition}[proposition]{Definition}
+}{}
+\makeatother
+ 
+% ---- generic math operators ------------------------------------------
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\Prob}{\mathbb{P}}
+\providecommand{\R}{\mathbb{R}}
+\providecommand{\ind}[1]{\mathbf{1}\{#1\}}
+\providecommand{\sgn}{\operatorname{sgn}}
+\providecommand{\diff}{\mathrm{d}}
+ 
+% ---- sectors and states ----------------------------------------------
+% s \in {i,f}: informal (i), formal (f); "o" = out of the market (inactive)
+\providecommand{\infml}{i}
+\providecommand{\fml}{f}
+\providecommand{\out}{o}
+ 
+% ---- technology and prices -------------------------------------------
+% y = theta k^alpha l^nu ; gamma = alpha/(1-nu) is the profit curvature in k
+\providecommand{\curv}{\gamma}                    % gamma = alpha/(1-nu)
+\providecommand{\prodx}{x}                        % x = theta^{1/(1-nu)}
+\providecommand{\prodxhat}{\hat{x}}               % expected profitability index
+\providecommand{\wgs}[1]{w_{#1}}                  % effective wage in sector s
+ 
+% ---- profit primitives -----------------------------------------------
+\providecommand{\Om}[1]{\Omega_{#1}}              % sector profit shifter
+\providecommand{\prof}[1]{\pi_{#1}}               % static profit function
+ 
+% ---- financial parameters --------------------------------------------
+\providecommand{\spread}[1]{\phi_{#1}}            % toy model: linear spread phi_s
+\providecommand{\spreadlev}[1]{\varsigma_{#1}}    % general: level of the spread
+\providecommand{\spreadslope}[1]{\phi_{1#1}}      % general: slope of the spread
+\providecommand{\spreadfix}[1]{\phi_{0#1}}        % general: fixed cost of borrowing
+\providecommand{\collat}[1]{b_{#1}}               % collateral pledgeability b_s
+\providecommand{\Fin}[1]{\Phi_{#1}}               % total financing cost function
+ 
+% ---- user costs -------------------------------------------------------
+\providecommand{\Rint}{R^{0}}                     % internal-funds user cost
+\providecommand{\Rext}[1]{R_{#1}}                 % external user cost, sector s
+ 
+% ---- costs, taxes, death ---------------------------------------------
+\providecommand{\fc}[1]{c_{#1}}                   % per-period fixed cost c_s
+\providecommand{\ec}[1]{c^{e}_{#1}}               % entry cost c^e_s
+\providecommand{\swc}[1]{c_{#1}}                  % switching costs c_{if}, c_{fi}
+\providecommand{\taxy}{\tau_{y}}                  % corporate / output tax
+\providecommand{\taxl}{\tau_{\ell}}               % payroll tax
+\providecommand{\death}[1]{\lambda_{#1}}          % exogenous death rate
+\providecommand{\lwedge}[1]{\eta_{#1}}            % labor-wedge scale (audit cost)
+ 
+% ---- productivity process --------------------------------------------
+\providecommand{\pers}[1]{\rho_{#1}}              % AR(1) persistence, sector s
+\providecommand{\sdi}[1]{\sigma_{\varepsilon #1}} % innovation s.d., sector s
+\providecommand{\sdv}{\sigma_{v}}                 % permanent-component s.d.
+\providecommand{\muko}{\mu_{k_0}}                 % entrant wealth: log-mean
+\providecommand{\sdko}{\sigma_{k_0}}              % entrant wealth: log-s.d.
+ 
+% ---- value functions and thresholds ----------------------------------
+\providecommand{\Uv}[1]{U_{#1}}                   % continuation value by sector
+\providecommand{\Vv}[1]{V_{#1}}                   % recursive value by sector
+\providecommand{\thF}[1]{\hat{x}^{\mathrm{F}}_{#1}}   % formality threshold
+\providecommand{\thX}[1]{\hat{x}^{\mathrm{X}}_{#1}}   % exit threshold
+\providecommand{\thE}[1]{\hat{x}^{\mathrm{E}}_{#1}}   % entry threshold
+\providecommand{\netw}{n}                         % internal funds at investment stage
+\providecommand{\Kop}[1]{\mathcal{K}_{#1}}        % K_s = beta(1-lambda_s)c_s
+\providecommand{\Xth}[1]{\mathcal{X}_{#1}}        % master exit/entry threshold

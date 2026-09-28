@@ -1,48 +1,46 @@
-\centering
-\label{tab:reduced_form}
 \begin{threeparttable}
-\begin{tabular}{lccr}
+\begin{tabular}{lccccr}
 \toprule
-\textit{Dependent variable (log unless noted)} & Reduced-Form coefficient & Standard errors & $N$ \\
+& \multicolumn{2}{c}{\textbf{OLS on credit growth}} & \multicolumn{2}{c}{\textbf{Reduced form on $\hat{Z}$}} & \\
+\cmidrule(lr){2-3} \cmidrule(lr){4-5}
+\textit{Dependent variable} & $\widehat{\beta}$ & SE & $\widehat{\beta}$ & SE & $N$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
-Number of existing firms --- Total       & \phantom{$-$}0.162\sym{***} & (0.037) & 1{,}679 \\
-Number of existing firms --- Formal      & \phantom{$-$}0.083\sym{**}  & (0.035) & 1{,}675 \\
-Number of existing firms --- Informal    & \phantom{$-$}0.177\sym{***} & (0.042) & 1{,}679 \\
-Firm entry --- Total                     & \phantom{$-$}0.152\sym{***} & (0.036) & 1{,}390 \\
-Firm entry --- Formal                    & \phantom{$-$}0.086\sym{**}  & (0.039) & 1{,}378 \\
-Firm entry --- Informal                  & \phantom{$-$}0.162\sym{***} & (0.039) & 1{,}390 \\
-Firm exit --- Total                      & \phantom{$-$}0.168\sym{***} & (0.037) & 1{,}390 \\
-Firm exit --- Formal                     & \phantom{$-$}0.077\sym{*}   & (0.041) & 1{,}369 \\
-Firm exit --- Informal                   & \phantom{$-$}0.181\sym{***} & (0.039) & 1{,}390 \\
+Existing firms --- Total    & 0.006 & (0.006) & 0.004 & (0.012) & 1{,}390 \\
+Existing firms --- Formal   & 0.029\sym{**} & (0.013) & 0.056\sym{***} & (0.016) & 1{,}385 \\
+Existing firms --- Informal & 0.003 & (0.006) & $-$0.002 & (0.013) & 1{,}390 \\
+Entry --- Total             & 0.014 & (0.011) & 0.016 & (0.022) & 992 \\
+Entry --- Formal            & 0.038\sym{**} & (0.018) & 0.075\sym{**} & (0.030) & 975 \\
+Entry --- Informal          & 0.012 & (0.012) & 0.013 & (0.023) & 992 \\
+Exit --- Total              & 0.035\sym{***} & (0.007) & 0.054\sym{***} & (0.011) & 992 \\
+Exit --- Formal             & 0.028\sym{**} & (0.012) & 0.044\sym{*} & (0.025) & 961 \\
+Exit --- Informal           & 0.039\sym{***} & (0.008) & 0.061\sym{***} & (0.012) & 992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
-Formal--Formal transitions               & \phantom{$-$}0.067\sym{*}   & (0.040) & 1{,}372 \\
-Informal--Formal transitions             & \phantom{$-$}0.109\sym{***} & (0.031) & 1{,}366 \\
-Formal--Informal transitions             & \phantom{$-$}0.067\sym{*}   & (0.038) & 1{,}372 \\
-Informal--Informal transitions           & \phantom{$-$}0.199\sym{***} & (0.051) & 1{,}390 \\
+Informal$\to$Formal & 0.039\sym{**} & (0.018) & 0.058\sym{**} & (0.027) & 953 \\
+Formal$\to$Informal & $-$0.015 & (0.014) & $-$0.044\sym{*} & (0.026) & 954 \\
+Formal$\to$Formal   & 0.032\sym{**} & (0.015) & 0.045\sym{***} & (0.016) & 966 \\
+Informal$\to$Informal & 0.003 & (0.007) & $-$0.007 & (0.013) & 992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
-Firms with credit --- Total              & \phantom{$-$}0.132\sym{***} & (0.036) & 1{,}679 \\
-Firms with credit --- Formal             & \phantom{$-$}0.080\sym{**}  & (0.034) & 1{,}679 \\
-Firms with credit --- Informal           & \phantom{$-$}0.163\sym{***} & (0.044) & 1{,}679 \\
+Total    & 0.009 & (0.021) & 0.040 & (0.037) & 1{,}390 \\
+Formal   & 0.031 & (0.026) & 0.046 & (0.031) & 1{,}390 \\
+Informal & 0.017 & (0.024) & 0.039 & (0.051) & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
-Number of workers --- Total              & \phantom{$-$}0.107\sym{***} & (0.033) & \phantom{1{,}}992 \\
-Number of workers --- Formal             & \phantom{$-$}0.012          & (0.035) & \phantom{1{,}}968 \\
-Number of workers --- Informal           & \phantom{$-$}0.141\sym{***} & (0.035) & \phantom{1{,}}992 \\
-Total wagebill                           & \phantom{$-$}0.128\sym{***} & (0.036) & 1{,}671 \\
-Avg.\ value added                        & $-$0.021                    & (0.026) & 1{,}679 \\
-Total value added                        & \phantom{$-$}0.140\sym{***} & (0.030) & 1{,}679 \\
+Workers (IMSS)   & 0.017\sym{**} & (0.007) & 0.021\sym{*} & (0.013) & 1{,}382 \\
+Total wage bill  & 0.014 & (0.011) & 0.026 & (0.019) & 1{,}382 \\
+Mean daily wage  & $-$0.012\sym{***} & (0.003) & $-$0.013\sym{*} & (0.007) & 1{,}382 \\
+Average VA       & 0.041\sym{***} & (0.016) & 0.030 & (0.029) & 1{,}390 \\
+Total VA         & 0.046\sym{***} & (0.018) & 0.033 & (0.030) & 1{,}390 \\
+VA formal        & 0.042 & (0.027) & 0.028 & (0.047) & 1{,}390 \\
+VA informal      & 0.003 & (0.032) & $-$0.057 & (0.063) & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
-Collateral                               & $-$1.047\sym{***}           & (0.163) & 1{,}287 \\
-Interest rate (pp)                       & \phantom{$-$}0.214\sym{**}  & (0.105) & 1{,}679 \\
+Borrowing firms    & 0.111\sym{**} & (0.056) & 0.178\sym{*} & (0.099) & 1{,}390 \\
+Loans per borrower & 0.107\sym{***} & (0.029) & 0.223\sym{***} & (0.039) & 1{,}390 \\
+Credit per loan    & 0.782\sym{***} & (0.066) & 0.703\sym{***} & (0.095) & 1{,}390 \\
+Collateral ratio   & $-$1.771\sym{***} & (0.495) & $-$2.080\sym{**} & (0.946) & 816 \\
+Interest rate (pp) & $-$0.045 & (0.124) & 0.466\sym{***} & (0.169) & 1{,}390 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \tiny
-\item \textit{Notes:} Each row reports the coefficient and cluster-robust s.e. from a separate OLS regression of outcome on (standardized) LOO-SSIV instrument, controlling for the full set of regressors from the main IV specification. Sample restricted to market-years with instrument coverage $\geq 0.5$. The reduced-form coefficient equals the product of the first-stage and second-stage coefficients in corresponding IV regression (Tables~\ref{tab:firms}--\ref{tab:collateral_rate}). 
-S.e. clustered at the market level. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Each row reports two separate regressions with the same controls, weights, and sample as the main specification: OLS of the outcome on the five-year log change in market credit, and the reduced form of the outcome on the standardized leave-one-market-out instrument. Standard errors clustered at the market (LLM) level. Because the model is exactly identified, each reduced-form coefficient equals the product of the corresponding first-stage and IV coefficients. Census worker counts (single-window subsample) are reported in Appendix~\ref{workers_appendix_section}. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

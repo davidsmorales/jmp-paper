@@ -1,35 +1,33 @@
-\centering
-\label{tab:firms}
 \begin{threeparttable}
 \begin{tabular}{lccccccccc}
 \toprule
-& \multicolumn{9}{c}{\textbf{Dependent variable}: Log number of firms} \\
+& \multicolumn{9}{c}{\textbf{Dependent variable}: Five-year log change in the number of firms} \\
 \cmidrule(lr){2-10}
  & \multicolumn{3}{c}{\textbf{Existing}} & \multicolumn{3}{c}{\textbf{Entering}} & \multicolumn{3}{c}{\textbf{Exiting}} \\
 \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
 & Total & Formal & Informal & Total & Formal & Informal & Total & Formal & Informal \\
 \midrule
 $\widehat{\Delta_5\ln(\text{C})}$
-& 0.176\sym{***} & 0.197\sym{***} & 0.173\sym{***}
-& 0.192\sym{***} & 0.219\sym{***} & 0.190\sym{***}
-& 0.203\sym{***} & 0.183\sym{***} & 0.205\sym{***} \\
-& (0.040) & (0.039) & (0.045)
-& (0.036) & (0.042) & (0.038)
-& (0.039) & (0.042) & (0.041) \\
-& [0.078] & [0.018] & [0.090]
-& [0.029] & [0.001] & [0.043]
-& [0.036] & [0.062] & [0.039] \\
+& 0.004 & 0.051\sym{***} & $-$0.002
+& 0.015 & 0.067\sym{***} & 0.012
+& 0.049\sym{***} & 0.039\sym{***} & 0.055\sym{***} \\
+& (0.005) & (0.013) & (0.006)
+& (0.009) & (0.018) & (0.010)
+& (0.012) & (0.015) & (0.012) \\
+& [0.797] & [0.021] & [0.910]
+& [0.597] & [0.049] & [0.652]
+& [0.005] & [0.226] & [0.002] \\
 \midrule
-FS Coeff.  & 1.309   & 1.355   & 1.355   & 1.374 & 1.374 & 1.374 & 1.374 & 1.374 & 1.374 \\
-         & (0.144) & (0.156) & (0.156) & (0.161) & (0.161) & (0.161) & (0.161) & (0.161) & (0.161) \\
-FS F & 88.96 & 88.97 & 88.96 & 86.40 & 86.43 & 86.40 & 86.40 & 86.39 & 86.40 \\
-Mean & 7,152 & 868 & 6,284 & 2,569 & 269 & 2,301 & 1,887 & 198 & 1,689 \\
-Obs. & 1,679 & 1,675 & 1,679 & 1,390 & 1,378 & 1,390 & 1,390 & 1,369 & 1,390 \\
-Markets       & 556   & 553   & 556   & 556   & 549   & 556   & 556   & 547   & 556   \\
+FS Coeff. & 1.104 & 1.104 & 1.104 & 1.120 & 1.120 & 1.120 & 1.120 & 1.120 & 1.120 \\
+          & (0.063) & (0.063) & (0.063) & (0.060) & (0.060) & (0.060) & (0.060) & (0.060) & (0.060) \\
+FS F & 310.25 & 310.19 & 310.25 & 346.32 & 346.02 & 346.32 & 346.32 & 346.13 & 346.32 \\
+Mean & 10,010 & 1,237 & 8,777 & 4,328 & 451 & 3,885 & 3,144 & 344 & 2,811 \\ 
+Obs. & 1,390 & 1,385 & 1,390 & 992 & 975 & 992 & 992 & 961 & 992 \\
+Markets & 556 & 552 & 556 & 546 & 536 & 546 & 546 & 529 & 546 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Two-stage least squares estimates at the market (LLM) $\times$ Economic Census wave level (2009, 2014, 2019, 2024). The endogenous regressor is the five-year log change in market credit, instrumented by the leave-one-market-out shift-share bank credit-supply shock. The mean row is in levels. All columns include year fixed effects and predetermined controls for market sectoral composition (employment- and credit-weighted), lagged interest rate, lagged collateral coverage, log number of banks, and log number of credits. Sample restricted to market-years with instrument coverage $\geq 0.5$. Inference: AKM standard errors following \citet{adao2019shiftshare} in parentheses, with stars from the corresponding $p$-values; wild cluster bootstrap $p$-values \citep{cameron2008bootstrap}, clustered at the market level, in brackets. ``FS F'' is the Kleibergen-Paap Wald statistic. The average new loan amount in a market is 96.4 billion MXN ($\approx$~6 billion USD at 16~MXN/USD). \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Two-stage least squares estimates at the market (LLM) $\times$ five-year window level; the three windows end in 2014, 2019, and 2024, each relative to the previous Economic Census. Dependent variables are five-year log changes; markets with a zero count in a window drop from the corresponding column. The endogenous regressor is the five-year log change in market credit, instrumented by the leave-one-market-out shift-share credit-supply shock, standardized to unit variance. The Mean row reports the dependent variable's level in the estimation sample. All columns include year fixed effects and the baseline (start-of-window) controls: market sector shares and credit-weighted sector shares of the lending banks' portfolios; the credit-weighted average interest rate; log numbers of banks and of loans; the credit share of the market's largest bank; and the coverage share (baseline credit granted by banks with a valid estimated supply shock), entered as a main effect and interacted with the year fixed effects. The sample is restricted to market-years with coverage of at least $0.5$ (Section~\ref{robustness} varies this threshold). AKM standard errors following \citet{adao2019shiftshare} in parentheses; stars use the corresponding $p$-values. Wild cluster bootstrap $p$-values \citep{cameron2008bootstrap}, clustered at the market level, in brackets. The first-stage coefficient is reported with its market-clustered standard error; FS~F is the Kleibergen--Paap rk Wald statistic. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

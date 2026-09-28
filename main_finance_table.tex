@@ -3,21 +3,23 @@
 \begin{threeparttable}
 \begin{tabular}{lcc}
 \toprule
-\textbf{Dependent variable} & Log collateral & Interest rate \\
+\textbf{Dependent variable} & $\Delta_5$ log collateral coverage & $\Delta_5$ interest rate (pp) \\
 \midrule
 $\widehat{\Delta_5\ln(\text{C})}$
-& $-$0.733\sym{***} & 0.460\sym{***} \\
-& (0.225) & (0.073) \\
-& [0.175] & [0.004] \\
+& $-$1.857\sym{***} & 0.422\sym{***} \\
+& (0.322) & (0.102) \\
+%& [.] & [.] \\ % TODO wild bootstrap p-values when boottest is restored
 \midrule
-FS F & 86.50 & 88.96 \\
-Mean  & 5.2   & 14.97 \\
-Obs.  & 1{,}287 & 1{,}679 \\
-Markets       & 525   & 556   \\
+FS Coeff. & 1.120 & 1.104 \\
+          & (0.060) & (0.063) \\
+FS F & 345.53 & 310.25 \\
+Mean  & 5.2   & 14.97 \\ % TODO refresh from mean_dv
+Obs.  & 816 & 1{,}390 \\
+Markets & 451 & 556 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} See Table~\ref{tab:firms} for specification and inference details. Both outcomes are credit-weighted market-level aggregates of the underlying bank-loan-level variables. The interest rate is expressed in percentage points. Average market collateral is 82.3 (one-year) and 82.9 (five-year) billion MXN ($\approx$~5.1 and 5.2 billion USD at 16~MXN/USD). \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} See Table~\ref{tab:firms} for specification and inference details. Both outcomes are credit-weighted market-level aggregates of the underlying bank-loan-level variables; collateral coverage is collateral relative to market credit, and the interest rate outcome is the five-year change in percentage points. Average market collateral is 82.3 (one-year) and 82.9 (five-year) billion MXN ($\approx$~5.1 and 5.2 billion USD at 16~MXN/USD). \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$. % TODO means sentence refresh
 \end{tablenotes}
 \end{threeparttable}

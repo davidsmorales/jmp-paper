@@ -1,5 +1,3 @@
-\centering
-\label{tab:balance_test}
 \begin{threeparttable}
 \begin{tabular}{lcccc}
 \toprule
@@ -7,20 +5,29 @@
 \cmidrule(lr){2-3} \cmidrule(lr){4-5}
 \textit{Predetermined variable} & $\widehat{\beta}$ & SE & $\widehat{\beta}$ & SE \\
 \midrule
-Market employment share, sector 1   & $0.037$ & (0.026) & \phantom{$-$}0.036 & (0.028) \\
-Market employment share, sector 2   & $-$0.000 & (0.012) & $-$0.005 & (0.013) \\
-Bank-portfolio sector share, sector 1 & $-$0.015 & (0.031) & \phantom{$-$}0.027 & (0.049) \\
-Bank-portfolio sector share, sector 2 & \phantom{$-$}0.012 & (0.033) & $-$0.060 & (0.063) \\
-Credit-weighted interest rate       & \phantom{$-$}0.384 & (0.265) & \phantom{$-$}0.604 & (0.781) \\
-Log number of banks in market       & $-$0.062 & (0.078) & $-$0.099 & (0.074) \\
-Log number of credits in market     & \phantom{$-$}0.095 & (0.337) & $-$0.155 & (0.340) \\
+Market employment share, sector 1     & \phantom{$-$}0.040 & (0.026) & \phantom{$-$}0.038 & (0.027) \\
+Market employment share, sector 2     & $-$0.007 & (0.011) & $-$0.011 & (0.012) \\
+Bank-portfolio sector share, sector 1 & $-$0.007 & (0.031) & \phantom{$-$}0.028 & (0.053) \\
+Bank-portfolio sector share, sector 2 & \phantom{$-$}0.010 & (0.034) & $-$0.057 & (0.061) \\
+Credit-weighted interest rate         & \phantom{$-$}0.330 & (0.258) & \phantom{$-$}0.760 & (0.809) \\
+Log number of banks in market         & $-$0.040 & (0.072) & $-$0.072 & (0.069) \\
+Log number of credits in market       & \phantom{$-$}0.206 & (0.312) & $-$0.038 & (0.316) \\
 \midrule
-Observations (range)              & \multicolumn{2}{c}{1{,}200--1{,}356} & \multicolumn{2}{c}{766--934} \\
-Markets (range)                   & \multicolumn{2}{c}{521--545} & \multicolumn{2}{c}{457--515} \\
+Observations (range) & \multicolumn{2}{c}{1{,}200--1{,}356} & \multicolumn{2}{c}{766--934} \\
+Markets (range)      & \multicolumn{2}{c}{521--545} & \multicolumn{2}{c}{457--515} \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} Each cell reports the coefficient and cluster-robust standard error from a separate regression of the indicated predetermined market characteristic, lagged either five or ten years relative to the outcome wave, on the leave-one-market-out shift-share bank credit-supply instrument, controlling for the full set of regressors from the main IV specification (including year fixed effects). Sample restricted to market-years with instrument coverage $\geq 0.5$. Standard errors clustered at the market (LLM) level. None of the fourteen reported coefficients is statistically distinguishable from zero at the 10\% level. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Each cell reports the coefficient and market-clustered
+standard error from a separate regression of the indicated predetermined
+market characteristic on the standardized leave-one-market-out credit-supply
+instrument, conditional on year fixed effects and the coverage share
+interacted with year fixed effects, weighted by baseline market credit.
+Lags are relative to the baseline period, so the two panels measure each
+characteristic ten and fifteen years before the outcome wave. Sample
+restricted to market-years with instrument coverage $\geq 0.5$. None of the
+fourteen coefficients is statistically distinguishable from zero at the
+10\% level. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

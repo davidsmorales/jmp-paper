@@ -1,47 +1,44 @@
-\centering
-\label{tab:renorm}
 \begin{threeparttable}
-\begin{tabular}{lccr}
+\begin{tabular}{lcccr}
 \toprule
-\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & First-stage $F$ & $N$ \\
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & AKM s.e. & First-stage $F$ & $N$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
-Log existing firms --- Total    & \phantom{$-$}0.174\sym{***} (0.057) & 93.83 & 1{,}679 \\
-Log existing firms --- Formal   & \phantom{$-$}0.198\sym{***} (0.054) & 93.84 & 1{,}675 \\
-Log existing firms --- Informal & \phantom{$-$}0.170\sym{***} (0.063) & 93.83 & 1{,}679 \\
-Log firm entry --- Total        & \phantom{$-$}0.192\sym{***} (0.049) & 92.27 & 1{,}390 \\
-Log firm entry --- Formal       & \phantom{$-$}0.220\sym{***} (0.058) & 92.30 & 1{,}378 \\
-Log firm entry --- Informal     & \phantom{$-$}0.189\sym{***} (0.053) & 92.27 & 1{,}390 \\
-Log firm exit --- Total         & \phantom{$-$}0.200\sym{***} (0.055) & 92.27 & 1{,}390 \\
-Log firm exit --- Formal        & \phantom{$-$}0.183\sym{***} (0.058) & 92.26 & 1{,}369 \\
-Log firm exit --- Informal      & \phantom{$-$}0.201\sym{***} (0.058) & 92.27 & 1{,}390 \\
+Log existing firms --- Total    & \phantom{$-$}0.004          (0.010) & [0.006]          & 335.43 & 1{,}390 \\
+Log existing firms --- Formal   & \phantom{$-$}0.052\sym{***} (0.016) & [0.016]\sym{***} & 335.36 & 1{,}385 \\
+Log existing firms --- Informal & $-$0.002          (0.011) & [0.007]          & 335.43 & 1{,}390 \\
+Log firm entry --- Total        & \phantom{$-$}0.016          (0.020) & [0.011]          & 372.47 & \phantom{1{,}}992 \\
+Log firm entry --- Formal       & \phantom{$-$}0.070\sym{**}  (0.028) & [0.022]\sym{***} & 372.13 & \phantom{1{,}}975 \\
+Log firm entry --- Informal     & \phantom{$-$}0.013          (0.020) & [0.012]          & 372.47 & \phantom{1{,}}992 \\
+Log firm exit --- Total         & \phantom{$-$}0.049\sym{***} (0.010) & [0.014]\sym{***} & 372.47 & \phantom{1{,}}992 \\
+Log firm exit --- Formal        & \phantom{$-$}0.042\sym{*}   (0.023) & [0.018]\sym{**}  & 372.27 & \phantom{1{,}}961 \\
+Log firm exit --- Informal      & \phantom{$-$}0.054\sym{***} (0.011) & [0.014]\sym{***} & 372.47 & \phantom{1{,}}992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
-Formal--Formal                  & \phantom{$-$}0.173\sym{***} (0.058) & 92.30 & 1{,}372 \\
-Informal--Formal                & \phantom{$-$}0.196\sym{***} (0.041) & 91.59 & 1{,}366 \\
-Formal--Informal                & \phantom{$-$}0.110\sym{**}  (0.052) & 92.29 & 1{,}372 \\
-Informal--Informal              & \phantom{$-$}0.161\sym{**}  (0.075) & 92.27 & 1{,}390 \\
+Formal--Formal                  & \phantom{$-$}0.042\sym{***} (0.016) & [0.011]\sym{***} & 372.15 & \phantom{1{,}}966 \\
+Informal--Formal                & \phantom{$-$}0.049\sym{*}   (0.026) & [0.022]\sym{**}  & 371.02 & \phantom{1{,}}953 \\
+Formal--Informal                & $-$0.039\sym{*}   (0.023) & [0.018]\sym{**}  & 372.12 & \phantom{1{,}}954 \\
+Informal--Informal              & $-$0.008          (0.011) & [0.005]          & 372.47 & \phantom{1{,}}992 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
-Firms with credit --- Total     & \phantom{$-$}0.181\sym{***} (0.055) & 93.83 & 1{,}679 \\
-Firms with credit --- Formal    & \phantom{$-$}0.174\sym{***} (0.053) & 93.83 & 1{,}679 \\
-Firms with credit --- Informal  & \phantom{$-$}0.194\sym{***} (0.064) & 93.83 & 1{,}679 \\
+Firms with credit --- Total     & \phantom{$-$}0.042          (0.036) & [0.014]\sym{***} & 335.43 & 1{,}390 \\
+Firms with credit --- Formal    & \phantom{$-$}0.045          (0.029) & [0.023]\sym{**}  & 335.43 & 1{,}390 \\
+Firms with credit --- Informal  & \phantom{$-$}0.043          (0.049) & [0.017]\sym{**}  & 335.43 & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
-Workers --- Total               & \phantom{$-$}0.149\sym{***} (0.039) & 90.52 & \phantom{1{,}}992 \\
-Workers --- Formal              & \phantom{$-$}0.118\sym{**}  (0.053) & 90.51 & \phantom{1{,}}968 \\
-Workers --- Informal            & \phantom{$-$}0.185\sym{***} (0.039) & 90.52 & \phantom{1{,}}992 \\
-Total wagebill                  & \phantom{$-$}0.199\sym{***} (0.054) & 93.83 & 1{,}671 \\
-Avg.\ value added               & $-$0.076\sym{***} (0.028) & 93.83 & 1{,}679 \\
-Total value added               & \phantom{$-$}0.097\sym{**}  (0.049) & 93.83 & 1{,}679 \\
+Formal workers (IMSS)           & \phantom{$-$}0.021\sym{*}   (0.012) & [0.007]\sym{***} & 335.38 & 1{,}382 \\
+Formal wage bill (IMSS)         & \phantom{$-$}0.026          (0.018) & [0.012]\sym{**}  & 335.38 & 1{,}382 \\
+Mean daily wage (IMSS)          & $-$0.012\sym{*}   (0.006) & [0.005]\sym{**}  & 335.38 & 1{,}382 \\
+Avg.\ value added               & \phantom{$-$}0.030          (0.027) & [0.017]\sym{*}   & 335.43 & 1{,}390 \\
+Total value added               & \phantom{$-$}0.033          (0.028) & [0.020]\sym{*}   & 335.43 & 1{,}390 \\
+Formal value added              & \phantom{$-$}0.030          (0.044) & [0.038]          & 335.43 & 1{,}390 \\
+Informal value added            & $-$0.060          (0.061) & [0.028]\sym{**}  & 335.43 & 1{,}390 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
-Log collateral                  & $-$0.716\sym{**} (0.315) & 92.41 & 1{,}287 \\
-Interest rate (pp)              & \phantom{$-$}0.462\sym{***} (0.101) & 93.83 & 1{,}679 \\
+Log borrowers                   & \phantom{$-$}0.174\sym{*}   (0.095) & [0.043]\sym{***} & 335.43 & 1{,}390 \\
+Log loans per borrower          & \phantom{$-$}0.203\sym{***} (0.031) & [0.043]\sym{***} & 335.43 & 1{,}390 \\
+Log credit per loan             & \phantom{$-$}0.623\sym{***} (0.087) & [0.055]\sym{***} & 335.43 & 1{,}390 \\
+Log collateral                  & $-$1.734\sym{**}  (0.876) & [0.413]\sym{***} & 371.35 & \phantom{1{,}}816 \\
+Interest rate (pp)              & \phantom{$-$}0.441\sym{***} (0.162) & [0.127]\sym{***} & 335.43 & 1{,}390 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \tiny
-\item \textit{Notes:} Two-stage least squares estimates re-estimating the main specification with the renormalized shift-share instrument $\tilde z_{m,t} = z_{m,t} / \texttt{cov\_z\_5}_{m,t}$, restricted to $\texttt{cov\_z\_5} > 0$. The renormalization converts the instrument from a coverage-weighted sum of bank shocks to a coverage-weighted average, addressing the concern that the unnormalized instrument mechanically scales with coverage. All other specification details follow Table~\ref{tab:firms}. AKM standard errors in parentheses following \citet{adao_kolesar_morales_2019}; stars based on AKM $p$-values. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Two-stage least squares estimates re-estimating the main specification with the renormalized shift-share instrument $\tilde z_{mt} = z_{mt} / \texttt{cov\_z\_5}_{mt}$, which converts the instrument from a coverage-weighted sum of bank shocks into a coverage-weighted average, standardized as in the main specification. The estimation sample, controls, weights, and inference are identical to Table~\ref{main_table}. Standard errors clustered at the market level in parentheses, with stars based on them; exposure-robust standard errors following \citet{adao2019shiftshare} in brackets, with stars on brackets based on exposure-robust $p$-values. The credit-deepening decomposition sums to one ($0.174+0.203+0.623$). First-stage $F$ is the Kleibergen--Paap rk Wald statistic. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
