@@ -1,0 +1,1362 @@
+\documentclass[aspectratio=169]{beamer}
+
+\mode<presentation> {
+\usetheme{SimplePlus} 
+\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}
+}
+
+\usepackage{graphicx} 
+\usepackage{booktabs} 
+\usepackage[export]{adjustbox}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{bbm}
+\usepackage{pgfplots}
+\usetikzlibrary{intersections}
+\pgfplotsset{compat=1.16}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\usepackage[round]{natbib}
+\bibliographystyle{apalike}
+\usepackage{blindtext}
+\usepackage{hyperref}
+\usepackage{multirow,array}
+\usepackage{threeparttable}
+\usepackage[dvipsnames]{xcolor}
+\usepackage[T1]{fontenc}\usepackage{lmodern}
+\newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
+
+
+\title[Informality and financial frictions]{\Huge \textbf{Informality and financial frictions}} 
+\author{David Morales \and Daniela Puggioni}
+
+\author[Morales \& Puggioni]{\textbf{David Morales} \inst{1} \and \textbf{Daniela Puggioni} \inst{2}}
+\institute[TSE \and Banxico]{ \inst{1} \textbf{Toulouse School of Economics} \\
+david.morales@tse-fr.eu \and 
+\inst{2} \textbf{Bank of Mexico}} 
+
+\date[June 23, 2026] 
+{\Large \textbf{Finance Workshop}\\
+June 23, 2026}
+
+\begin{document}
+
+%------------------------------------------------
+\begin{frame}[noframenumbering] 
+\titlepage
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Most bank loans go to the informal sector} 
+
+\onslide<1->{\textbf{Canonical view}: Credit for formal firms (collateral, $\cdots$). Informal are credit-rationed
+\begin{itemize}
+    \item We should expect virtually no entrepreneurial loans to go to informal firms.
+\end{itemize}}
+
+\onslide<2->{
+\begin{center}
+    \large In most LMIC, \textbf{the opposite is true}: 
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.145]{slides_material/firm_dist_g.png}
+\end{center}
+}
+
+\onslide<1->{\textcolor{BrickRed}{\textbf{Informal}}: A firm with positive revenue and workers but no Social Security contributions.}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{And these firms move}\label{transition}
+
+\textbf{Canonical view}: Segmented Formal-Informal sectors \textcolor{lightgray}{\cite{la2014informality}}.
+\begin{itemize}
+    \item We should expect limited dynamics and Formal-Informal transitions.
+\end{itemize}
+
+\pause
+
+\begin{center}
+    \large Again, in most LMIC, \textbf{the opposite is true}: 
+\end{center}
+
+\begin{center}
+    \includegraphics[scale=0.5]{slides_material/t_mat_ss.png}
+\end{center}
+\pause
+
+\textbf{It is not a matter of informality definition}: \hyperlink{intensive}{\beamergotobutton{Intensive margin}} \hyperlink{imss}{\beamergotobutton{IMSS employer number}} \hyperlink{rfc}{\beamergotobutton{RFC tax number}} 
+
+\end{frame}
+
+%------------------------------------------------
+
+
+\begin{frame}{This paper} \label{this_paper}
+
+\begin{center}
+    \Large \textbf{RQ}: Can bank loans explain these firm dynamics?
+\end{center}
+
+\vspace{2mm}
+\pause
+
+\textbf{Answer}
+\begin{itemize}
+    \item Credit increases entrepreneurial activity, including the \textbf{informal} sector.
+\end{itemize}
+
+\vspace{1mm}
+\pause
+
+\textbf{Method}
+\begin{itemize}
+    \item Leave-One-Out Shift-Share IV (LOO-SSIV) with exogenous shift.
+    \item Dynamic model of firm transitions with sector-specific financial constraints.
+\end{itemize}
+
+\vspace{1mm}
+\pause
+
+\textbf{Why it matters}
+\begin{itemize}
+    \item Financial development increases firm activity \& informality, policymakers trade-off.
+\end{itemize}
+
+\vspace{1mm}
+\pause
+
+\textbf{Contribution}
+\begin{itemize}
+    \item First causal evidence that credit expands the informal sector. 
+    \item $\uparrow$ Credit $\Rightarrow$ $\downarrow$ Capital constraint $\Rightarrow$ $\uparrow$ Entry low-productivity firms $\Rightarrow$ $\uparrow$ Informality. 
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+1) Literature
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Literature}\label{literature}
+
+Financial access effects on firm activity \textcolor{lightgray}{\citep{amiti2018much,greenstone2020credit,gutierrez2023credit,khwaja2008tracing,chodorow2014employment}, etc.}
+ \begin{itemize}
+    \item \textbf{Literature takeaway}: Credit increases employment, productivity, and formalization.
+    \item \textbf{Contribution}: Evidence on credit increasing informality.
+ \end{itemize}
+
+\vspace{10mm}
+\pause
+
+Informality causes and consequences \textcolor{lightgray}{\citep{ulyssea2018firms,meghir2015wages,la2014informality,almeida2012enforcement,busso2012formal,adom2025structural}, etc.}
+\begin{itemize}
+    \item \textbf{Literature takeaway}: Limited firm dynamics and formal status as absorbing state.
+     \item \textbf{Contribution}: Novel firm dynamics, with formal firms allowed to become informal.
+ \end{itemize}
+
+\vspace{10mm}
+\pause
+
+\begin{itemize}
+    \item[$\Rightarrow$] \Large \textbf{This paper}: Link of formality decisions and credit access. 
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+2) Data
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Data}\label{data}
+
+\textbf{Mexican data}
+
+\vspace{3mm}
+
+\begin{itemize}
+    \item Matched bank-employer-employee data \textcolor{gray}{Social Security (IMSS) +  Exchange \& Security Commission (CNBV)}
+    \begin{itemize}
+        \item 20 years of monthly data.
+        \item Universe of formal workers.
+        \item Bank loans to formal and informal firms.
+    \end{itemize}
+    \vspace{3mm}
+    \pause
+    \item Economic Census \textcolor{gray}{(EC)}
+    \begin{itemize}
+        \item Every 5 years (2009, 2014, 2019, \& 2024).
+        \item Formal and informal firm level data used for the firm 5-years transitions.
+    \end{itemize}
+    \vspace{3mm}
+    \pause
+    \item Data: 703 markets = commuting zones, 89 banks, and $\approx$ 4.5 million firms.
+\end{itemize}
+
+\vspace{3mm}
+\pause
+
+\begin{center}
+    \large \textbf{Key feature:} Observe credit + firm dynamics + economic outcomes.
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+3) Empirical Strategy
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{\textbf{Empirical strategy}: Leave-One-Out Shift-Share IV, LOO-SSIV} \label{iv_market_level}
+
+\textbf{Intuition}: Each bank's credit supply growth (estimated nationally w/multi-bank firms, excluding target market) weighted by that bank's initial lending share in the target market.
+
+\vspace{5mm}
+\pause
+
+\textbf{1) Decompose demand and supply}: Regress bank-market credit on bank and firm FE:
+
+\begin{equation*}
+     \Delta \ln L_{bft}^{-m} = \alpha_{ft}^{-m} + \gamma_{bt}^{-m} + \epsilon_{bft}, \quad \quad \Rightarrow \quad \quad \hat{\gamma}_{b,t}^{-m} = \text{Exogenous shift.} 
+\end{equation*}
+\pause
+
+\textbf{2) Share}: Banks' share of total loans in a market at baseline:
+
+\begin{equation*}
+    s_{b,m,t-1} = \frac{L_{b,m,t-1}}{\sum_b L_{b,m,t-1}}, \quad \quad \Rightarrow \quad \quad s_{b,m,t-1} = \text{Identifying variation.} 
+\end{equation*}
+\pause
+
+\textbf{3) Instrument}: Bank change in credit supply weighted by market share.  
+% \hyperlink{iv_bank_level}{\beamergotobutton{Shock}}
+
+\begin{equation*}
+    \hat{Z}_{m,t}^{LOO} = \sum_b \left( s_{b,m,t-1} \times \hat{\gamma}_{b,t}^{-m} \right) 
+\end{equation*}
+
+% \begin{center}
+%     \Large \textbf{Interpretation}: Different exposure of markets to exogenous bank shocks.
+% \end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+4) Results
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{The instrument is relevant}
+
+\begin{center}
+    \includegraphics[scale=0.16]{slides_material/first_stage.png}
+\end{center}
+
+\begin{itemize}
+    \item Relevant instrument: First stage F-stat = 84.
+    \item Effective Number of banks = 64 $\Rightarrow$ No single bank drives results. 
+\end{itemize}
+
+\begin{center}
+    \Large \textbf{Interpretation}: Bank shocks capture supply variation.
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Credit expansion increases formal and informal transitions}
+
+\begin{columns}[T] 
+    \begin{column}{0.6\textwidth} 
+        \begin{center}
+        \vspace{-5mm}
+            \includegraphics[scale=0.163]{slides_material/decomp.png}
+        \end{center}
+    \end{column}
+
+    \begin{column}{0.4\textwidth} 
+        \vspace{5mm}
+        At the average market,
+        \begin{itemize}
+            \item $\uparrow$ 1\% in credit yields
+            \begin{itemize}
+                \item +5 entering firms.
+                \begin{itemize}
+                    \item +4 informal.
+                    \item +1 formal.
+                \end{itemize}
+                \item +4 exiting firms.
+                \begin{itemize}
+                    \item +3 informal.
+                    \item +1 formal.
+                \end{itemize}
+                \item +1 informal-formal.
+            \end{itemize}
+        \end{itemize}
+        \vspace{5mm}
+        \pause
+    \end{column}
+\end{columns}
+
+\vspace{8mm}
+
+\textbf{Relevant start-up rate}: + 0.11 p.p. vs. - 0.78 trend in USA \textcolor{gray}{\cite{pugsley2019grown}}.
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}{Most credit adjustments goes to informal firms}
+
+% \large \textbf{Q}: What firms are more affected by the change in credit?
+
+% \vspace{5mm}
+
+% \begin{center}
+%     \begin{tabular}{lccc}
+%     \toprule
+%     \multicolumn{4}{c}{\textbf{Dependent variable}: Log Nb. of firms w/ credit} \\
+%     \cmidrule(lr){2-4}
+%               & Total & Formal & Informal \\
+%     \midrule
+%     Log loans &  0.179  & 0.174  & 0.190 \\
+%               & (0.040) & (0.038) & (0.047) \\
+%               & [0.070] & [0.037] & [0.090] \\
+%     \midrule
+%     Mean (level) & 454 & 110 & 344 \\
+%     \bottomrule
+%     \multicolumn{4}{l}{\tiny{Controls in every column: Sector, interest rate, No. loans, \& No. banks.}} \\
+%     \multicolumn{4}{l}{\tiny{AKM s.e. in parenthesis, bootstrap s.e. in brackets.}}
+%     \end{tabular}
+% \end{center}
+
+% \vspace{5mm}
+
+% \begin{center}
+%     \large \textbf{A}: When banks adjust credit, they adjust on both formal and informal firms.
+% \end{center}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+\begin{frame}{Credit raises informal employment and aggregate output, but lowers average productivity}
+
+\begin{center}
+    \begin{tabular}{lcccccc}
+        \toprule
+         & \multicolumn{3}{c}{Log nb. of workers} & \multicolumn{2}{c}{Log average} & \multirow{2}{*}{Log total VA} \\
+        \cmidrule(lr){2-4} \cmidrule(lr){5-6}
+         & Total & Formal & Informal & Formal wage & VA &  \\
+        \midrule
+        Log loans 
+        & 0.150 & 0.122 & 0.185 & 0.200  & -0.073  & 0.102 \\
+        & (0.028) & (0.039) & (0.028) & (0.039) & (0.020) & (0.034) \\
+        \midrule
+        Mean (level) & 19,521 & 5,566 & 13,955 & 10.9 & 48.8 & 0.9 m. \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+        \tiny
+        \item The annual average formal wage, the annual average added value, and the annual total value added in a market are 10.9 USD, 48.8 USD, and 0.9 million USD, respectively. Controls in every column: Sector, interest rate, No. loans, \& No. banks. AKM s.e. in parenthesis.
+    \end{tablenotes}
+\end{center}
+\pause
+
+\vspace{3mm}
+
+\textbf{Bigger effect on worker informality than tax cuts}  \textcolor{gray}{\cite{bobba2021labor,rocha2018lower,campos2020effects}}.
+\pause
+
+\vspace{3mm}
+
+\textbf{Lower average productivity but higher total output.}
+
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}{Robustness checks}\label{robustness}
+
+\begin{enumerate}
+    \item \textbf{Balance Test}: IV's residual variation $\perp$ predetermined characteristics. \hyperlink{balance}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{OLS, Reduced form}: Effect without invoking IV decomposition. \hyperlink{ols}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Wo/3 biggest metropolitan areas}: Effects not due to concentrated weights. \hyperlink{womet}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Unweighted}: Conclusions not artifact of credit weighting. \hyperlink{unweighted}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Placebo test}: Absence of pre-trends. \hyperlink{placebo}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Conventional non-LOO}: Larger elasticities. If anything, LOO is conservative. \hyperlink{nonloo}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Bank level estimation}: Surprisingly similar elasticities. \hyperlink{banklevel}{\beamergotobutton{Go}}
+    \vspace{1mm}
+    \pause
+    \item \textbf{Different coverages}: Similar effects. If anything, main spec is conservative. \hyperlink{coverage}{\beamergotobutton{Go}}
+\end{enumerate}
+
+\begin{center}
+    \Large Consistent evidence of a significant elasticity.
+\end{center}
+\pause
+
+But which mechanisms? Tax avoidance, capital constraints, or productivity selection? $\cdots$ 
+
+\begin{center}
+    \Large \textbf{Model}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+5) Model
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Settings}\label{settings}
+
+
+\textbf{Firms}: Heterogeneous in productivity $\theta \in [\underline{\theta}, \bar{\theta}]$. 
+
+\vspace{4mm}
+\pause
+
+\textbf{Technology}: $f(l,k; \theta) = \theta q(l,k)$, well behaved and $q(\cdot)$ with DRS. 
+
+\vspace{4mm}
+\pause
+
+\textbf{Partial Equilibrium}: We treat wage w as exogenous.
+
+\vspace{4mm}
+\pause
+
+\textbf{Mkt structure}: For. \& inf. produce same good, same prices \textcolor{lightgray}{\citep{imbert2023rural}}.
+
+
+\vspace{4mm}
+\pause
+    
+\textbf{Investment function}: $i(k',k) = k' - (1 - \delta) k$.
+
+\begin{itemize}
+    \item \textcolor{gray}{\textbf{Financing cost function}: $\phi_s(k,k',\theta;w) = \phi_s(i(k, k') - \Pi(k,\theta;w)), \quad \forall s \in \{i,f\}$.}
+\end{itemize}
+
+\vspace{4mm}
+\pause
+
+
+\textbf{Informal}: $\Pi_i(k,\theta;w) = \max \limits_{\{l\}} \{ \theta q(l,k) - \tau_i(l) w - \bar{c}_i \}$, $\tau_i(l)$ inf. cost \textcolor{lightgray}{\citep{ulyssea2018firms}}.
+
+\vspace{4mm}
+\pause
+
+\textbf{Formal profits}: $\Pi_f(k,\theta;w) = \max \limits_{\{l\}} \{ (1 - \tau_y) \theta q(l,k) - (1 + \tau_l) w - \bar{c}_f \}$. 
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{timing}
+
+\begin{figure}[h!] 
+    \begin{center}
+        \input{timing}
+    \end{center}
+\end{figure}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}\label{value_functions}
+\frametitle{Value functions}
+
+\begin{center}
+    \large \textbf{Informal}
+\end{center}
+
+\vspace{-10mm}
+
+\begin{multline*}
+    V_i(k, \theta; w) = \max\limits_{k'} \{ \overbrace{ \Pi_i(k,\theta;w) - i(k,k') - \phi_i(k,k',\theta;w)}^{\text{Dividends}} + \\
+    \beta \max \{ \underbrace{(1 - \delta) k}_{\text{Exit}} , \underbrace{\mathbb{E}[V_i(k',\theta',w) \vert \theta] }_{{\text{Stay Informal}}} , \underbrace{\mathbb{E}[V_f(k',\theta',w) \vert \theta] - c_{if}}_{\text{Transition Informal-Formal}} \} \}
+\end{multline*}
+
+\vspace{5mm}
+\pause
+
+\begin{center}
+    \large \textbf{Formal}
+\end{center}
+
+\vspace{-10mm}
+
+\begin{multline*}
+    V_f(k, \theta; w) = \max\limits_{k'} \{ \overbrace{ \Pi_f(k,\theta;w) - i(k,k') - \phi_f(k,k',\theta;w)}^{\text{Dividends}} + \\ 
+    \beta \max \{ \underbrace{(1 - \delta) k}_{\text{Exit}} , \underbrace{\mathbb{E}[V_f(k',\theta',w) \vert \theta]}_{{\text{Stay Formal}}} , \underbrace{\mathbb{E}[V_i(k',\theta',w) \vert \theta] - c_{fi}}_{\text{Transition Formal-Informal}} \} \}
+\end{multline*}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Decision rules} \label{decision_rules}
+
+% \textbf{Capital}: $k'_s(k,\theta;w) = \min \{ arg\max\limits_{k'} \{ V_s(k,\theta;w) \}\}$, k' that does not requires borrowing.
+
+\textbf{Transition}: 
+\begin{itemize}
+    \item \textbf{Inactive}: $t_n(k,\theta;w) = \begin{cases}
+        n \text{ if } \theta_i^e  > \theta \text{ (stay inactive)} \\
+        i \text{ if } \theta_i^e \leq \theta < \theta_f^e \text{ (enter informal)} \\
+        f \text{ if } \theta  \geq \theta_f^e \text{ (enter formal)}
+    \end{cases}$
+    \item \textbf{Informal}: $t_i(k,\theta;w) = \begin{cases}
+        n \text{ if } \theta_i^x  > \theta \text{ (exit as informal)} \\
+        i \text{ if } \theta_i^x \leq \theta < \theta_{if} \text{ (stay informal)} \\
+        f \text{ if } \theta  \geq \theta_{if} \text{ (transition informal-formal)}
+    \end{cases}$
+    \item \textbf{Formal}: $t_f(k,\theta;w) = \begin{cases}
+        n \text{ if } \theta_f^x  > \theta \text{ (exit as formal)} \\
+        i \text{ if } \theta_f^x \leq \theta < \theta_{fi} \text{ (transition formal-informal)} \\
+        f \text{ if } \theta  \geq \theta_{fi} \text{ (stay formal)}
+    \end{cases}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{ Unique thresholds} \label{threshold}
+
+\textbf{Inactive}:
+\begin{itemize}
+    \item \textbf{Enter informal}: $\mathbb{E}[V_i(k',\theta';w) \mid \theta_i^e] - c_i^e = (1 - \delta) k'$
+    \item \textbf{Enter formal}: $\mathbb{E}[V_i(k',\theta';w) \mid \theta_f^e] - c_i^e = \mathbb{E}[V_f(k',\theta';w) \mid \theta_f^e] - c_f^e$
+\end{itemize}
+
+\textbf{Informal}:
+\begin{itemize}
+    \item \textbf{Exit as informal}: $\mathbb{E}[V_i(k',\theta';w) \mid \theta_i^x] = (1 - \delta) k'$
+    \item \textbf{Transition informal-formal}: $\mathbb{E}[V_i(k',\theta';w) \mid \theta_{if}] = \mathbb{E}[V_f(k',\theta';w) \mid \theta_{if}] - c_{if}$
+\end{itemize}
+
+\textbf{Formal}:
+\begin{itemize}
+    \item \textbf{Exit as formal}: $\mathbb{E}[V_f(k',\theta';w) \mid \theta_f^x] = (1 - \delta) k'$
+    \item \textbf{Transition formal-informal}: $\mathbb{E}[V_f(k',\theta';w) \mid \theta_{fi}] = \mathbb{E}[V_i(k',\theta';w) \mid \theta_{fi}] - c_{fi}$
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Inactive unique threshold values}\label{inactive}
+
+\begin{center}
+    \includegraphics[scale=0.66]{transition_inactive.png}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{Active unique threshold values}\label{model_graph}
+
+\begin{center}
+    \includegraphics[scale=0.66]{transition_informal.png}
+    \includegraphics[scale=0.66]{transition_formal.png}
+\end{center}
+\pause
+
+\textbf{Channels}: The model is designed to decompose three channels: tax avoidance, capital constraints, and productivity selection, quantification is ongoing work.
+
+\end{frame}
+
+%------------------------------------------------
+
+% \begin{frame}[noframenumbering]{Outline}
+
+% \Large
+
+% \textcolor{lightgray}{1) Empirical Strategy}
+
+% \vspace{5mm}
+
+% \textcolor{lightgray}{2) Results}
+
+% \vspace{5mm}
+
+% \textcolor{lightgray}{3) Model}
+
+% \vspace{5mm}
+
+% 4) Counterfactual
+
+% \vspace{5mm}
+
+% \textcolor{lightgray}{5) Conclusions}
+
+% \end{frame}
+
+% %------------------------------------------------
+
+% \begin{frame}
+% \frametitle{\textbf{Counterfactual}: -25\% on informal financial constraints}
+
+
+% \begin{columns}[T] 
+%     \begin{column}{0.5\textwidth} 
+%         \begin{center}
+%             \small
+%             \vspace{-6mm}
+%             \input{counterfactual_table1}
+%         \end{center}
+%     \end{column}
+
+%     \begin{column}{0.5\textwidth} 
+%         \textbf{Model replicates some SSIV patterns}:
+%         \begin{itemize}
+%             \item \textcolor{BrickRed}{+ informal} firms.
+%             \begin{itemize}
+%                 \item \textcolor{BrickRed}{+ informal} enter.
+%                 \item \textcolor{BrickRed}{+ informal} exit.
+%             \end{itemize}
+%             \item \textcolor{NavyBlue}{- formal} firms.
+%             \begin{itemize}
+%                 \item \textcolor{NavyBlue}{- formal} enter.
+%                 \item \textcolor{NavyBlue}{- formal} exit.
+%             \end{itemize}
+%             \item - inf-for and for-inf switching.
+%             \begin{itemize}
+%                 \item Unlike LOO-SSIV: formal financial constraints unchanged.
+%             \end{itemize}
+%             \item - Avg output.
+%         \end{itemize}
+%     \end{column}
+% \end{columns}
+
+% \vspace{5mm}
+
+% \begin{center}
+%     \textbf{Intuition}: $\uparrow$ Credit $\Rightarrow$ $\downarrow$ Financial constraint $\Rightarrow$ $\uparrow$ Entry low-productivity firms $\Rightarrow$ $\uparrow$ Informality.
+% \end{center}
+
+
+% \end{frame}
+
+% %------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+6) Estimation
+
+\vspace{4mm}
+
+\textcolor{lightgray}{7) Conclusions}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\textbf{Model estimation}: Parameters to estimate} \label{parameters1}
+
+\footnotesize
+\input{parameters_estimation1}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\textbf{Model estimation}: Parameters to estimate II} \label{parameters2}
+
+\begin{center}
+    \footnotesize
+    \input{parameters_estimation2}
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\textbf{Model estimation}: SMM} \label{model_estimation}
+
+\textbf{11 Parameters to estimate through SMM}: 
+\begin{center}
+    $\Theta = \{\rho_i, \rho_f, \mu_{k0}, \sigma_{k0}, c_{ei}, c_{ef}, \phi_{1i}, \phi_{1f}, c_{if}, c_{fi}, c_{f}\}$
+\end{center}
+
+\vspace{5mm}
+
+\textbf{Estimation procedure}
+
+\begin{enumerate}
+    \item Estimate $\rho_{i}$ and $\rho_{f}$ with 6 moments.
+    \item Estimate $\mu_{k0}$, $\sigma_{k0}$, $c_{ei}$, and $c_{ef}$ with 8 moments.
+    \item Estimate $\phi_{1i}$, $\phi_{1f}$, $c_{if}$, $c_{fi}$, and $c_f$ with 13 moments.
+    \item Joint SMM refinement over all 11 parameters with 27 moments.
+\end{enumerate}
+
+\vspace{5mm}
+
+\textbf{Objective function to minimize}:
+
+\begin{center}
+    $Q(\Theta) = (m^{model}(\Theta) - m^{data})' W (m^{model}(\Theta) - m^{data})$.
+\end{center}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Outline}
+
+\Large
+
+\textcolor{lightgray}{1) Literature}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{2) Data}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{3) Empirical Strategy}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{4) Results}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{5) Model}
+
+\vspace{4mm}
+
+\textcolor{lightgray}{6) Estimation}
+
+\vspace{4mm}
+
+7) Conclusions
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}
+\frametitle{\textbf{Conclusions}} \label{conclusion}
+
+\textbf{This paper} $\cdots$
+
+\vspace{5mm}
+
+\begin{itemize}
+    \item Documents rich firm dynamics.
+    \begin{itemize}
+        \item Formal status is not an absorbing state.
+    \end{itemize}
+    \vspace{3mm}
+    \item Causally establishes that credit expansion increases informality.
+    \begin{itemize}
+        \item Additional credit expands firm activity, including the informal sector.
+    \end{itemize}
+    \vspace{3mm}
+    \item Develops a novel structural model designed to quantify the main policy trade-off.
+    \begin{itemize}
+        \item More activity but lower average productivity.
+        \item Lower financial constraint allow low-productivity firms to enter informally.
+    \end{itemize}
+    \vspace{3mm}
+    \item Future work: Estimate the model and run counterfactuals.
+    \begin{itemize}
+        \item Compare the effects on informality of: $\downarrow$ financial constraints, $\downarrow$ taxes, $\uparrow$ productivity.
+        \item Estimate the LOO-SSIV in the model-generated data as a model validation.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+%------------------------------------------------
+\begin{frame}[noframenumbering]
+\centering
+\Huge Thank you
+
+\vspace{10mm}
+
+\Large david.morales@tse-fr.eu
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{References}} 
+
+\tiny
+
+\bibliography{ref}
+
+\end{frame}
+
+%------------------------------------------------
+
+\appendix
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Transition matrix taking into account the intensive margin}\label{intensive}
+
+\begin{center}
+    \includegraphics[scale=0.49]{slides_material/t_mat_ss_mix.png}
+\end{center}
+
+\hyperlink{transition}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Transition matrix, IMSS employer number defines informal}\label{imss}
+
+\begin{center}
+    \includegraphics[scale=0.55]{slides_material/t_mat_imss.png}
+\end{center}
+
+\hyperlink{transition}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]{Transition matrix, RFC tax number defines informal}\label{rfc}
+
+\begin{center}
+    \includegraphics[scale=0.55]{slides_material/t_mat_rfc.png}
+\end{center}
+
+\hyperlink{transition}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Balance test}} \label{balance}
+
+\begin{center}
+    \footnotesize
+    \begin{tabular}{lcccc}
+        \toprule
+        & \multicolumn{2}{c}{\textbf{Lagged 5 years}} & \multicolumn{2}{c}{\textbf{Lagged 10 years}} \\
+        \cmidrule(lr){2-3} \cmidrule(lr){4-5}
+        \textit{Predetermined variable} & $\widehat{\beta}$ & SE & $\widehat{\beta}$ & SE \\
+        \midrule
+        Market employment share, sector 1   & $0.037$ & (0.026) & \phantom{$-$}0.036 & (0.028) \\
+        Market employment share, sector 2   & $-$0.000 & (0.012) & $-$0.005 & (0.013) \\
+        Bank-portfolio sector share, sector 1 & $-$0.015 & (0.031) & \phantom{$-$}0.027 & (0.049) \\
+        Bank-portfolio sector share, sector 2 & \phantom{$-$}0.012 & (0.033) & $-$0.060 & (0.063) \\
+        Credit-weighted interest rate       & \phantom{$-$}0.384 & (0.265) & \phantom{$-$}0.604 & (0.781) \\
+        Log number of banks in market       & $-$0.062 & (0.078) & $-$0.099 & (0.074) \\
+        Log number of credits in market     & \phantom{$-$}0.095 & (0.337) & $-$0.155 & (0.340) \\
+        \midrule
+        Observations (range)              & \multicolumn{2}{c}{1{,}200--1{,}356} & \multicolumn{2}{c}{766--934} \\
+        Markets (range)                   & \multicolumn{2}{c}{521--545} & \multicolumn{2}{c}{457--515} \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{OLS reduced form regression}} \label{ols}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Dependent variable (log unless noted)} & Reduced-Form coefficient & Standard errors & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Number of existing firms --- Total       & \phantom{$-$}0.162\sym{***} & (0.037) & 1{,}679 \\
+        Number of existing firms --- Formal      & \phantom{$-$}0.083\sym{**}  & (0.035) & 1{,}675 \\
+        Number of existing firms --- Informal    & \phantom{$-$}0.177\sym{***} & (0.042) & 1{,}679 \\
+        Firm entry --- Total                     & \phantom{$-$}0.152\sym{***} & (0.036) & 1{,}390 \\
+        Firm entry --- Formal                    & \phantom{$-$}0.086\sym{**}  & (0.039) & 1{,}378 \\
+        Firm entry --- Informal                  & \phantom{$-$}0.162\sym{***} & (0.039) & 1{,}390 \\
+        Firm exit --- Total                      & \phantom{$-$}0.168\sym{***} & (0.037) & 1{,}390 \\
+        Firm exit --- Formal                     & \phantom{$-$}0.077\sym{*}   & (0.041) & 1{,}369 \\
+        Firm exit --- Informal                   & \phantom{$-$}0.181\sym{***} & (0.039) & 1{,}390 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal transitions               & \phantom{$-$}0.067\sym{*}   & (0.040) & 1{,}372 \\
+        Informal--Formal transitions             & \phantom{$-$}0.109\sym{***} & (0.031) & 1{,}366 \\
+        Formal--Informal transitions             & \phantom{$-$}0.067\sym{*}   & (0.038) & 1{,}372 \\
+        Informal--Informal transitions           & \phantom{$-$}0.199\sym{***} & (0.051) & 1{,}390 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Without three biggest metropolitan areas}} \label{womet}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{Loans})}$ & First-stage $F$ & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Log existing firms --- Total    & \phantom{$-$}0.357\sym{***} (0.036) & 108.71 & 1{,}667 \\
+        Log existing firms --- Formal   & \phantom{$-$}0.366\sym{***} (0.037) & 108.70 & 1{,}663 \\
+        Log existing firms --- Informal & \phantom{$-$}0.347\sym{***} (0.038) & 108.71 & 1{,}667 \\
+        Log firm entry --- Total        & \phantom{$-$}0.387\sym{***} (0.032) & 83.82  & 1{,}381 \\
+        Log firm entry --- Formal       & \phantom{$-$}0.408\sym{***} (0.036) & 83.81  & 1{,}369 \\
+        Log firm entry --- Informal     & \phantom{$-$}0.378\sym{***} (0.034) & 83.82  & 1{,}381 \\
+        Log firm exit --- Total         & \phantom{$-$}0.403\sym{***} (0.037) & 83.82  & 1{,}381 \\
+        Log firm exit --- Formal        & \phantom{$-$}0.370\sym{***} (0.042) & 83.81  & 1{,}360 \\
+        Log firm exit --- Informal      & \phantom{$-$}0.398\sym{***} (0.038) & 83.82  & 1{,}381 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                  & \phantom{$-$}0.352\sym{***} (0.044) & 83.79  & 1{,}363 \\
+        Informal--Formal                & \phantom{$-$}0.340\sym{***} (0.031) & 83.47  & 1{,}357 \\
+        Formal--Informal                & \phantom{$-$}0.225\sym{***} (0.044) & 83.80  & 1{,}363 \\
+        Informal--Informal              & \phantom{$-$}0.339\sym{***} (0.042) & 83.82  & 1{,}381 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Unweighted regression}} \label{unweighted}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{Loans})}$ & First-stage $F$ & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Log existing firms --- Total    & \phantom{$-$}0.320          (0.228) & 38.07 & 1{,}679 \\
+        Log existing firms --- Formal   & \phantom{$-$}0.276          (0.227) & 41.46 & 1{,}675 \\
+        Log existing firms --- Informal & \phantom{$-$}0.322          (0.224) & 38.07 & 1{,}679 \\
+        Log firm entry --- Total        & \phantom{$-$}0.418\sym{**}  (0.190) & 38.52 & 1{,}390 \\
+        Log firm entry --- Formal       & \phantom{$-$}0.358\sym{*}   (0.192) & 49.43 & 1{,}378 \\
+        Log firm entry --- Informal     & \phantom{$-$}0.420\sym{**}  (0.190) & 38.52 & 1{,}390 \\
+        Log firm exit --- Total         & \phantom{$-$}0.400\sym{**}  (0.204) & 38.52 & 1{,}390 \\
+        Log firm exit --- Formal        & \phantom{$-$}0.297          (0.214) & 43.57 & 1{,}369 \\
+        Log firm exit --- Informal      & \phantom{$-$}0.412\sym{**}  (0.204) & 38.52 & 1{,}390 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                  & \phantom{$-$}0.274          (0.182) & 43.95 & 1{,}372 \\
+        Informal--Formal                & \phantom{$-$}0.351\sym{**}  (0.178) & 44.79 & 1{,}366 \\
+        Formal--Informal                & \phantom{$-$}0.286\sym{*}   (0.160) & 48.48 & 1{,}372 \\
+        Informal--Informal              & \phantom{$-$}0.327\sym{**}  (0.154) & 38.52 & 1{,}390 \\  
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Placebo test}} \label{placebo}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Pre-period outcome ($\Delta_5 Y_{t-5}$, log)} & $\widehat{\Delta_5\ln(\text{loans})}$ & 1st-stage $F$ & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Number of existing firms --- Total      & \phantom{$-$}0.009\sym{*}    (0.007) & 84.65 & \phantom{1{,}}979 \\
+        Number of existing firms --- Formal     & $-$0.005                     (0.013) & 84.65 & \phantom{1{,}}975 \\
+        Number of existing firms --- Informal   & \phantom{$-$}0.013\sym{**}   (0.009) & 84.65 & \phantom{1{,}}979 \\
+        Firm entry --- Total                    & $-$0.328                     (0.669) & 0.22  & \phantom{1{,}}512 \\
+        Firm entry --- Formal                   & $-$0.364                     (0.702) & 0.22  & \phantom{1{,}}506 \\
+        Firm entry --- Informal                 & $-$0.320                     (0.661) & 0.22  & \phantom{1{,}}512 \\
+        Firm exit --- Total                     & \phantom{$-$}0.092           (0.233) & 0.22  & \phantom{1{,}}512 \\
+        Firm exit --- Formal                    & $-$0.438                     (0.860) & 0.22  & \phantom{1{,}}493 \\
+        Firm exit --- Informal                  & \phantom{$-$}0.228           (0.477) & 0.22  & \phantom{1{,}}512 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                          & $-$0.187                     (0.261) & 0.34  & \phantom{1{,}}486 \\
+        Informal--Formal                        & $-$0.115                     (0.287) & 0.22  & \phantom{1{,}}494 \\
+        Formal--Informal                        & $-$0.136                     (0.300) & 0.22  & \phantom{1{,}}483 \\
+        Informal--Informal                      & \phantom{$-$}0.028           (0.093) & 0.22  & \phantom{1{,}}512 \\
+    \bottomrule
+\end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Conventional non-LOO estimates}} \label{nonloo}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{loans})}$ & First-stage $F$ & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Log existing firms --- Total    & \phantom{$-$}0.273\sym{***} (0.022) [0.000] & 67.20 & 1{,}240 \\
+        Log existing firms --- Formal   & \phantom{$-$}0.161\sym{***} (0.025) [0.078] & 67.21 & 1{,}236 \\
+        Log existing firms --- Informal & \phantom{$-$}0.294\sym{***} (0.022) [0.002] & 67.20 & 1{,}240 \\
+        Log firm entry --- Total        & \phantom{$-$}0.265\sym{***} (0.021) [0.001] & 65.89 & \phantom{1{,}}964 \\
+        Log firm entry --- Formal       & \phantom{$-$}0.175\sym{***} (0.026) [0.018] & 65.90 & \phantom{1{,}}957 \\
+        Log firm entry --- Informal     & \phantom{$-$}0.280\sym{***} (0.021) [0.001] & 65.89 & \phantom{1{,}}964 \\
+        Log firm exit --- Total         & \phantom{$-$}0.283\sym{***} (0.023) [0.002] & 65.89 & \phantom{1{,}}964 \\
+        Log firm exit --- Formal        & \phantom{$-$}0.162\sym{***} (0.028) [0.084] & 65.88 & \phantom{1{,}}952 \\
+        Log firm exit --- Informal      & \phantom{$-$}0.300\sym{***} (0.023) [0.004] & 65.89 & \phantom{1{,}}964 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                  & \phantom{$-$}0.136\sym{***} (0.027) [0.183] & 65.90 & \phantom{1{,}}951 \\
+        Informal--Formal                & \phantom{$-$}0.168\sym{***} (0.018) [0.024] & 64.94 & \phantom{1{,}}946 \\
+        Formal--Informal                & \phantom{$-$}0.138\sym{***} (0.025) [0.024] & 65.93 & \phantom{1{,}}949 \\
+        Informal--Informal              & \phantom{$-$}0.309\sym{***} (0.025) [0.004] & 65.89 & \phantom{1{,}}964 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Bank level estimation}} \label{banklevel}
+
+\begin{center}
+    \scriptsize
+    \begin{tabular}{lccr}
+        \toprule
+        \textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{loans})}$ & First-stage $F$ & $N$ \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Log existing firms --- Total     & \phantom{$-$}0.188\sym{***} (0.041) [0.004] & 33.99 & 151 \\
+        Log existing firms --- Formal    & \phantom{$-$}0.168\sym{***} (0.035) [0.002] & 33.99 & 151 \\
+        Log existing firms --- Informal  & \phantom{$-$}0.197\sym{***} (0.047) [0.012] & 33.99 & 151 \\
+        Log firm entry --- Total         & \phantom{$-$}0.181\sym{***} (0.031) [0.001] & 34.18 & 131 \\
+        Log firm entry --- Formal        & \phantom{$-$}0.177\sym{***} (0.039) [0.001] & 34.18 & 131 \\
+        Log firm entry --- Informal      & \phantom{$-$}0.188\sym{***} (0.034) [0.004] & 34.18 & 131 \\
+        Log firm exit --- Total          & \phantom{$-$}0.196\sym{***} (0.039) [0.007] & 34.18 & 131 \\
+        Log firm exit --- Formal         & \phantom{$-$}0.152\sym{***} (0.038) [0.002] & 34.18 & 131 \\
+        Log firm exit --- Informal       & \phantom{$-$}0.208\sym{***} (0.043) [0.008] & 34.18 & 131 \\
+        \midrule
+        \multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                   & \phantom{$-$}0.147\sym{***} (0.039) [0.004] & 34.18 & 131 \\
+        Informal--Formal                 & \phantom{$-$}0.187\sym{***} (0.028) [0.000] & 34.18 & 131 \\
+        Formal--Informal                 & \phantom{$-$}0.131\sym{***} (0.033) [0.007] & 34.18 & 131 \\
+        Informal--Informal               & \phantom{$-$}0.196\sym{***} (0.060) [0.023] & 34.18 & 131 \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\begin{frame}[noframenumbering]
+\frametitle{\textbf{Different coverages}} \label{coverage}
+
+\begin{center}
+    \tiny
+    \begin{tabular}{lcccccccc}
+        \toprule
+        & \multicolumn{4}{c}{\textbf{Coverage $\geq 0$}} 
+        & \multicolumn{4}{c}{\textbf{Coverage $\geq 0.8$}} \\
+        \cmidrule(lr){2-5} \cmidrule(lr){6-9}
+        \textit{Dependent variable} 
+        & $\hat\beta$ (s.e.) & $F$ & $N$ & $M$
+        & $\hat\beta$ (s.e.) & $F$ & $N$ & $M$ \\
+        \midrule
+        
+        \multicolumn{9}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
+        Log existing firms --- Total    
+        & 0.160\sym{***} (0.040) & 73.08 & 1,843 & 568
+        & 0.201\sym{***} (0.048) & 84.53 & 1,486 & 542 \\
+        Log existing firms --- Formal   
+        & 0.189\sym{***} (0.037) & 73.86 & 1,838 & 565
+        & 0.195\sym{***} (0.044) & 84.53 & 1,482 & 539 \\
+        Log existing firms --- Informal 
+        & 0.156\sym{***} (0.045) & 73.08 & 1,843 & 568
+        & 0.208\sym{***} (0.052) & 84.53 & 1,486 & 542 \\
+        Log firm entry --- Total        
+        & 0.178\sym{***} (0.035) & 69.17 & 1,520 & 568
+        & 0.211\sym{***} (0.043) & 82.87 & 1,215 & 541 \\
+        Log firm entry --- Formal       
+        & 0.212\sym{***} (0.041) & 69.19 & 1,506 & 560
+        & 0.215\sym{***} (0.046) & 82.86 & 1,204 & 533 \\
+        Log firm entry --- Informal     
+        & 0.174\sym{***} (0.038) & 69.17 & 1,519 & 568
+        & 0.212\sym{***} (0.045) & 82.87 & 1,215 & 541 \\
+        Log firm exit --- Total         
+        & 0.189\sym{***} (0.039) & 69.17 & 1,520 & 568
+        & 0.227\sym{***} (0.047) & 82.87 & 1,215 & 541 \\
+        Log firm exit --- Formal        
+        & 0.175\sym{***} (0.041) & 69.17 & 1,492 & 559
+        & 0.186\sym{***} (0.048) & 82.85 & 1,195 & 531 \\
+        Log firm exit --- Informal      
+        & 0.190\sym{***} (0.041) & 69.17 & 1,520 & 568
+        & 0.233\sym{***} (0.048) & 82.87 & 1,215 & 541 \\
+        
+        \midrule
+        \multicolumn{9}{l}{\textit{Panel B: Formality transitions}} \\
+        Formal--Formal                  
+        & 0.163\sym{***} (0.040) & 69.19 & 1,494 & 555
+        & 0.172\sym{***} (0.047) & 82.87 & 1,197 & 530 \\
+        Informal--Formal                
+        & 0.187\sym{***} (0.028) & 68.74 & 1,491 & 554
+        & 0.195\sym{***} (0.033) & 81.97 & 1,192 & 525 \\
+        Formal--Informal                
+        & 0.102\sym{***} (0.036) & 69.18 & 1,496 & 560
+        & 0.129\sym{***} (0.044) & 82.88 & 1,199 & 533 \\
+        Informal--Informal              
+        & 0.146\sym{***} (0.055) & 69.17 & 1,519 & 568
+        & 0.200\sym{***} (0.060) & 82.87 & 1,215 & 541 \\
+        
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\hyperlink{robustness}{\beamergotobutton{Back}}
+
+\end{frame}
+
+%------------------------------------------------
+
+\end{document}

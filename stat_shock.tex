@@ -1,24 +1,23 @@
-\label{tab:bank_shocks_desc}
 \begin{threeparttable}
 \begin{tabular}{lccccccccc}
 \toprule
-\textbf{Year} & Mean & Std. deviation & IQR &  \textbf{No. banks} & \textbf{ESS} & \textbf{Largest w} \\
+ & \multicolumn{3}{c}{Exposure weighted} & \multicolumn{3}{c}{Unweighted} & & & \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-7}
+Window & Mean & Std. dev. & IQR & Mean & Std. dev. & IQR & Nb. banks & ESS & W \\
 \midrule
-2009 & -0.08 & 0.02 & 0.00 & 10 & 2.17 & 0.66 \\
-2014 & 0.04 & 0.77 & 1.58 & 17 & 5.75 & 0.25 \\
-2019 & -0.45 & 1.61 & 3.26 & 29 & 2.72 & 0.57 \\
-2024 & -0.21 & 0.43 & 0.78 & 39 & 5.80 & 0.36 \\
+2009-2014 & 0.21    & 0.59 & 1.13 & $-0.21$ & 0.61 & 0.70 & 26 & 8.38  & 0.18 \\
+2014-2019 & 0.14    & 1.53 & 3.05 & 0.79    & 1.05 & 1.83 & 42 & 3.39  & 0.51 \\
+2019-2024 & $-0.35$ & 0.39 & 0.53 & $-0.62$ & 0.54 & 0.42 & 61 & 7.93  & 0.29 \\
 \midrule
-All & 0.00 & 1.00 & 1.05 & 60 & 63.99 & 0.04 \\
+Pooled     & 0.00    & 1.00 & 1.17 & 0.00    & 1.00 & 1.04 & 79 & 16.53 & 0.17 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
-\item This table summarizes the distribution of standardized (overall the years) bank-level credit shocks (bank fix-effects), $\hat{\gamma}_{bt}^{std}$, across banks $b$ and years $t$.
-
-No. banks is the number of banks with non missing estimated shocks.
-
-The effective sample size (ESS) is computed as $1/\sum w_{bt}^2$, and the largest weight is the maximum exposure share.
-
-The Inter-Quartile Range (IQR) is defined as the difference between the 25 and the 75 percentiles.
+\footnotesize
+\item Notes: The table describes the accumulated five-year bank supply shocks $\hat{\gamma}_{bt,5}$, estimated on the full sample rather than the leave-one-out counterparts used by the instrument, whose only difference is the exclusion of one market at a time. All statistics are computed on the estimation sample of the main specification ($1{,}390$ market-years; three five-year windows ending in 2014, 2019, and 2024).
+\item Within each block (exposure-weighted and unweighted), shocks are standardized to zero mean and unit variance over the estimation panel using the corresponding weights, so the pooled means and standard deviations equal 0 and 1 by construction. IQR is the difference between the 75th and 25th percentiles.
+\item The weight $w_{bt}$ is bank $b$'s share of baseline credit in each markets in window $t$, normalized to sum to one within each window for the window rows and across all bank-window cells for the pooled row. ESS $=1/\sum w_{bt}^{2}$ is the effective sample size of the shocks \citep{borusyak2022quasi}. W denotes the largest normalized weight.
+\item Nb. banks counts banks with an estimated shock in each window; the
+pooled row reports distinct banks (79, across 129 bank-window cells).
 \end{tablenotes}
 \end{threeparttable}

@@ -1,0 +1,971 @@
+\documentclass[11pt,aspectratio=169]{beamer}
+\usetheme{Madrid}
+\usecolortheme{dolphin}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\usepackage{amsmath,amssymb,bm}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+ 
+% ---- notation (matches the paper) ------------------------------------
+\providecommand{\infml}{i}
+\providecommand{\fml}{f}
+\providecommand{\curv}{\gamma}
+\providecommand{\prodxhat}{\hat{x}}
+\providecommand{\spread}[1]{\phi_{#1}}
+\providecommand{\spreadfix}[1]{\phi_{0#1}}
+\providecommand{\collat}[1]{b_{#1}}
+\providecommand{\Fin}[1]{\Phi_{#1}}
+\providecommand{\fc}[1]{c_{#1}}
+\providecommand{\ec}[1]{c^{e}_{#1}}
+\providecommand{\swc}[1]{c_{#1}}
+\providecommand{\death}[1]{\lambda_{#1}}
+\providecommand{\taxy}{\tau_{y}}
+\providecommand{\taxl}{\tau_{\ell}}
+\providecommand{\pers}[1]{\rho_{#1}}
+\providecommand{\sdi}[1]{\sigma_{\varepsilon #1}}
+\providecommand{\sdu}[1]{\sigma_{u #1}}
+\providecommand{\sdv}{\sigma_{v}}
+\providecommand{\muko}{\mu_{k_0}}
+\providecommand{\sdko}{\sigma_{k_0}}
+\providecommand{\lwedge}[1]{\eta_{#1}}
+\providecommand{\netw}{n}
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\Prob}{\mathbb{P}}
+ 
+\newcommand{\good}[1]{\textcolor{blue!60!black}{#1}}
+ 
+\title[Exactly Identified Estimation]{
+Exactly Identified Estimation}
+\author{Matteo's meeting}
+\date{September 3rd, 2026}
+ 
+\begin{document}
+ 
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ----------------------------------------------------------------------
+\begin{frame}{Previous Discussion}
+
+\textbf{Is the exogenous death probability, $\lambda_s$, necessary on top of endogenous exit?} Yes!
+
+\bigskip
+\begin{itemize}
+    \item Productive (big/old) firms will never optimally exit: 
+    \begin{itemize}
+    \vspace{2mm}
+        \item exit iff Continuation $<$ scrap, never the case, for any admissible operating cost.
+        \vspace{2mm}
+        \item Formally: $\lim\limits_{\nu\to\infty}Prob(\text{choice exit}\mid \nu) = 0$, so the total exit rate tends to $\lambda_s$.
+        \vspace{2mm}
+        \item So, the exogenous death = Non-productivity related death. 
+        \vspace{2mm}
+        \item $\lambda_s$ estimated outside the model with s.e. propagated through the chain. 
+        \vspace{2mm}
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}{Update I: The effects come from the half of the country where banks lend}
+
+I split the sample in 2: markets below and above median worker informal share (Census means)
+
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.25}\footnotesize
+\begin{tabular}{lccc}
+\toprule
+ & Formal-heavy & Informal-heavy & pooled \\
+\midrule
+Collateral  & $-0.76^{**}$\; (F $82.8$) & --- &
+ $-0.73^{*}$ \\
+Rate & $+0.43^{***}$ (F $85.1$) & --- &
+ $+0.46^{***}$ \\
+1st-stage & strong & F $= 0.07$-$0.14$: none & F $\approx 87$--$89$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\bigskip
+\begin{itemize}
+  \item \textbf{Intensive margin}: $72\%$ bigger loans, $28\%$ more loans; borrower base barely moves.
+  \item Informal-heavy markets null effects are due to lack of bank presence, out of model's scope.
+\end{itemize}
+
+\medskip
+\textbf{Implication}: Re-estimate LOO-SSIV on Formal-heavy markets, no big numerical changes
+
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Update II: Loan rate response is price, not composition}
+
+A credit expansion raises the average posted loan rate.
+\medskip
+\begin{center}
+\renewcommand{\arraystretch}{1.25}\footnotesize
+\begin{tabular}{lp{0.53\textwidth}c}
+\toprule
+channel & test & verdict \\
+\midrule
+New-borrowers & Pay $+0.72$pp on a $22\%$ volume
+ share, base fixed & $\approx 0$ \\
+Across-bank mix & Within carries $0.434$ of $0.460$ &
+ $\approx 0$ \\
+Maturity repricing & $94.3\%$ of loans originated within 1
+ year $\Rightarrow$ current pricing & $\approx 0$ \\
+Risk change & Volume-weighted Prob(default) response $0.13$ (s.e.\ $0.22$) & $\approx 0$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+\bigskip
+\textbf{Conclusion}: The bank shock is a within-bank repricing of current credit, while collateral falls.
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{9 Institutional Parameters}
+
+\begin{itemize}
+    \item \textbf{Discount factor}: $\beta = 0.95$.
+    \vspace{2mm}
+    \item \textbf{Depreciation rate}: $\delta = 0.10$.
+    \vspace{2mm}
+    \item \textbf{Wage}: $w = 1$, normalization of the 77.5 thousand of MXN.
+    \vspace{2mm}
+    \item \textbf{Output tax}: $\tau_y = 0.048$, ISR-Personas morales / formal VA in 2023, universe.
+    \vspace{2mm}
+    \item \textbf{Payroll tax}: $\tau_{\ell} = 0.16$, IMSS-INFONAVIT-ISN / formal wage, in 2023 universe.
+    \vspace{2mm}
+    \item \textbf{Informal marginal finance cost}: $\phi_i = 0.11$, Informal median rate - CETES.
+    \vspace{2mm}
+    \item \textbf{Formal marginal finance cost}: $\phi_f = 0.024$, formal median rate - CETES.
+    \vspace{2mm}
+    \item \textbf{Informal collateral limit}: $b_i = 0.85$, it comes from $\min\{p_{90} \text{ informal leverage},0.90\}$.
+    \vspace{2mm}
+    \item \textbf{Formal collateral limit}: $b_f = 0.90$, it comes from $\min\{p_{90} \text{ formal leverage},0.90\}$.
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}{12 Parameters Estimated Outside The Model, (w/Delta-Method-Var)}
+
+\begin{itemize}
+    \item \textbf{Capital elasticity}: $\alpha = 0.17$, EC median cost shares.
+    \item \textbf{Labor elasticity}: $\nu = 0.59$, EC median cost shares. 
+    \item \textbf{Informal and formal TFP persistence}: $\rho_i = \rho_f = 0.95$ (preliminary)
+    \begin{itemize}
+        \item From $\hat{\rho}_s^5 = \frac{\hat{a}_{10,s} - \hat{a}_{15,s}}{\hat{a}_{5,s} - \hat{a}_{10,s}}$.
+    \end{itemize}
+    \item \textbf{Permanent type s.d.}: $\sigma_v = 0.56$ (preliminary)
+    \begin{itemize}
+        \item From the two s average of $\hat{\sigma}_{v,s}^2 = \hat{a}_{5,s} - \frac{\hat{a}_{5,s} - \hat{a}_{10,s}}{(1-\hat{\rho}_s^5)} $.
+    \end{itemize}
+    \item \textbf{Transitory + measurement error vars}: $\sigma_{u,i}^2 +\sigma_{me,i}^2 = 1.38 $ and $\sigma_{u,f}^2 +\sigma_{me,f}^2 = 0.56 $
+    \begin{itemize}
+        \item From $\sigma_{u,s}^2 +\sigma_{\epsilon,s}^2 = \hat{a}_{0,s} - \hat{\sigma}_{v,s}^2 - \frac{\hat{a}_{5,s} - \hat{a}_{10,s}}{\hat{\rho}_s^5(1-\hat{\rho}_s^5)} $.
+        \item Real share resolved by behavior-side fit of the churn, analogous to Blundell et al. (2008).
+    \end{itemize}
+    \item \textbf{AR1 innovation variance}: $\sigma_{\epsilon,i } = 0.14$ and $\sigma_{\epsilon,i } = 0.21$
+    \begin{itemize}
+        \item From $\hat{\sigma}_{\epsilon}^2 = \frac{\hat{a}_{5,s} - \hat{a}_{10,s}}{\hat{\rho}_s^5(1-\hat{\rho}_s^5)} \times (1 - \hat{\rho}_s^2) $
+    \end{itemize}
+    \item \textbf{Informal labor wedge}: $\eta_i = 2.71$
+    \begin{itemize}
+        \item From static labor-FOC closed form solution: $\eta_i = \frac{2\times\widehat{labor-share}_i\times\widehat{mean\_hired\ell}_i(1+\widehat{mean\_hired\ell}_i)}{\widehat{mean\_hired\ell}_i \times \hat{\nu} - \widehat{labor-share}_i \times (1+\widehat{mean\_hired\ell}_i)}$
+    \end{itemize}
+    \item \textbf{Formal and informal exogenous death rate}: $\lambda_i = 0.07$ and $\lambda_f = 0.06$
+    \begin{itemize}
+        \item From $\lambda_s = 1 - (1 - \text{Exit}_{s,3rd-tercile}^5)^{1/5}$.
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}{10 Model Estimated Parameters With 10 Moments}
+
+\begin{itemize}
+    \item \textbf{Informal operating cost}: $c_i$, strictly increases the informal exit threshold, $\hat{x}_i^x$.
+    \begin{itemize}
+        \item \textbf{Moment}: Informal exit, 5 years.
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Formal operating cost}: $c_f$, strictly increases the formal exit threshold, $\hat{x}_f^x$.
+    \begin{itemize}
+        \item \textbf{Moment}: Formal exit, 5 years.
+    \end{itemize}
+    \vspace{1mm} 
+    \item \textbf{Informal-to-Formal switching cost}: $c_{if}$, strictly increases the switching threshold $\hat{x}_i^F$.
+    \begin{itemize}
+        \item \textbf{Moment}: Informal-to-Formal switching, 5 years.
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Formal-to-Informal switching cost}: $c_{fi}$, strictly decreases the switching threshold $\hat{x}_f^F$.
+    \begin{itemize}
+        \item \textbf{Moment}: Formal-to-Informal switching, 5 years.
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Formal entry cost}: $c_f^e$, strictly increases the formal entry threshold $\hat{x}_e^F$.
+    \begin{itemize}
+        \item \textbf{Moment}: Formal entry share.
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Informal entry cost}: $c_i^e$, strictly increases the informal entry threshold $\hat{x}_i^E$.
+    \begin{itemize}
+        \item \textbf{Moment}: Entrant relative size.
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Finance fix cost}: $\phi_{0s}$, raises borrowing-participation cutoff, so incidence falls.
+    \begin{itemize}
+        \item \textbf{Moment}: Borrowing incidence, by sector (2 moments).
+    \end{itemize}
+    \vspace{1mm}
+    \item \textbf{Entrant capital moments}: $(\mu_{k0},\sigma_{k0}))$, from the log-linear map btn capital and wealth.
+    \begin{itemize}
+        \item \textbf{Moment}: Mean and p90 of informal entrant capital (2 moments).
+    \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}{3 Parameters Estimated using the LOO-SSIV incidence \& 2 normalizations}
+
+Define SSIV as $d\Xi_{m}=(- \chi_{\infml}\spread{\infml},  -\chi_{\fml}\spread{\fml},\kappa_{\fml}\collat{\fml},\kappa_{\infml}\collat{\infml})'\zeta_{m}$. Estimands invariant $\zeta$ for small shocks,
+
+\vspace{5mm}
+
+\begin{itemize}
+    \item $\zeta \equiv 1$: the units of the experiment (normalization, not estimated).
+    \vspace{2mm}
+    \item SSIV 1st-stage ($\Delta\ln C = 0.15$) pins the formal price incidence, $\chi_{\fml}$.
+    \vspace{2mm}
+    \item SSIV collateral-use response pins the formal quantity incidence, $\kappa_{\fml}$.
+    \vspace{2mm}
+    \item SSIV formal-to-informal switching response pins $\chi_{\infml}$.
+    \vspace{2mm}
+    \item $\kappa_{\infml} \equiv 0$: insensitive informal collateral technology.
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}{Results of model estimated parameters}
+\begin{center}
+\renewcommand{\arraystretch}{1.12}
+\begin{tabular}{llrrll}
+\toprule
+Param. & Assigned moment & Data & Model & Status & Reason \\
+\midrule
+$\muko$ & mean entrant $k$ (inf.) & 1.966 & 1.967 & hit
+ \;(s.e.\ 0.211) & n.a. \\
+$\sdko$ & p90 entrant $k$ (inf.) & 3.871 & 2.416 & ceiling & fat-tail K0 \\
+$\spreadfix{\fml}$ & borrowing incid.\ (for.) & 0.177 & 0.176 & hit
+ \;(s.e.\ 0.773) & n.a. \\
+$\spreadfix{\infml}$ & borrowing incid.\ (inf.) & 0.098 & 0.098 &
+ hit \;(s.e.\ 0.240) & n.a. \\
+$\fc{\infml}$ & exit 5y (inf.) & 0.351 & 0.350 & hit
+ \;(s.e.\ 0.001) & n.a. \\
+$\fc{\fml}$ & exit 5y (for.) & 0.279 & 0.258 & bound & partial match \\
+$\swc{\infml\fml}$ & switch 5y $\infml{\to}\fml$ & 0.059 & 0.041 &
+ floor & Cost $\to$ 0 \\
+$\swc{\fml\infml}$ & switch 5y $\fml{\to}\infml$ & 0.365 & 0.245 &
+ floor & Size-composition \\
+$\ec{\fml}$ & formal entry share & 0.063 & 0.046 & floor & Size-composition  \\
+$\ec{\infml}$ & entrant rel.\ size (inf.) & $-0.142$ & $-0.095$ & floor & partial match  \\
+\bottomrule
+\end{tabular}
+\end{center}
+\smallskip
+Four exactly estimated and six corner solutions, parameter s.e. are delta-method, only $\phi_{0i}$ imprecisely estimated.
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Verification evidence}
+
+\begin{itemize}
+  \item \textbf{Multistart}: 8 random draws over the
+    admissible box yield consistent estimations.
+  \item \textbf{Jacobian}: Dominance verified at $\widehat\theta$, 3 out of 4: informal borrowing-incidence, $\phi_{0i}$, fails.
+  \item \textbf{Threshold ordering.} The assumed exit / own-sector /
+    formal ordering holds \emph{exactly} at $\widehat\theta$.
+\end{itemize}
+
+\begin{center}
+    \includegraphics[scale=0.49]{slides_material/fig_jacobian_heatmap.pdf}
+    \includegraphics[scale=0.48]{slides_material/fig_policy_partition.pdf}
+\end{center}
+
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Incidence infeasibility and its solution}
+
+\textbf{Infeasible}: $+0.15$ credit \& $+0.46$ rate impossible in model: Collateral binds $\Rightarrow$ $\downarrow$ rate needed. 
+
+\bigskip
+\textbf{Solution}:
+\bigskip
+\begin{columns}[T]
+\column{0.52\textwidth}
+\textbf{Normalization, $\zeta \equiv 1$}:
+\begin{itemize}
+  \item $\chi_{\fml} = 0.628$ $\to$ first stage: $0.141$ vs
+    $0.150$
+  \item $\kappa_{\fml} = 0.119$ $\to$ collateral: $-0.334$ vs
+    $-0.733$
+  \item $\chi_{\infml} = 0.464$ $\to$ switch $\fml\infml$:
+    $+0.116$ vs $+0.113$
+\end{itemize}
+\column{0.44\textwidth}
+\textbf{Measurement}:
+
+Data: shadow price of collateral + price component = effective cost fall $\equiv$ Model effective cost fall.
+\end{columns}
+
+\vspace{5mm}
+Note that the data estimation is an equilibrium object, while the model is financing side is not an equilibrium object but a parameter.
+
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Formality transitions by size}
+
+\textbf{Facts} 1) Formality transition robust to classifier, period, solo-firm. 2) Monotonicity on size.
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.15}
+    \begin{tabular}{lcccc}
+        \toprule
+        Size (\# workers) & 1-5 & 6-10 & 11-50 & 51+ \\
+        \midrule
+        Data $\fml{\to}\infml$ 5y rate & 0.49 & 0.32 & 0.21 & 0.10 \\
+        Model $\fml{\to}\infml$ 5y rate & 0.53 & 0.45 & 0.32 & 0.10 \\
+        Data $\infml{\to}\fml$ 5y rate & 0.04 & 0.26 & 0.44 & 0.58 \\
+        Model $\fml{\to}\infml$ 5y rate & 0.14 & 0.37 & 0.94 & n.a. \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\medskip
+
+\textbf{Implication}: Using size shares in model moves aggregate $\fml{\to}\infml$ to $0.441$, v.s. observed $0.365$.
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Validation results}
+
+\textbf{LOO-SSIV on model-simulated markets}:
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lcccccc}
+        \toprule
+         & \# inf. firms & entry & inf.\ exit & $\infml{\to}\fml$ &
+         $\fml{\to}\infml$ & avg.\ VA \\
+        \midrule
+        Data $\hat\beta$ & $0.173$ & $0.192$ & $0.205$ & $0.195$ &
+         $0.113$ & $-0.073$ \\
+        Model $\hat\beta$ & $0.023$ & $0.016$ & $-0.092$ & $-0.256$ & $0.119$ &
+         $0.053$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\medskip
+\begin{itemize}
+  \item \textbf{\# firms and entry}: right-signed, strongly attenuated.
+  \item \textbf{Switching pair} ($\infml{\to}\fml$, $\fml{\to}\infml$): Opposite directions by construction. 
+  \begin{itemize}
+      \item Taste shock on formality: i-f moment exact, incidence and size-entrant improved, but deteriorates informal exit. 
+  \end{itemize}
+  \item \textbf{Informal exit}: Cheaper informal credit reduces informal exit ($-0.09$), but in data rises ($+0.21$).
+\end{itemize}
+
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+\begin{frame}{Counterfactuals}
+
+
+\begin{center}
+    \renewcommand{\arraystretch}{1.2}
+    \begin{tabular}{lrr}
+        \toprule
+        Counterfactual & $\Delta$ For-share (pp) & $\Delta\ln$ agg.\ VA (\%) \\
+        \midrule
+        $\varphi_i \to \varphi_f$ & $-0.44$ & $-1.14$ \\
+        $b_i \to b_f$ & $-0.16$ & $+0.42$ \\
+        $\varphi_{0i} \to \varphi_{0f}$ & $+3.70$ & $-0.76$ \\
+        All financing & $+3.76$ & $-0.48$ \\
+        $\tau_i \to \tau_f$ & $+0.92$ & $+0.67$ \\
+        \bottomrule
+    \end{tabular}
+\end{center}
+
+\medskip
+\begin{itemize}
+  \item Formalization most sensitive financial parameter: Fixed borrowing cost, $\varphi_{0i}$.
+  \item Small VA effects in the model, as in the LOO-SSIV.
+\end{itemize}
+\end{frame}
+ 
+% ----------------------------------------------------------------------
+
+\begin{frame}{Summary of what is off, why, and the fix}
+\begin{center}
+\renewcommand{\arraystretch}{1.3}\scriptsize
+\begin{tabular}{lll}
+\toprule
+Off & Reason & Solution \\
+\midrule
+\multicolumn{3}{l}{\textbf{Model estimates}} \\
+p90 entrant $k$ (inf.) & Lognormal tail too thin & Fat-tail $k_0$ (time-intensive) \\
+Switch $\infml\to\fml$ & Zero-cost undershoot & EV taste shock (done) \\
+Switch $\fml\to\infml$ & Few small formal firms & Persistence benefit (running) \\
+Formal entry share & Few small formal firms & Persistence benefit (running) \\
+Entrant relative size & Strict entrant selection & EV taste-shock byproduct (done) \\
+$\spreadfix{\infml}$ imprecise & Weak curvature & Disclosed \\
+\midrule
+\multicolumn{3}{l}{\textbf{Verification}} \\
+$\spreadfix{\infml}$ not dominant & Same weak curvature & Disclosed \\
+\midrule
+\multicolumn{3}{l}{\textbf{Incidence}} \\
+credit $+$ rate infeasible & collateral cap binds & quantities $+$ measurement (done) \\
+\midrule
+\multicolumn{3}{l}{\textbf{Validation}} \\
+Both switch flows up & Model shifts relative values & Credit-sensitive transitions (time-intensive) \\
+Informal exit sign & Same missing churn response & Same (time-intensive) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}[noframenumbering]{}
+
+\center
+\Huge
+A P P E N D I X
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}[noframenumbering]{Formal identification argument}
+
+Given the 9 institutional parameters and the 12 parameters estimated outside the model, the moment map $m:\Theta =\prod_{j}[\underline\theta_{j},\overline\theta_{j}] \to\mathbb{R}^{10}$ fulfills the following properties:
+
+\begin{itemize}
+    \item \textbf{Relevance}: Each moment is strictly monotone in its own parameter, $\frac{\partial m_j}{\partial \theta_j} \neq 0$.
+    \item \textbf{Exclusion}: $\frac{\partial \text{threshold}_{\text{formality = s}}}{\partial \text{Financial conditions}_{\text{formality = s}}} > \frac{\partial \text{threshold}_{\text{formality = s}}}{\partial \text{Financial conditions}_{\text{formality = s'}}}$, at every $\theta$ in the box.
+\end{itemize}
+\vspace{4mm}
+
+\textbf{Verifiable assumption}: The elasticity Jacobian $E(\theta)$, $E_{jk}=\partial\ln m_{j}/\partial\ln\theta_{k}$, has
+positive diagonal and is strictly row diagonally
+dominant: $E_{jj}>\sum_{k\neq j}|E_{jk}|$ $\forall j$.
+\vspace{4mm}
+
+\textbf{Point identification}: Under the previous assumption, following standard arguments (Gale-Nikaidô, 1965; Berry-Gandhi-Haile, 2013), the moment map $m$ is univalent on $\Theta$:
+\begin{itemize}
+    \item For any interior data vector $\hat m\in m(\Theta)$ there is exactly one $\theta\in\Theta$ with $m(\theta)=\hat m$.
+    \item The damped Gauss--Seidel iteration solving the system is a contraction.
+\end{itemize}
+\vspace{4mm}
+
+\textbf{Evidence}: 
+\begin{itemize}
+    \item Jacobian heat map (dominance and sign of derivatives). 
+    \item Multi-start, convergence from different initial conditions. 
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+\begin{frame}[noframenumbering]{Distribution of the estimator}
+
+Given the out of the model estimates variance, $V_{\gamma}$, I solve the ten-equation system $m(\theta;\widehat\gamma)=\hat m$ exactly, invariant to weighting. Then, 
+\begin{itemize}
+    \item The sampling variation reaches $\widehat\theta$ through two channels: the targeted moments and the pre-estimated inputs. Expanding $m(\widehat\theta;\widehat\gamma)=\hat m$ around $(\theta_{0},\gamma_{0})$,
+\end{itemize}
+
+\begin{equation*}
+  \widehat{\mathrm{Var}}(\widehat\theta)
+  \;=\;
+  \hat J_{\theta}^{-1}\,
+  \widehat{\mathrm{Var}}\!\big(\hat m - \hat J_{\gamma}\,
+  \widehat\gamma\big)\,
+  \hat J_{\theta}^{-1\prime},
+  \qquad
+  \hat J_{\theta}=\frac{\partial m}{\partial\theta'},\quad
+  \hat J_{\gamma}=\frac{\partial m}{\partial\gamma'},
+  \label{eq:id-var}
+\end{equation*}
+
+\begin{itemize}
+    \item The inner variance expands into $V_{\hat m}+\hat J_{\gamma}V_{\gamma}\hat J_{\gamma}' -2\,\mathrm{Sym}\{\mathrm{Cov}(\hat m,\widehat\gamma\,') \hat J_{\gamma}'\}$
+   \begin{itemize}
+       \item $V_{\hat m}$ is the usual moment-sampling term.
+       \item $\hat J_{\gamma}V_{\gamma}\hat J_{\gamma}'$ propagates the out of the model estimates sampling error.
+       \item $2\,\mathrm{Sym}\{\mathrm{Cov}(\hat m,\widehat\gamma\,') \hat J_{\gamma}'\}$ accounts for the fact that $\hat m$ and $\widehat\gamma$ are computed from same census.
+       \begin{itemize}
+           \item Bootstrapped: Resample census at the market level and ENAFIN surveys, recompute $(\hat m,\widehat\gamma)$ on each replication, and re-solve system of equations at $\widehat\theta$.
+       \end{itemize}
+   \end{itemize}
+\end{itemize}
+
+\end{frame}
+
+% ----------------------------------------------------------------------
+
+% \begin{frame}{}
+
+% \Huge 
+% \begin{center}
+%     P R E V I O U S \quad M E E T I N G \\
+%     ( 2 1  \quad A U G U S T \quad 2 0 2 6 )
+% \end{center}
+
+% \end{frame}
+
+% % ----------------------------------------------------------------------
+% \begin{frame}{Previous discussion}
+
+% \textbf{Has anyone endogenized financial costs?} Yes, in two different ways:
+
+% \begin{itemize}
+%     \item \textbf{Dynamic contracting}: endogenous borrowing limit
+%     \begin{itemize}
+%         \item Albuquerque–Hopenhayn (REStud 2004) by limited enforcement, Clementi–Hopenhayn (QJE 2006) by moral hazard.
+%     \end{itemize}
+%     \item \textbf{Default pricing}: endogenous spread
+%     \begin{itemize}
+%         \item Cooley–Quadrini (AER 2001) and Arellano–Bai–Zhang (JME 2012) w/intermediaries pricing default risk by state.
+%         \item D'Erasmo–Moscoso Boedo (JME 2012) do informality w/endogenous credit via bankruptcy.
+%         \item Brooks–Dovis (JME 2020): counterfactuals differ btn exogenous \& endogenous constraints.
+%     \end{itemize}
+% \end{itemize}
+
+% \medskip
+% \textbf{But there are bunch of papers with exogenous financial costs}
+% \begin{itemize}
+%     \item Buera–Kaboski–Shin (AER 2011), Midrigan–Xu (AER 2014), Moll (AER 2014), Catherine et al. (ECMA 2022): treats constraint as a measured object \& estimates its real effects.
+% \end{itemize}
+
+% \medskip
+% \textbf{My paper}: Doesn't ask the source of financial conditions, it asks about its effects.
+
+% \medskip
+% \structure{Take-away}: I'm in the measured-wedge tradition, w/understatement of financial channel.
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+ 
+% \begin{frame}{The estimation in one slide}
+% \textbf{Design.} Each parameter is assigned to \emph{one moment}; each moment enters through \emph{one equation}. No joint objective, no weighting matrix. Every moment has exactly one job
+ 
+% \bigskip
+% \begin{center}
+% \resizebox{0.98\textwidth}{!}{%
+% \begin{tikzpicture}[node distance=3mm, every node/.style={font=\footnotesize}]
+%   \tikzstyle{blk}=[draw, rounded corners=2pt, align=center,
+%     inner sep=5pt, fill=blue!6, minimum height=13mm]
+%   \node[blk] (b0) {\textbf{Block 0} \\ 16 presets \\ closed-form};
+%   \node[blk, right=of b0] (b1) {\textbf{Block 1} \\ 5 direct reads \\
+%     prices \& shares};
+%   \node[blk, right=of b1] (b2) {\textbf{Block 2} \\ 10-equation \\
+%     1:1, fixed-point loop};
+%   \node[blk, right=of b2] (b3) {\textbf{Block 3} \\ 3 incidence \\
+%   SSIV responses};
+%   \node[blk, right=of b3, fill=orange!12] (val) {\textbf{Validation}
+%     \\ 6 SSIV coefficients \\ zero free parameters};
+%   \draw[->, thick] (b0) -- (b1);
+%   \draw[->, thick] (b1) -- (b2);
+%   \draw[->, thick] (b2) -- (b3);
+%   \draw[->, thick] (b3) -- (val);
+% \end{tikzpicture}}
+% \end{center}
+ 
+% % \bigskip
+% % \textbf{Payoffs.} Transparency (each estimate has a named empirical
+% % source); diagnosability (a bad fit points at a specific moment);
+% % falsifiability (the mapping's validity is \emph{verified}, not
+% % asserted, by a Jacobian exhibit); and validation by \emph{external
+% % variation}, not held-out cross-sectional moments.
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% % \begin{frame}{Data landscape and measurement conventions}
+% % \begin{columns}[T]
+% % \column{0.5\textwidth}
+% % \textbf{Three separated secure sources}
+% % \begin{itemize}
+% %   \item \textbf{EC} (Economic Census '14/'19/'24): stocks, five-year
+% %     flows, sizes, cost shares, financing incidence
+% %   \item \textbf{ENAFIN} 2024: loan pricing, credit lines, leverage,
+% %     collateral requirements
+% %   \item \textbf{IMSS--R04C} matched registry: informal-firm loan
+% %     pricing; the shift-share responses
+% % \end{itemize}
+% % \column{0.46\textwidth}
+% % \textbf{Conventions (fixed once, used everywhere)}
+% % \begin{itemize}
+% %   \item formality $=$ positive social-security contributions (census
+% %     definition)
+% %   \item employment includes the owner; profit $=$ VA $-$ wagebill
+% %   \item money in multiples of the median annual wage (77.5k MXN);
+% %     rates as spreads over CETES~28
+% %   \item dynamics at the census's own five-year cadence --- model
+% %     moments from the five-year kernel, same definitions as the Stata
+% %     scripts, names matched string-for-string
+% % \end{itemize}
+% % \end{columns}
+% % \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Block 0: sixteen presets, no model}
+% \begin{center}
+% \renewcommand{\arraystretch}{1.05}\small
+% \begin{tabular}{lcl}
+% \toprule
+% parameter & value & source \\
+% \midrule
+% $\beta$, $\delta$ & 0.95, 0.10 & real rate; standard depreciation \\
+% $w$ wage & 1 & normalization (77.5k MXN) \\
+% $\taxy$, $\taxl$ (effective) & 0.048, 0.16 & ISR/formal VA, (IMSS+Infonavit+ISN)/formal wage-bill \\
+% $\alpha$, $\nu$ & 0.17, 0.59 & EC cost shares (OLS labor coef.\ 1.26: transmission bias) \\
+% $\pers{\infml},\pers{\fml}$ & 0.95, 0.95 & EC autocov., ME robust (naive 0.41, 0.60) \\
+% $\sdi{\infml},\sdi{\fml}$ & 0.14, 0.21 & EC autocov., ME-robust
+%  (naive 1.11, 0.72) \\
+% $\sdu{\infml},\sdu{\fml}$ (transitory-real) & 0.83, 0.53 & From contemporaneous autocov. \\
+% $\sdv$ (common) & 0.56 & autocovariance decomposition (upper bound) \\
+% $\death{\infml},\death{\fml}$ & 0.067, 0.056 & size-flat tail of
+%  exit-by-size (top terciles) \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \smallskip
+% Two arguments worth highlight:
+% \begin{itemize}
+%   \item \textbf{autocovariances}:
+%     $a_{h}=\sdv^{2}+\pers{s}^{h}S_{s}
+%     +(\sdu{s}^{2}+\sigma^{2}_{\mathrm{me}})\,\bm{1}\{h{=}0\}$
+%     $\Rightarrow$
+%     $\pers{s}^{5}=\frac{a_{10}-\sdv^{2}}{a_{5}-\sdv^{2}}$. $h{=}0$ mixes \emph{real} shocks \& ME: only the real part moves churn (BPP's consumption-split logic);
+%   \item \textbf{death vs.\ exit}: choice-driven exit vanishes for
+%     large firms, so the size-\emph{flat} tail of exit rates reads
+%     $\death{s}$; the exit-by-size \emph{gradient} is left untargeted
+%     as the check.
+% \end{itemize}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Block 1: five direct reads}
+% \begin{center}
+% \renewcommand{\arraystretch}{1.35}\footnotesize
+% \begin{tabular}{p{0.16\textwidth}p{0.30\textwidth}p{0.44\textwidth}}
+% \toprule
+% parameter & moment & inversion \\
+% \midrule
+% $\spread{\fml}=0.024$ & formal median rate $-$ CETES & Mgn funds cost $=r_{f}+\spread{s}$: spread \emph{is} the parameter \\
+% $\spread{\infml}=0.110$ & informal rate $-$ CETES & \'Idem \\
+% $\collat{\fml}=0.90$ & $\max\{p90 \text{ leverage },0.9\}$  & cap at 0.90, binds rarely (73\%\ uncollateralized) \\
+% $\collat{\infml}$ (pending) & p90 leverage &
+%  INEGI's code in progress; interim 0.20 \\
+% $\lwedge{\infml}=2.71$ & inf vs for $\ell$ share
+%  ($0.17$ vs $0.22$) & static FOC inverts in closed form:
+%  $\mathrm{ls}_{\infml}=\frac{\nu\ell^{h}/(1+\ell^{h})}
+%  {1+2\ell^{h}/\lwedge{\infml}}$ \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \medskip
+% Deliberate order: with prices set here, every threshold downstream is pinned before any \emph{quantity} moment is asked to move a real-side parameter.
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Block 2: the one-to-one core (i): turnover and
+% transitions}
+% \begin{center}
+% \renewcommand{\arraystretch}{1.3}\footnotesize
+% \begin{tabular}{llp{0.44\textwidth}}
+% \toprule
+% parameter & assigned moment (EC) & why this moment moves this
+% parameter \\
+% \midrule
+% $\fc{\infml}$ & 5-yr informal exit rate (0.351) & exit cutoff
+%  strictly $\uparrow$ in the operating cost
+%  alone \\
+% $\fc{\fml}$ & 5-yr formal exit rate (0.279) & same, formal margin \\
+% $\swc{\infml\fml}$ & 5-yr $\infml\!\to\!\fml$ rate (0.059) &
+%  switch-up cutoff $\uparrow$ in the fee $\Rightarrow$ flow
+%  $\downarrow$; monotone \\
+% $\swc{\fml\infml}$ & 5-yr $\fml\!\to\!\infml$ rate (0.365) &
+%  switch-down band $\downarrow$ in the fee $\Rightarrow$ flow $\downarrow$;
+%  monotone \\
+% $\ec{\fml}$ & formal share of entrants & entrant sorting cutoff
+%  $\uparrow$ in $\ec{\fml}$ $\Rightarrow$ formal entry sh
+%  $\downarrow$ \\
+% $\ec{\infml}$ & entrant \emph{relative} size (age--size intercept)
+%  & a higher fee admits only better-selected entrants $\Rightarrow$
+%  entrants larger relative to incumbents \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \medskip
+% % \structure{Not a target:} in stationary
+% % equilibrium the entry mass ($=$ exit mass) is mechanically tied to the exit rates above. The entrant-stock (formal-informal) share reported as a \emph{stationarity check}. $\ec{\infml}$ controls \emph{who} enters, not how many.
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Block 2: the one-to-one core (ii): financing and
+% wealth}
+% \begin{center}
+% \renewcommand{\arraystretch}{1.3}\footnotesize
+% \begin{tabular}{llp{0.44\textwidth}}
+% \toprule
+% parameter & assigned moment & why this moment moves this parameter \\
+% \midrule
+% $\spreadfix{\fml}$ & formal borrowing incidence (0.177, EC) & incidence (borrowing cutoff) strictly $\downarrow$ in $\spreadfix{\fml}$ \\
+% $\spreadfix{\infml}$ & informal borrowing incidence (0.098, EC) &
+%  same, informal side \\
+% $\muko$ & mean entrant capital, informal (EC) & constrained entrants
+%  install $k=\tilde\netw/(1-\collat{\infml})$: a log-linear map from
+%  wealth to capital \\
+% $\sdko$ & p90 entrant capital, informal (EC) & same map: the spread
+%  reads $\sdko$ \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \bigskip
+% Each row's monotonicity is a theorem in the toy model; whether it survives in the quantitative model is \emph{verified}, sign by sign, at the estimates, the mapping is auditable, not asserted.
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Solving the core: a fixed point, not a minimizer}
+% Moments are computed \textbf{exactly}: policies $\to$ transitions $\to$ invariant distribution $\mu$.
+% \begin{enumerate}
+%   \item \textbf{Step 0.} Closed-form plug-in on the \emph{observed} micro distribution $\Rightarrow$ $\theta^{(0)}$.
+%   \item \textbf{Sweeps.} Solve the model at $\theta^{(\iota)}$; update $\mu$; for each parameter, bisect \emph{its own} equation $m_{j}=\hat m_{j}$ holding others fixed; damp; repeat.
+%   \item \textbf{Stop} at internal consistency: the model reproduces all ten targets \emph{exactly}.
+% \end{enumerate}
+% \medskip
+% \structure{Self-certifying:} the loop contracts $\iff$ each moment identifies its own parameter.
+% \begin{itemize}
+%     \item Convergence is evidence \emph{for} the design; divergence would falsify it.
+% \end{itemize}
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Block 3: incidence of the credit-supply shock}
+% The empirical SSIV shock shifts $(\spread{s},\collat{s})$ w/incidence $(\chi_{\fml},\kappa_{\fml},\chi_{\infml})$, estimated one moment per parameter from three quasi-experimental responses, conditional on all earlier blocks:
+% \begin{center}
+% \renewcommand{\arraystretch}{1.3}\small
+% \begin{tabular}{lll}
+% \toprule
+% parameter & assigned response & channel \\
+% \midrule
+% $\chi_{\fml}$ & loan-rate pass-through $+0.46$pp & pass-through scales $\chi_{\fml}$ \\
+% $\kappa_{\fml}$ & collateral-use response $-0.733$ & marginal
+%  borrowers admitted by a relaxed cap \\
+% $\chi_{\infml}$ & $\fml\!\to\!\infml$ switching response $+0.113$ & $\uparrow$ in an \emph{expansion} only through informal incidence \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \medskip
+% $\kappa_{\infml}=0$ (insensitive informal collateral technology); robustness: informal collateralized share.
+
+% \medskip
+% \structure{Free consistency check:} $\chi_{\infml}$ from the avg-VA response ($-0.073$, composition channel), agreement of the two $\widehat\chi_{\infml}$'s is overidentification evidence.
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+% \begin{frame}{Inference and the four identification exhibits}
+% Exactly identified $\Rightarrow$ no weighting choices:
+% \begin{equation*}
+%   \widehat{\mathrm{Var}}(\widehat\theta)
+%   =\hat J^{-1}\,\widehat{\mathrm{Var}}(\hat m)\,\hat J^{-1\prime},
+%   \qquad
+%   \hat J=\partial m/\partial\theta'\big|_{\widehat\theta},
+% \end{equation*}
+% with $\widehat{\mathrm{Var}}(\hat m)$ from census cell sizes (in
+% hand) and the delta method.
+% \medskip
+% \begin{enumerate}
+%   \item \textbf{Jacobian heat map}: near-diagonal, with the predicted sign pattern;
+%   \item \textbf{sensitivity matrix} (Andrews--Gentzkow--Shapiro;
+%     $=-\hat J^{-1}$ here): how each moment moves each estimate;
+%   \item \textbf{plug-in vs.\ converged} ($\theta^{(0)}$ vs.\
+%     $\widehat\theta$): the transparency decomposition;
+%   \item \textbf{policy partition} at $\widehat\theta$: the assumed
+%     threshold ordering, checked as a property of the computed
+%     policies.
+% \end{enumerate}
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Exhibit 1: Jacobian heat map, preliminary numbers}
+
+% \begin{center}
+%     \includegraphics[scale=0.75]{slides_material/fig_jacobian_heatmap.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Exhibit 2: Andrews-Gentzkow-Shapiro sensitivity matrix, prelim nmbrs}
+
+% \begin{center}
+%     \includegraphics[scale=0.75]{slides_material/fig_lambda_heatmap.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Exhibit 3: Plugged vs converged parameters, preliminary numbers}
+
+% \begin{center}
+%     \includegraphics[scale=0.75]{slides_material/fig_plugin_vs_theta.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Exhibit 4: Policy partition, preliminary numbers}
+
+% \begin{center}
+%     \includegraphics[scale=0.8]{slides_material/fig_policy_partition.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Validation: Estimate SSIV on the model}
+% Simulate $M$ markets with the empirical exposure dispersion; shock at the estimated incidence; add first-stage noise; run \textbf{same SSIV code}. Six coefficients with \textbf{zero free parameters}:
+% \begin{center}
+% \renewcommand{\arraystretch}{1.2}\small
+% \begin{tabular}{lcccccc}
+% \toprule
+%  & stocks & entry & exit & $\infml\!\to\!\fml$ & workers & avg.\ VA\\
+% \midrule
+% empirical $\hat\beta$ & 0.176 & 0.192 & 0.203 & 0.195 & 0.150 &
+%  $-0.073$ \\
+% model $\hat\beta$ & \multicolumn{6}{c}{\emph{to be filled at
+%  $\widehat\theta$; sampling (AKM s.e.)}} \\
+% \bottomrule
+% \end{tabular}
+% \end{center}
+% \medskip
+% Three tests:
+% \begin{itemize}
+%   \item firm-count coeffs: density-weighted aggregation of responses at estimated incidence;
+%   \item $\infml\!\to\!\fml$: predicted from incidence pinned on the \emph{other} switching margin;
+%   \item avg.\ VA \good{must come out negative untargeted}: the composition channel in the model.
+% \end{itemize}
+
+% \medskip
+% All available information is used; nothing is used twice; the untargeted panel is large \emph{because} the targeted one is minimal.
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Validation coefficients, preliminary numbers}
+
+% \begin{center}
+%     \includegraphics[scale=0.8]{slides_material/fig_validation_coefs.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% % \begin{frame}{Every moment has exactly one job}
+% % \begin{center}
+% % \renewcommand{\arraystretch}{1.18}\footnotesize
+% % \begin{tabular}{lp{0.62\textwidth}}
+% % \toprule
+% % role & moments \\
+% % \midrule
+% % preset inputs & cost shares, autocovariances ($a_5,a_{10}$ for the
+% %  process; the $h{=}0$ excess for $\sdu{s}$), exit-by-size tail,
+% %  taxes, rates \\
+% % direct-read targets & pricing spreads, leverage p90s (formal $+$
+% %  proxy cell), labor-share gap \\
+% % core targets & exit5 $\times2$, switch5 $\times2$, entrant
+% %  composition $\times2$, borrowing incidence $\times2$, entrant
+% %  capital $\times2$ \\
+% % incidence targets & pass-through, collateral response,
+% %  $\fml\!\to\!\infml$ response \\
+% % variance inputs & census cell sizes; AKM standard errors \\
+% % robustness alternates & startup-credit incidence; stock-based
+% %  leverage \& haircuts; denied-vs-discouraged gap; avg-VA response;
+% %  naive two-component process; real-share 25/75 \\
+% % validation outcomes & six shift-share coefficients; formal share;
+% %  $K/L$ by sector; profits; exit-by-size gradient; age--size
+% %  profiles; by-sector $v$-dispersion; rejection/collateral evidence;
+% %  entrant-stock share (stationarity) \\
+% % \bottomrule
+% % \end{tabular}
+% % \end{center}
+
+% % \end{frame}
+ 
+% % % ----------------------------------------------------------------------
+
+
+% \begin{frame}{Counterfactual example, preliminary numbers}
+
+% \begin{center}
+%     \includegraphics[scale=0.8]{slides_material/fig_counterfactual_decomp.pdf}
+% \end{center}
+
+% \end{frame}
+ 
+% % ----------------------------------------------------------------------
+
+% \begin{frame}{Takeaways, and what is deliberately left out}
+% \textbf{Takeaways}
+% \begin{itemize}
+%   \item Exactly identified estimation: 16 presets $+$ 5 direct reads $+$ 10-equation core $+$ 3 incidence parameters, each with one named moment, solved by per-parameter bisection;
+%   \item \emph{auditable} identification: monotonicity arguments \& Jacobian and sensitivity exhibits;
+%   \item \emph{external variation} validation: the actual LOO-SSIV estimator run on model-simulated markets, judged on six untouched coefficients.
+% \end{itemize}
+
+% \medskip
+% \textbf{Deliberate choices}
+% \begin{itemize}
+%   \item No quadratic financing costs and wages fixed within market (five-year local stickiness).
+% \end{itemize}
+% \end{frame}
+ 
+\end{document}

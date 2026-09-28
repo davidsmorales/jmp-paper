@@ -1,48 +1,44 @@
-\centering
-\label{tab:iv_no_metros}
 \begin{threeparttable}
 \begin{tabular}{lccr}
 \toprule
-\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & First-stage $F$ & $N$ \\
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & FS $F$ & $N$ \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel A: Stock and gross flows of firms}} \\
-Log existing firms --- Total    & \phantom{$-$}0.357\sym{***} (0.036) & 108.71 & 1{,}667 \\
-Log existing firms --- Formal   & \phantom{$-$}0.366\sym{***} (0.037) & 108.70 & 1{,}663 \\
-Log existing firms --- Informal & \phantom{$-$}0.347\sym{***} (0.038) & 108.71 & 1{,}667 \\
-Log firm entry --- Total        & \phantom{$-$}0.387\sym{***} (0.032) & 83.82  & 1{,}381 \\
-Log firm entry --- Formal       & \phantom{$-$}0.408\sym{***} (0.036) & 83.81  & 1{,}369 \\
-Log firm entry --- Informal     & \phantom{$-$}0.378\sym{***} (0.034) & 83.82  & 1{,}381 \\
-Log firm exit --- Total         & \phantom{$-$}0.403\sym{***} (0.037) & 83.82  & 1{,}381 \\
-Log firm exit --- Formal        & \phantom{$-$}0.370\sym{***} (0.042) & 83.81  & 1{,}360 \\
-Log firm exit --- Informal      & \phantom{$-$}0.398\sym{***} (0.038) & 83.82  & 1{,}381 \\
+Existing firms --- Total    & $-$0.003 (0.006) & 91.66 & 1{,}381 \\
+Existing firms --- Formal   & 0.049\sym{***} (0.014) & 91.65 & 1{,}376 \\
+Existing firms --- Informal & $-$0.009 (0.007) & 91.66 & 1{,}381 \\
+Entry --- Total             & 0.018 (0.014) & 119.35 & 986 \\
+Entry --- Formal            & 0.067\sym{***} (0.020) & 119.33 & 969 \\
+Entry --- Informal          & 0.015 (0.015) & 119.35 & 986 \\
+Exit --- Total              & 0.041\sym{**} (0.018) & 119.35 & 986 \\
+Exit --- Formal             & 0.067\sym{***} (0.018) & 119.27 & 955 \\
+Exit --- Informal           & 0.037\sym{**} (0.018) & 119.35 & 986 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel B: Formality transitions}} \\
-Formal--Formal                  & \phantom{$-$}0.352\sym{***} (0.044) & 83.79  & 1{,}363 \\
-Informal--Formal                & \phantom{$-$}0.340\sym{***} (0.031) & 83.47  & 1{,}357 \\
-Formal--Informal                & \phantom{$-$}0.225\sym{***} (0.044) & 83.80  & 1{,}363 \\
-Informal--Informal              & \phantom{$-$}0.339\sym{***} (0.042) & 83.82  & 1{,}381 \\
+Informal$\to$Formal   & 0.014 (0.020) & 118.67 & 947 \\
+Formal$\to$Informal   & $-$0.048\sym{**} (0.023) & 119.25 & 948 \\
+Formal$\to$Formal     & 0.055\sym{***} (0.009) & 119.28 & 960 \\
+Informal$\to$Informal & $-$0.025\sym{***} (0.006) & 119.35 & 986 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel C: Firms with credit}} \\
-Log firms with credit --- Total    & \phantom{$-$}0.370\sym{***} (0.041) & 108.71 & 1{,}667 \\
-Log firms with credit --- Formal   & \phantom{$-$}0.313\sym{***} (0.036) & 108.71 & 1{,}667 \\
-Log firms with credit --- Informal & \phantom{$-$}0.400\sym{***} (0.048) & 108.71 & 1{,}667 \\
+Total    & 0.113\sym{***} (0.021) & 91.66 & 1{,}381 \\
+Formal   & 0.064\sym{***} (0.021) & 91.66 & 1{,}381 \\
+Informal & 0.142\sym{***} (0.025) & 91.66 & 1{,}381 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel D: Workers, wages, and value added}} \\
-Log workers --- Total           & \phantom{$-$}0.352\sym{***} (0.026) & 107.34 & \phantom{1{,}}986 \\
-Log workers --- Formal          & \phantom{$-$}0.352\sym{***} (0.034) & 107.30 & \phantom{1{,}}962 \\
-Log workers --- Informal        & \phantom{$-$}0.338\sym{***} (0.026) & 107.34 & \phantom{1{,}}986 \\
-Log total wagebill              & \phantom{$-$}0.440\sym{***} (0.038) & 108.70 & 1{,}659 \\
-Log avg.\ value added           & $-$0.126\sym{***} (0.028)           & 108.71 & 1{,}667 \\
-Log total value added           & \phantom{$-$}0.229\sym{***} (0.030) & 108.71 & 1{,}667 \\
+Workers (IMSS)  & 0.027\sym{***} (0.008) & 91.66 & 1{,}373 \\
+Total wage bill & 0.035\sym{***} (0.013) & 91.66 & 1{,}373 \\
+Mean daily wage & 0.001 (0.004) & 91.66 & 1{,}373 \\
+Average VA      & 0.019 (0.020) & 91.66 & 1{,}381 \\
+Total VA        & 0.015 (0.018) & 91.66 & 1{,}381 \\
+VA formal       & 0.026 (0.037) & 91.66 & 1{,}381 \\
+VA informal     & $-$0.116\sym{***} (0.033) & 91.66 & 1{,}381 \\
 \midrule
-\multicolumn{4}{l}{\textit{Panel E: Intermediate channels}} \\
-Log collateral                  & \phantom{$-$}0.329\sym{***} (0.118) & 83.66  & 1{,}278 \\
-Interest rate (pp)              & \phantom{$-$}0.519\sym{***} (0.068) & 108.71 & 1{,}667 \\
+Borrowing firms    & 0.157\sym{***} (0.031) & 91.66 & 1{,}381 \\
+Loans per borrower & 0.285\sym{***} (0.062) & 91.66 & 1{,}381 \\
+Credit per loan    & 0.558\sym{***} (0.083) & 91.66 & 1{,}381 \\
+Collateral ratio   & $-$0.370\sym{*} (0.218) & 118.90 & 810 \\
+Interest rate (pp) & 0.470\sym{***} (0.144) & 91.66 & 1{,}381 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \tiny
-\item \textit{Notes:} 
-Same specification and inference than table \ref{main_table} but excluding Mexico City, Monterrey, and Guadalajara. Larger cluster-robust s.e. in this sample (consistent w/main tables) and tell the same significance story; wild cluster bootstrap inference not reported because AKM $p$-values lie in the range $10^{-15}$ to $10^{-40}$ for nearly every outcome, well inside any plausible bootstrap critical region. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} Same specification and inference as the main tables (AKM standard errors in parentheses, stars from the corresponding $p$-values; FS $F$ is the Kleibergen--Paap statistic), excluding Mexico City, Monterrey, and Guadalajara. These markets are nine of the 1,390 baseline market-year observations but carry 69 percent of the regression weight. Wild cluster bootstrap $p$-values are not recomputed for robustness specifications. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}

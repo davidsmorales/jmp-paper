@@ -1,0 +1,44 @@
+\begin{threeparttable}
+\begin{tabular}{lccccr}
+\toprule
+\textit{Dependent variable} & $\widehat{\Delta_5\ln(\text{C})}$ & AKM s.e. & Boot.\ $p$ & First-stage $F$ & $N$ \\
+\midrule
+Log existing firms --- Total    & \phantom{$-$}0.000          (0.011) & [0.006]          & 0.993 & 32.17 & 1{,}390 \\
+Log existing firms --- Formal   & \phantom{$-$}0.048\sym{*}   (0.026) & [0.010]\sym{***} & 0.173 & 32.17 & 1{,}385 \\
+Log existing firms --- Informal & $-$0.006          (0.013) & [0.008]          & 0.741 & 32.17 & 1{,}390 \\
+Log firm entry --- Total        & \phantom{$-$}0.004          (0.021) & [0.011]          & 0.871 & 31.54 & \phantom{1{,}}992 \\
+Log firm entry --- Formal       & \phantom{$-$}0.058          (0.038) & [0.012]\sym{***} & 0.248 & 31.54 & \phantom{1{,}}975 \\
+Log firm entry --- Informal     & \phantom{$-$}0.001          (0.022) & [0.013]          & 0.960 & 31.54 & \phantom{1{,}}992 \\
+Log firm exit --- Total         & \phantom{$-$}0.046\sym{***} (0.014) & [0.016]\sym{***} & 0.015 & 31.54 & \phantom{1{,}}992 \\
+Log firm exit --- Formal        & $-$0.000          (0.026) & [0.017]          & 0.989 & 31.53 & \phantom{1{,}}961 \\
+Log firm exit --- Informal      & \phantom{$-$}0.061\sym{***} (0.015) & [0.016]\sym{***} & 0.007 & 31.54 & \phantom{1{,}}992 \\
+\midrule
+Formal--Formal                  & \phantom{$-$}0.030\sym{*}   (0.017) & [0.009]\sym{***} & 0.165 & 31.53 & \phantom{1{,}}966 \\
+Informal--Formal                & \phantom{$-$}0.093\sym{**}  (0.042) & [0.021]\sym{***} & 0.116 & 31.73 & \phantom{1{,}}953 \\
+Formal--Informal                & $-$0.078\sym{**}  (0.038) & [0.025]\sym{***} & 0.185 & 31.53 & \phantom{1{,}}954 \\
+Informal--Informal              & \phantom{$-$}0.000          (0.013) & [0.004]          & 1.000 & 31.54 & \phantom{1{,}}992 \\
+\midrule
+Firms with credit --- Total     & \phantom{$-$}0.000          (0.033) & [0.013]          & 0.993 & 32.17 & 1{,}390 \\
+Firms with credit --- Formal    & \phantom{$-$}0.005          (0.038) & [0.021]          & 0.908 & 32.17 & 1{,}390 \\
+Firms with credit --- Informal  & \phantom{$-$}0.018          (0.037) & [0.017]          & 0.718 & 32.17 & 1{,}390 \\
+\midrule
+Formal workers (IMSS)           & \phantom{$-$}0.013          (0.011) & [0.007]\sym{*}   & 0.297 & 32.17 & 1{,}382 \\
+Formal wage bill (IMSS)         & \phantom{$-$}0.008          (0.016) & [0.012]          & 0.633 & 32.17 & 1{,}382 \\
+Mean daily wage (IMSS)          & $-$0.010\sym{*}   (0.006) & [0.005]\sym{*}   & 0.158 & 32.17 & 1{,}382 \\
+Avg.\ value added               & $-$0.004          (0.030) & [0.021]          & 0.901 & 32.17 & 1{,}390 \\
+Total value added               & $-$0.005          (0.029) & [0.025]          & 0.854 & 32.17 & 1{,}390 \\
+Formal value added              & $-$0.039          (0.041) & [0.045]          & 0.404 & 32.17 & 1{,}390 \\
+Informal value added            & $-$0.031          (0.050) & [0.024]          & 0.586 & 32.17 & 1{,}390 \\
+\midrule
+Log borrowers                   & \phantom{$-$}0.093          (0.069) & [0.032]\sym{***} & 0.266 & 32.17 & 1{,}390 \\
+Log loans per borrower          & \phantom{$-$}0.246\sym{***} (0.045) & [0.056]\sym{***} & 0.001 & 32.17 & 1{,}390 \\
+Log credit per loan             & \phantom{$-$}0.660\sym{***} (0.073) & [0.048]\sym{***} & 0.004 & 32.17 & 1{,}390 \\
+Log collateral                  & $-$2.855\sym{***} (0.810) & [0.275]\sym{***} & 0.029 & 31.45 & \phantom{1{,}}816 \\
+Interest rate (pp)              & \phantom{$-$}0.335\sym{**}  (0.164) & [0.118]\sym{***} & 0.055 & 32.17 & 1{,}390 \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\tiny
+\item \textit{Notes:} Two-stage least squares estimates re-estimating the main specification with the shift-share instrument reconstructed to exclude the bank holding the largest share of aggregate baseline credit: both its shocks and its exposure shares are removed, and the resulting instrument is standardized as in the main specification. The estimation sample, controls, weights, and sample condition are identical to Table~\ref{main_table}. Standard errors clustered at the market level in parentheses, with stars based on them; exposure-robust standard errors following \citet{adao2019shiftshare} in brackets, with stars on brackets based on exposure-robust $p$-values; wild cluster bootstrap $p$-values in the third column. The credit-deepening decomposition sums to one ($0.093+0.246+0.660$). First-stage $F$ is the Kleibergen--Paap rk Wald statistic; its decline relative to the main specification reflects the excluded bank's substantial contribution to the identifying variation. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\end{tablenotes}
+\end{threeparttable}

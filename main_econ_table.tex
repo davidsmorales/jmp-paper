@@ -1,25 +1,42 @@
-\centering
-\label{tab:workers_va}
 \begin{threeparttable}
-\begin{tabular}{lcccccc}
+\begin{tabular}{lccccccc}
 \toprule
- & \multicolumn{3}{c}{Log number of workers} & \multirow{2}{*}{Log total wagebill} & \multirow{2}{*}{Log avg.\ VA} & \multirow{2}{*}{Log total VA} \\
-\cmidrule(lr){2-4}
- & Total & Formal & Informal &  &  &  \\
+ & \shortstack{$\Delta_5$ log\\workers} & \shortstack{$\Delta_5$ log\\total wagebill} & \shortstack{$\Delta_5$ log\\mean wage} & \shortstack{$\Delta_5$ log\\avg.\ VA} & \shortstack{$\Delta_5$ log\\total VA} & \shortstack{$\Delta_5$ log\\VA formal} & \shortstack{$\Delta_5$ log\\VA informal} \\
 \midrule
 $\widehat{\Delta_5\ln(\text{C})}$
-& 0.150\sym{***} & 0.122\sym{***} & 0.185\sym{***} & 0.200\sym{***} & $-$0.073\sym{***} & 0.102\sym{***} \\
-& (0.028) & (0.039) & (0.028) & (0.039) & (0.020) & (0.034) \\
-& [0.047] & [0.184] & [0.025] & [0.022] & [0.226] & [0.139] \\
+& 0.019\sym{***} & 0.023\sym{**} & $-$0.012\sym{***} & 0.027\sym{*} & 0.030\sym{*} & 0.025 & $-$0.052\sym{**} \\
+& (0.005) & (0.009) & (0.004) & (0.014) & (0.016) & (0.031) & (0.022) \\
+& [0.177] & [0.324] & [0.139] & [0.402] & [0.377] & [0.692] & [0.619] \\
 \midrule
-FS F & 84.66 & 84.65 & 84.66 & 88.96 & 88.96 & 88.96 \\
-Mean  & 37{,}304 & 5{,}566 & 13{,}955 & 10.9 & 48.8 & 0.9 \\
-Obs.  & 992 & 968 & 992 & 1{,}671 & 1{,}679 & 1{,}679 \\
-Markets       & 546 & 534 & 546 & 552 & 556 & 556 \\
+FS Coeff. & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 \\
+          & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) \\
+FS F & 310.21 & 310.21 & 310.21 & 310.25 & 310.25 & 310.25 & 310.25 \\
+Mean & 30{,}695 & 12{,}567 & 204 & 1{,}057 & 22{,}276{,}545 & 16{,}637{,}337 & 5{,}639{,}208 \\
+Obs. & 1{,}382 & 12{,}567{,}111 & 1{,}382 & 1{,}390 & 1{,}390 & 1{,}390 & 1{,}390 \\
+Markets & 552 & 552 & 552 & 556 & 556 & 556 & 556 \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item \textit{Notes:} See Table~\ref{tab:firms} for specification and inference details. ``Log total wagebill'' is the log of total formal-sector wagebill; ``Log avg.\ VA'' is the log of average per-firm value added; ``Log total VA'' is the log of aggregate value added. Means in levels: daily wage 174~MXN ($\approx$~10.9 USD), annual average value added 780~MXN ($\approx$~48.8 USD), annual total value added 14.5 million~MXN ($\approx$~0.9 million USD) at 16~MXN/USD. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+\item \textit{Notes:} See Table~\ref{main_table} for specification and
+inference details; wild cluster bootstrap $p$-values in brackets. The three
+labor-market columns are from IMSS records and therefore cover formal
+(registered) employment: ``workers'' is the market total of IMSS-registered
+workers, ``total wagebill'' the market total of daily contribution-base
+wages, and ``mean wage'' the market average daily wage. The four
+value-added columns are from the Economic Census and cover all firms:
+``avg.\ VA'' is average per-firm value added, ``total VA'' aggregate value
+added, and the last two columns split total value added by the census
+formality classifier, firms with positive income and workers but zero social security contributions. Means are in the levels of each variable: the mean
+daily wage is $204$ MXN ($\approx 10.7$ USD); the mean daily wage bill is
+$12.6$ million MXN ($\approx 0.66$ million USD); value added is recorded in
+thousands of current pesos, so average per-firm value added is $\approx
+1.06$ million MXN ($\approx 56{,}000$ USD) and total market value added
+$\approx 22.3$ billion MXN ($\approx 1.2$ billion USD). All conversions at
+$19$ MXN/USD. Census worker counts, available only in the 2019 and 2024
+waves, are reported in Appendix~\ref{workers_appendix_section},
+Table~\ref{workers_appendix}; the instrument is weak on that single-window
+subsample.
+\sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
 \end{tablenotes}
 \end{threeparttable}
