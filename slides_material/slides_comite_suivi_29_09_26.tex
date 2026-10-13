@@ -26,6 +26,8 @@
 \usepackage[dvipsnames]{xcolor}
 \usepackage[T1]{fontenc}\usepackage{lmodern}
 \newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\definecolor{looBlue}{HTML}{2C6597}
+\definecolor{looRed}{HTML}{933D49}
  
  
 \title[Formality as a Financing Decision]{\Huge \textbf{Formality as a Financing Decision}}
@@ -56,7 +58,7 @@ September 30, 2026}
 
 \begin{itemize}
     \item \textbf{Causal block closed}: LOO-SSIV with 11 robustness checks.
-    \item \textbf{Model estimation finished}: 13 parameters \& 23 moments + untargeted validation.
+    \item \textbf{Model estimation finished}: 13 parameters \& 23 moments. Honestly, poor fit.
     \item \textbf{Counterfactual finished}: Only financial access formalizes ($\times 4$ taxes) and $\uparrow$ output.
 \end{itemize}
  
@@ -73,7 +75,7 @@ September 30, 2026}
  
 \begin{columns}
     \begin{column}{0.3\textwidth}
-        \textbf{\textcolor{BrickRed}{Informality}}:
+        \textbf{\textcolor{looRed}{Informality}}:
         \begin{itemize}
             \item Prevalent. \hyperlink{crosscountry}{\beamergotobutton{Cross-country}}
             \item Huge implications.
@@ -93,7 +95,7 @@ September 30, 2026}
  
 \vspace{5mm}
  
-\onslide<1->{\textcolor{BrickRed}{\textbf{Informal}}: Positive revenue and workers, no Social Security contributions.}
+\onslide<1->{\textcolor{looRed}{\textbf{Informal}}: Positive revenue and workers, no Social Security contributions.}
  
 \hyperlink{intensive}{\beamergotobutton{Intensive margin}} \quad \hyperlink{imss}{\beamergotobutton{IMSS number}} \quad \hyperlink{rfc}{\beamergotobutton{RFC number}} 
  
@@ -173,35 +175,344 @@ September 30, 2026}
  
 %------------------------------------------------
  
-\begin{frame}{\textbf{Empirical strategy}: Leave-One-Out Shift-Share IV, LOO-SSIV} \label{iv_market_level}
+% \begin{frame}{\textbf{Empirical strategy}: Leave-One-Out Shift-Share IV, LOO-SSIV} \label{iv_market_level}
  
-\textbf{Intuition}: $\Delta$ Banks credit supply (estimated nationally w/multi-bank firms, excluding target market) weighted by that bank's initial lending share in the target market.
+% \textbf{Intuition}: $\Delta$ Banks credit supply (estimated nationally w/multi-bank firms, excluding target market) weighted by that bank's initial lending share in the target market.
+ 
+% \vspace{5mm}
+% \pause
+ 
+% \textbf{1) Decompose demand and supply}: Regress bank-market credit on bank and firm FE:
+ 
+% \begin{equation*}
+%      \Delta \ln L_{bft}^{-m} = \alpha_{ft}^{-m} + \gamma_{bt}^{-m} + \epsilon_{bft}, \quad \quad \Rightarrow \quad \quad \hat{\gamma}_{b,t}^{-m} = \text{Exogenous shift.}
+% \end{equation*}
+% \pause
+ 
+% \textbf{2) Share}: Banks' share of total loans in a market at baseline:
+ 
+% \begin{equation*}
+%     s_{b,m,t-1} = \frac{L_{b,m,t-1}}{\sum_b L_{b,m,t-1}}, \quad \quad \Rightarrow \quad \quad s_{b,m,t-1} = \text{Identifying variation.}
+% \end{equation*}
+% \pause
+ 
+% \textbf{3) Instrument}: Bank change in credit supply weighted by market share.
+ 
+% \begin{equation*}
+%     \hat{Z}_{m,t}^{LOO} = \sum_b \left( s_{b,m,t-1} \times \hat{\gamma}_{b,t}^{-m} \right)
+% \end{equation*}
+ 
+% \end{frame}
+ 
+%------------------------------------------------
+
+\begin{frame}[t]{Empirical strategy: Leave-One-Out Shift-Share IV, LOO-SSIV}
+\normalsize
+
+\vspace{2mm}
+\centering
+
+\only<1,4,5,6>{\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+  bank/.style={
+    rectangle, rounded corners=2pt,
+    draw=looBlue, fill=white,
+    minimum width=8mm, minimum height=6mm,
+    line width=0.8pt, font=\normalsize
+  },
+  firm/.style={
+    circle, draw=looBlue, fill=white,
+    minimum size=7mm, inner sep=1pt,
+    line width=0.8pt, font=\normalsize
+  },
+  loan/.style={
+    draw=looBlue!75, line width=1pt
+  },
+  market/.style={
+    draw=looBlue!60, fill=looBlue!3,
+    rounded corners=3pt, line width=0.8pt
+  }
+]
+
+% ---------- MARKET 1 ----------
+\begin{scope}
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_1$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7} {
+    \node[bank] (aB\i) at (\x,2.6) {$B_{\i}$};
+    \node[firm] (aF\i) at (\x,1.6) {$F_{\i}$};
+  }
+
+  \foreach \b/\f in {1/1,1/2,2/1,2/3,3/2,3/3}
+    \draw[loan] (aB\b.south) -- (aF\f.north);
+\end{scope}
+
+% ---------- TARGET MARKET 2 ----------
+\begin{scope}[xshift=4.85cm]
+  \draw[market,draw=looRed,fill=looRed!3,dashed]
+    (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looRed]
+    at (2.25,3.17) {Target market $M_2$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank,draw=black!35,text=black!60]
+      (bB\i) at (\x,2.6) {$B_{\i}$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF4) at (1.35,1.6) {$F_4$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF5) at (3.15,1.6) {$F_5$};
+
+  \foreach \b/\f in {1/4,2/4,2/5,3/5}
+    \draw[loan,draw=black!25,dashed]
+      (bB\b.south) -- (bF\f.north);
+\end{scope}
+
+% ---------- MARKET 3 ----------
+\begin{scope}[xshift=9.7cm]
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_3$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank] (cB\i) at (\x,2.6) {$B_{\i}$};
+
+  \foreach \i/\x in {6/0.8,7/2.25,8/3.7}
+    \node[firm] (cF\i) at (\x,1.6) {$F_{\i}$};
+
+  \foreach \b/\f in {1/6,1/7,2/6,2/8,3/7,3/8}
+    \draw[loan] (cB\b.south) -- (cF\f.north);
+\end{scope}
+
+\end{tikzpicture}%
+}
+
+{\footnotesize
+  $B_b$: bank. \qquad \qquad \qquad \qquad \qquad $F_f$: firm. \qquad \qquad \qquad \qquad \qquad
+  Lines: lending relationships.
+  \par
+}
+}
+
+\only<2>{\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+  bank/.style={
+    rectangle, rounded corners=2pt,
+    draw=looBlue, fill=white,
+    minimum width=8mm, minimum height=6mm,
+    line width=0.8pt, font=\normalsize
+  },
+  firm/.style={
+    circle, draw=looBlue, fill=white,
+    minimum size=7mm, inner sep=1pt,
+    line width=0.8pt, font=\normalsize
+  },
+  loan/.style={
+    draw=looBlue!75, line width=1pt
+  },
+  market/.style={
+    draw=looBlue!60, fill=looBlue!3,
+    rounded corners=3pt, line width=0.8pt
+  }
+]
+
+% ---------- MARKET 1 ----------
+\begin{scope}
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_1$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7} {
+    \node[bank] (aB\i) at (\x,2.6) {$B_{\i}$};
+    \node[firm] (aF\i) at (\x,1.6) {$F_{\i}$};
+  }
+
+  \foreach \b/\f in {1/1,1/2,2/1,2/3,3/2,3/3}
+    \draw[loan] (aB\b.south) -- (aF\f.north);
+    % Highlight selected lending relationships
+    \draw[loan,line width=4pt]
+      (aB1.south) -- (aF1.north);
+    \draw[loan,line width=4pt]
+      (aB2.south) -- (aF1.north);
+\end{scope}
+
+% ---------- TARGET MARKET 2 ----------
+\begin{scope}[xshift=4.85cm]
+  \draw[market,draw=looRed,fill=looRed!3,dashed]
+    (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looRed]
+    at (2.25,3.17) {Target market $M_2$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank,draw=black!35,text=black!60]
+      (bB\i) at (\x,2.6) {$B_{\i}$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF4) at (1.35,1.6) {$F_4$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF5) at (3.15,1.6) {$F_5$};
+
+  \foreach \b/\f in {1/4,2/4,2/5,3/5}
+    \draw[loan,draw=black!25,dashed]
+      (bB\b.south) -- (bF\f.north);
+\end{scope}
+
+% ---------- MARKET 3 ----------
+\begin{scope}[xshift=9.7cm]
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_3$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank] (cB\i) at (\x,2.6) {$B_{\i}$};
+
+  \foreach \i/\x in {6/0.8,7/2.25,8/3.7}
+    \node[firm] (cF\i) at (\x,1.6) {$F_{\i}$};
+
+  \foreach \b/\f in {1/6,1/7,2/6,2/8,3/7,3/8}
+    \draw[loan] (cB\b.south) -- (cF\f.north);
+\end{scope}
+
+\end{tikzpicture}%
+}
+
+{\footnotesize
+  $B_b$: bank. \qquad \qquad \qquad \qquad \qquad $F_f$: firm. \qquad \qquad \qquad \qquad \qquad
+  Lines: lending relationships.
+  \par
+}
+}
+
+\only<3>{\resizebox{0.98\textwidth}{!}{%
+\begin{tikzpicture}[
+  bank/.style={
+    rectangle, rounded corners=2pt,
+    draw=looBlue, fill=white,
+    minimum width=8mm, minimum height=6mm,
+    line width=0.8pt, font=\normalsize
+  },
+  firm/.style={
+    circle, draw=looBlue, fill=white,
+    minimum size=7mm, inner sep=1pt,
+    line width=0.8pt, font=\normalsize
+  },
+  loan/.style={
+    draw=looBlue!75, line width=1pt
+  },
+  market/.style={
+    draw=looBlue!60, fill=looBlue!3,
+    rounded corners=3pt, line width=0.8pt
+  }
+]
+
+% ---------- MARKET 1 ----------
+\begin{scope}
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_1$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7} {
+    \node[bank] (aB\i) at (\x,2.6) {$B_{\i}$};
+    \node[firm] (aF\i) at (\x,1.6) {$F_{\i}$};
+  }
+
+  \foreach \b/\f in {1/1,1/2,2/1,2/3,3/2,3/3}
+    \draw[loan] (aB\b.south) -- (aF\f.north);
+    % Highlight selected lending relationships
+    \draw[loan,line width=4pt]
+      (aB2.south) -- (aF1.north);
+    \draw[loan,line width=4pt]
+      (aB2.south) -- (aF3.north);
+\end{scope}
+
+% ---------- TARGET MARKET 2 ----------
+\begin{scope}[xshift=4.85cm]
+  \draw[market,draw=looRed,fill=looRed!3,dashed]
+    (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looRed]
+    at (2.25,3.17) {Target market $M_2$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank,draw=black!35,text=black!60]
+      (bB\i) at (\x,2.6) {$B_{\i}$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF4) at (1.35,1.6) {$F_4$};
+
+  \node[firm,draw=black!35,text=black!60]
+    (bF5) at (3.15,1.6) {$F_5$};
+
+  \foreach \b/\f in {1/4,2/4,2/5,3/5}
+    \draw[loan,draw=black!25,dashed]
+      (bB\b.south) -- (bF\f.north);
+    % Highlight selected lending relationships
+    \draw[loan,draw=black!25,dashed,line width=4pt]
+      (bB2.south) -- (bF4.north);
+    \draw[loan,draw=black!25,dashed,line width=4pt]
+      (bB2.south) -- (bF5.north);
+\end{scope}
+
+% ---------- MARKET 3 ----------
+\begin{scope}[xshift=9.7cm]
+  \draw[market] (0,1.1) rectangle (4.5,3.55);
+
+  \node[font=\bfseries\large,text=looBlue]
+    at (2.25,3.17) {Market $M_3$};
+
+  \foreach \i/\x in {1/0.8,2/2.25,3/3.7}
+    \node[bank] (cB\i) at (\x,2.6) {$B_{\i}$};
+
+  \foreach \i/\x in {6/0.8,7/2.25,8/3.7}
+    \node[firm] (cF\i) at (\x,1.6) {$F_{\i}$};
+
+  \foreach \b/\f in {1/6,1/7,2/6,2/8,3/7,3/8}
+    \draw[loan] (cB\b.south) -- (cF\f.north);
+    % Highlight selected lending relationships
+    \draw[loan,line width=4pt]
+      (cB2.south) -- (cF6.north);
+    \draw[loan,line width=4pt]
+      (cB2.south) -- (cF8.north);
+\end{scope}
+
+\end{tikzpicture}%
+}
+
+{\footnotesize
+  $B_b$: bank. \qquad \qquad \qquad \qquad \qquad $F_f$: firm. \qquad \qquad \qquad \qquad \qquad
+  Lines: lending relationships.
+  \par
+}
+}
+
+\raggedright
+\normalsize
+
+
+\vspace{5mm}
+
+\onslide<4->{\textbf{1) Separate D \& S}: \quad $\Delta \ln L_{bft}^{-m} = \alpha_{ft}^{-m} + \gamma_{bt}^{-m} + \epsilon_{bft}, \quad \implies \quad \textcolor{looBlue}{\hat{\gamma}_{b,t}^{-m} = \text{Exogenous shift.}}$}
  
 \vspace{5mm}
-\pause
  
-\textbf{1) Decompose demand and supply}: Regress bank-market credit on bank and firm FE:
+\onslide<5->{\textbf{2) Bank share}: \qquad \quad $s_{b,m,t-1} = \frac{L_{b,m,t-1}}{\sum_b L_{b,m,t-1}}, \quad \implies \quad \textcolor{looRed}{s_{b,m,t-1} = \text{Identifying variation.}}$}
  
-\begin{equation*}
-     \Delta \ln L_{bft}^{-m} = \alpha_{ft}^{-m} + \gamma_{bt}^{-m} + \epsilon_{bft}, \quad \quad \Rightarrow \quad \quad \hat{\gamma}_{b,t}^{-m} = \text{Exogenous shift.}
-\end{equation*}
-\pause
+\vspace{5mm}
  
-\textbf{2) Share}: Banks' share of total loans in a market at baseline:
- 
-\begin{equation*}
-    s_{b,m,t-1} = \frac{L_{b,m,t-1}}{\sum_b L_{b,m,t-1}}, \quad \quad \Rightarrow \quad \quad s_{b,m,t-1} = \text{Identifying variation.}
-\end{equation*}
-\pause
- 
-\textbf{3) Instrument}: Bank change in credit supply weighted by market share.
- 
-\begin{equation*}
-    \hat{Z}_{m,t}^{LOO} = \sum_b \left( s_{b,m,t-1} \times \hat{\gamma}_{b,t}^{-m} \right)
-\end{equation*}
- 
+\onslide<6->{\textbf{3) Instrument}: \qquad \quad \Large $\hat{Z}_{m,t}^{LOO} = \sum_b \left( \textcolor{looRed}{s_{b,m,t-1}} \times \textcolor{looBlue}{\hat{\gamma}_{b,t}^{-m}} \right)$}
+
 \end{frame}
- 
 %------------------------------------------------
  
 \begin{frame}{The instrument varies across markets and is strong}
@@ -796,6 +1107,11 @@ There exists a unique threshold for each transition: $ \hat x_i^X < \hat x_i^E <
     \item Financial parameters are not firm level $\Rightarrow$ transitions \& borrowing incidence missed.
     \item First-stage level under the model is disclosed; inference conditional on presets.
 \end{itemize}
+
+\vspace{5mm}
+
+\textbf{Question for the committee}: Should I eliminate/sent to an appendix the estimation? 
+
 \end{frame}
  
 %------------------------------------------------

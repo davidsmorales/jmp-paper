@@ -1,42 +1,27 @@
 \begin{threeparttable}
-\begin{tabular}{lccccccc}
-\toprule
- & \shortstack{$\Delta_5$ log\\workers} & \shortstack{$\Delta_5$ log\\total wagebill} & \shortstack{$\Delta_5$ log\\mean wage} & \shortstack{$\Delta_5$ log\\avg.\ VA} & \shortstack{$\Delta_5$ log\\total VA} & \shortstack{$\Delta_5$ log\\VA formal} & \shortstack{$\Delta_5$ log\\VA informal} \\
-\midrule
-$\widehat{\Delta_5\ln(\text{C})}$
-& 0.019\sym{***} & 0.023\sym{**} & $-$0.012\sym{***} & 0.027\sym{*} & 0.030\sym{*} & 0.025 & $-$0.052\sym{**} \\
-& (0.005) & (0.009) & (0.004) & (0.014) & (0.016) & (0.031) & (0.022) \\
-& [0.177] & [0.324] & [0.139] & [0.402] & [0.377] & [0.692] & [0.619] \\
-\midrule
-FS Coeff. & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 & 1.104 \\
-          & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) & (0.063) \\
-FS F & 310.21 & 310.21 & 310.21 & 310.25 & 310.25 & 310.25 & 310.25 \\
-Mean & 30{,}695 & 12{,}567{,}111 & 204 & 1{,}057 & 22{,}276{,}545 & 16{,}637{,}337 & 5{,}639{,}208 \\
-Obs. & 1{,}382 & 1{,}382 & 1{,}382 & 1{,}390 & 1{,}390 & 1{,}390 & 1{,}390 \\
-Markets & 552 & 552 & 552 & 556 & 556 & 556 & 556 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]
-\footnotesize
-\item \textit{Notes:} See Table~\ref{main_table} for specification and
-inference details; wild cluster bootstrap $p$-values in brackets. The three
-labor-market columns are from IMSS records and therefore cover formal
-(registered) employment: ``workers'' is the market total of IMSS-registered
-workers, ``total wagebill'' the market total of daily contribution-base
-wages, and ``mean wage'' the market average daily wage. The four
-value-added columns are from the Economic Census and cover all firms:
-``avg.\ VA'' is average per-firm value added, ``total VA'' aggregate value
-added, and the last two columns split total value added by the census
-formality classifier, firms with positive income and workers but zero social security contributions. Means are in the levels of each variable: the mean
-daily wage is $204$ MXN ($\approx 10.7$ USD); the mean daily wage bill is
-$12.6$ million MXN ($\approx 0.66$ million USD); value added is recorded in
-thousands of current pesos, so average per-firm value added is $\approx
-1.06$ million MXN ($\approx 56{,}000$ USD) and total market value added
-$\approx 22.3$ billion MXN ($\approx 1.2$ billion USD). All conversions at
-$19$ MXN/USD. Census worker counts, available only in the 2019 and 2024
-waves, are reported in Appendix~\ref{workers_appendix_section},
-Table~\ref{workers_appendix}; the instrument is weak on that single-window
-subsample.
-\sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
-\end{tablenotes}
+    \setlength{\tabcolsep}{3.5pt}
+    \begin{tabular}{@{}l*{7}{c}@{}}
+        \toprule
+         & \multicolumn{7}{c}{\textbf{Dependent variable}: five-year log change in} \\
+        \cmidrule(lr){2-8}
+         & Workers & Wage bill & Mean wage & Avg.\ VA & Total VA & VA formal & VA informal \\
+        \midrule
+        $\widehat{\Delta_5\ln(\text{C})}$
+        & 0.020\sym{***} & 0.024\sym{**} & $-$0.012\sym{***} & 0.029\sym{*} & 0.032\sym{*} & 0.028 & $-$0.049\sym{**} \\
+        & (0.005) & (0.009) & (0.004) & (0.015) & (0.017) & (0.031) & (0.021) \\
+        & [0.158] & [0.322] & [0.144] & [0.361] & [0.354] & [0.671] & [0.612] \\
+        \midrule
+        FS Coeff. & 1.113 & 1.113 & 1.113 & 1.113 & 1.113 & 1.113 & 1.113 \\
+                  & (0.068) & (0.068) & (0.068) & (0.068) & (0.068) & (0.068) & (0.068) \\
+        FS F & 265.77 & 265.77 & 265.77 & 265.81 & 265.81 & 265.81 & 265.81 \\
+        Mean$^{\dagger}$ & 30{,}967 & 12.7m & 204 & 1.06m & 22.5bn & 16.8bn & 5.7bn \\
+        Obs. & 1{,}386 & 1{,}386 & 1{,}386 & 1{,}394 & 1{,}394 & 1{,}394 & 1{,}394 \\
+        Markets & 552 & 552 & 552 & 556 & 556 & 556 & 556 \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+        \footnotesize
+        \item \textit{Notes:} See Table~\ref{main_table} for specification and inference details. Wild cluster bootstrap $p$-values in brackets. The three labor-market columns are from IMSS records and therefore cover formal (registered) employment: ``workers'' is the market total of IMSS-registered workers, ``wage bill'' the market total of daily contribution-base wages, and ``mean wage'' the market average daily wage. The four value-added columns are from the Economic Census and cover all firms: ``avg.\ VA'' is average per-firm value added, ``total VA'' aggregate value added, and the last two columns split total value added by the census formality classifier, firms with positive income and workers but zero social security contributions. $^{\dagger}$Means in levels, in MXN (m = million, bn = billion): the mean daily wage is $204$ MXN ($\approx 10.7$ USD); the mean daily wage bill $12.7$ million MXN ($\approx 0.67$ million USD); average per-firm value added $1.06$ million MXN ($\approx 56{,}000$ USD) and total market value added $22.5$ billion MXN ($\approx 1.2$ billion USD), from census values recorded in thousands of current pesos. All conversions at $19$ MXN/USD. Census worker counts, available only in the 2019 and 2024 waves, are reported in Appendix~\ref{workers_appendix_section}, Table~\ref{workers_appendix}; the instrument is weak on that single-window subsample.
+        \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+    \end{tablenotes}
 \end{threeparttable}

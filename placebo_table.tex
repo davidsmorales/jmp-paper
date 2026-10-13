@@ -1,44 +1,44 @@
 \begin{threeparttable}
-\begin{tabular}{lcccr}
-\toprule
-\textit{Pre-period outcome ($\Delta_5 Y_{t-5}$, log)} & $\widehat{\Delta_5\ln(\text{C})}$ & AKM s.e. & First-stage $F$ & $N$ \\
-\midrule
-Log existing firms --- Total    & \phantom{$-$}0.016\sym{***} (0.006) & [0.005]\sym{***} & 346.22 & \phantom{1{,}}979 \\
-Log existing firms --- Formal   & \phantom{$-$}0.017          (0.013) & [0.008]\sym{**}  & 346.15 & \phantom{1{,}}975 \\
-Log existing firms --- Informal & \phantom{$-$}0.019\sym{**}  (0.009) & [0.006]\sym{***} & 346.22 & \phantom{1{,}}979 \\
-Log firm entry --- Total        & \phantom{$-$}0.030          (0.050) & [0.106]          & \phantom{34}2.59 & \phantom{1{,}}512 \\
-Log firm entry --- Formal       & $-$0.065          (0.099) & [0.242]          & \phantom{34}2.59 & \phantom{1{,}}506 \\
-Log firm entry --- Informal     & \phantom{$-$}0.041          (0.050) & [0.094]          & \phantom{34}2.59 & \phantom{1{,}}512 \\
-Log firm exit --- Total         & $-$0.038          (0.051) & [0.110]          & \phantom{34}2.59 & \phantom{1{,}}512 \\
-Log firm exit --- Formal        & \phantom{$-$}0.122          (0.116) & [0.294]          & \phantom{34}2.59 & \phantom{1{,}}493 \\
-Log firm exit --- Informal      & $-$0.070          (0.063) & [0.102]          & \phantom{34}2.59 & \phantom{1{,}}512 \\
-\midrule
-Formal--Formal                  & $-$0.015          (0.042) & [0.066]          & \phantom{34}2.26 & \phantom{1{,}}486 \\
-Informal--Formal                & $-$0.093          (0.111) & [0.171]          & \phantom{34}2.59 & \phantom{1{,}}494 \\
-Formal--Informal                & \phantom{$-$}0.060          (0.077) & [0.169]          & \phantom{34}2.59 & \phantom{1{,}}483 \\
-Informal--Informal              & $-$0.040          (0.042) & [0.103]          & \phantom{34}2.59 & \phantom{1{,}}512 \\
-\midrule
-Firms with credit --- Total     & \phantom{$-$}0.078          (0.083) & [0.058]          & 346.22 & \phantom{1{,}}979 \\
-Firms with credit --- Formal    & \phantom{$-$}0.091          (0.058) & [0.037]\sym{**}  & 346.22 & \phantom{1{,}}979 \\
-Firms with credit --- Informal  & \phantom{$-$}0.003          (0.159) & [0.121]          & 346.22 & \phantom{1{,}}979 \\
-\midrule
-Formal workers (IMSS)           & $-$0.011          (0.009) & [0.006]\sym{*}   & 346.20 & \phantom{1{,}}966 \\
-Formal wage bill (IMSS)         & $-$0.025\sym{**}  (0.012) & [0.005]\sym{***} & 346.20 & \phantom{1{,}}966 \\
-Mean daily wage (IMSS)          & $-$0.015          (0.010) & [0.006]\sym{***} & 346.20 & \phantom{1{,}}966 \\
-Avg.\ value added               & $-$0.165\sym{***} (0.038) & [0.014]\sym{***} & 346.22 & \phantom{1{,}}979 \\
-Total value added               & $-$0.148\sym{***} (0.041) & [0.013]\sym{***} & 346.22 & \phantom{1{,}}979 \\
-Formal value added              & $-$0.175\sym{***} (0.063) & [0.020]\sym{***} & 346.22 & \phantom{1{,}}979 \\
-Informal value added            & $-$0.037          (0.037) & [0.019]\sym{*}   & 346.22 & \phantom{1{,}}979 \\
-\midrule
-Log borrowers                   & $-$0.471          (0.288) & [0.169]\sym{***} & 358.24 & \phantom{1{,}}929 \\
-Log loans per borrower          & $-$0.179\sym{***} (0.056) & [0.041]\sym{***} & 358.24 & \phantom{1{,}}929 \\
-Log credit per loan             & $-$0.711\sym{***} (0.102) & [0.071]\sym{***} & 358.24 & \phantom{1{,}}929 \\
-Log collateral                  & \phantom{$-$}4.851          (2.990) & [5.394]          & \phantom{34}2.60 & \phantom{1{,}}400 \\
-Interest rate (pp)              & $-$0.181          (0.114) & [0.069]\sym{***} & 358.24 & \phantom{1{,}}929 \\
-\bottomrule
-\end{tabular}
-\begin{tablenotes}[flushleft]
-\tiny
-\item \textit{Notes:} Each row reports a placebo IV estimate in which the dependent variable is the five-year log change in the indicated outcome \emph{before} the credit-supply shock window, $\Delta_5 Y_{t-5} = \ln Y_{t-5} - \ln Y_{t-10}$. The endogenous regressor, instrument, controls, baseline-credit weights, and sample condition follow the main specification (Table~\ref{main_table}); the sample additionally requires a non-missing outcome ten years prior. Standard errors clustered at the market level in parentheses; exposure-robust standard errors following \citet{adao2019shiftshare} in brackets. Stars on coefficients are based on the clustered standard errors and stars on brackets on the exposure-robust ones. First-stage $F$ is the Kleibergen--Paap rk Wald statistic on each restricted sample. The entry, exit, transition, and collateral outcomes require lagged flows that exist in a single census window, so their samples halve and the first stage collapses; we report these rows for transparency only. The census-based worker outcomes cannot be estimated in the pre-period at all and are omitted. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
-\end{tablenotes}
+    \begin{tabular}{lcccr}
+        \toprule
+        \textit{Pre-period outcome ($\Delta_5 Y_{t-5}$, log)} & $\widehat{\Delta_5\ln(\text{C})}$ & AKM s.e. & First-stage $F$ & $N$ \\
+        \midrule
+        Log existing firms --- Total    & \phantom{$-$}0.016\sym{***} (0.006) & [0.005]\sym{***} & 290.11 & \phantom{1{,}}983 \\
+        Log existing firms --- Formal   & \phantom{$-$}0.016          (0.013) & [0.008]\sym{**}  & 290.06 & \phantom{1{,}}979 \\
+        Log existing firms --- Informal & \phantom{$-$}0.019\sym{**}  (0.009) & [0.006]\sym{***} & 290.11 & \phantom{1{,}}983 \\
+        Log firm entry --- Total        & \phantom{$-$}0.034          (0.057) & [0.114]          & \phantom{29}1.89 & \phantom{1{,}}514 \\
+        Log firm entry --- Formal       & $-$0.078          (0.122) & [0.296]          & \phantom{29}1.89 & \phantom{1{,}}508 \\
+        Log firm entry --- Informal     & \phantom{$-$}0.048          (0.058) & [0.095]          & \phantom{29}1.89 & \phantom{1{,}}514 \\
+        Log firm exit --- Total         & $-$0.043          (0.059) & [0.120]          & \phantom{29}1.89 & \phantom{1{,}}514 \\
+        Log firm exit --- Formal        & \phantom{$-$}0.146          (0.149) & [0.368]          & \phantom{29}1.89 & \phantom{1{,}}495 \\
+        Log firm exit --- Informal      & $-$0.081          (0.077) & [0.108]          & \phantom{29}1.89 & \phantom{1{,}}514 \\
+        \midrule
+        Formal--Formal                  & $-$0.017          (0.049) & [0.077]          & \phantom{29}1.59 & \phantom{1{,}}488 \\
+        Informal--Formal                & $-$0.112          (0.140) & [0.204]          & \phantom{29}1.89 & \phantom{1{,}}496 \\
+        Formal--Informal                & \phantom{$-$}0.075          (0.095) & [0.197]          & \phantom{29}1.89 & \phantom{1{,}}485 \\
+        Informal--Informal              & $-$0.047          (0.053) & [0.127]          & \phantom{29}1.89 & \phantom{1{,}}514 \\
+        \midrule
+        Firms with credit --- Total     & \phantom{$-$}0.079          (0.082) & [0.058]          & 290.11 & \phantom{1{,}}983 \\
+        Firms with credit --- Formal    & \phantom{$-$}0.091          (0.058) & [0.037]\sym{**}  & 290.11 & \phantom{1{,}}983 \\
+        Firms with credit --- Informal  & \phantom{$-$}0.006          (0.157) & [0.120]          & 290.11 & \phantom{1{,}}983 \\
+        \midrule
+        Formal workers (IMSS)           & $-$0.011          (0.009) & [0.006]\sym{*}   & 290.13 & \phantom{1{,}}970 \\
+        Formal wage bill (IMSS)         & $-$0.024\sym{**}  (0.012) & [0.005]\sym{***} & 290.13 & \phantom{1{,}}970 \\
+        Mean daily wage (IMSS)          & $-$0.015          (0.010) & [0.006]\sym{***} & 290.13 & \phantom{1{,}}970 \\
+        Avg.\ value added               & $-$0.164\sym{***} (0.038) & [0.014]\sym{***} & 290.11 & \phantom{1{,}}983 \\
+        Total value added               & $-$0.148\sym{***} (0.041) & [0.013]\sym{***} & 290.11 & \phantom{1{,}}983 \\
+        Formal value added              & $-$0.174\sym{***} (0.063) & [0.021]\sym{***} & 290.11 & \phantom{1{,}}983 \\
+        Informal value added            & $-$0.036          (0.036) & [0.019]\sym{*}   & 290.11 & \phantom{1{,}}983 \\
+        % \midrule
+        % Log borrowers                   & $-$0.469\sym{*}   (0.284) & [0.170]\sym{***} & 298.05 & \phantom{1{,}}933 \\
+        % Log loans per borrower          & $-$0.177\sym{***} (0.056) & [0.040]\sym{***} & 298.05 & \phantom{1{,}}933 \\
+        % Log credit per loan             & $-$0.709\sym{***} (0.096) & [0.075]\sym{***} & 298.05 & \phantom{1{,}}933 \\
+        % Log collateral                  & \phantom{$-$}5.613          (3.984) & [6.603]          & \phantom{29}1.89 & \phantom{1{,}}402 \\
+        % Interest rate (pp)              & $-$0.172          (0.112) & [0.068]\sym{**}  & 298.05 & \phantom{1{,}}933 \\
+        \bottomrule
+    \end{tabular}
+    \begin{tablenotes}[flushleft]
+        \footnotesize
+        \item \textit{Notes:} Each row reports a placebo IV estimate in which the dependent variable is the five-year log change in the indicated outcome \emph{before} the credit-supply shock window, $\Delta_5 Y_{t-5} = \ln Y_{t-5} - \ln Y_{t-10}$. The endogenous regressor, instrument, controls, baseline-credit weights, and sample condition follow the main specification (Table~\ref{main_table}); the sample additionally requires a non-missing outcome ten years prior. Standard errors clustered at the market level in parentheses; exposure-robust standard errors following \citet{adao2019shiftshare} in brackets. Stars on coefficients are based on the clustered standard errors and stars on brackets on the exposure-robust ones. First-stage $F$ is the Kleibergen--Paap rk Wald statistic on each restricted sample. The entry, exit, transition, and collateral outcomes require lagged flows that exist in a single census window, so their samples halve and the first stage collapses; we report these rows for transparency only. The census-based worker outcomes cannot be estimated in the pre-period at all and are omitted. \sym{*}~$p<0.10$, \sym{**}~$p<0.05$, \sym{***}~$p<0.01$.
+    \end{tablenotes}
 \end{threeparttable}
