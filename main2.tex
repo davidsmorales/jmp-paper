@@ -49,6 +49,7 @@
 \usepackage{threeparttable}
 \newcommand{\sym}[1]{\ifmmode^{#1}\else\(^{#1}\)\fi}
 \usepackage{xcolor}
+\usepackage{lineno}
 
 \input{notation_macros.tex}
 
@@ -61,6 +62,7 @@
 
 
 \begin{document}
+% \linenumbers
 
 
 \def\spacingset#1{\renewcommand{\baselinestretch}
@@ -72,7 +74,7 @@
 \if0\blind
 {
     \title{\bf Formality as a Financing Decision}
-  \author{David Morales \thanks{Toulouse School of economics, david.morales@tse-fr} \quad Daniela Puggioni \thanks{Banco de México, dpuggionih@banxico.org.mx}}
+  \author{David Morales \thanks{Toulouse School of Economics, david.morales@tse-fr.eu. I am deeply grateful to Matteo Bobba for his guidance. I thank Milo Bianchi, Oscar Fentanes, Eugenia Gonzalez-Aguado, Jean-Marie Lozachmeur, and Costas Meghir for valuable feedback. I also thank participants at the TSE BID Workshop, TSE Macro Workshop, TSE Public Workshop, TSE Finance Workshop, TSE Yinghua He Empirical Micro Workshop, Yale Labor Breakfast, Yale Development Breakfast, NOVAfrica PhD Workshop, and ENTER Jamboree for helpful comments and discussions. I am grateful to the teams at Banco de México's EconLab and the \textit{Laboratorio de Microdatos del INEGI} for their support. I acknowledge financial support from the French National Research Agency (ANR), grant RECHC -- ANR-20-CE26-0011-01. All errors are our own.} \quad Daniela Puggioni \thanks{Banco de México, dpuggionih@banxico.org.mx}}
   \date{October 2026 \\
   \vspace{3mm}
   \textcolor{lightgray}{Work in Progress. Latest version available
@@ -96,11 +98,14 @@
 \bigskip
 
 \begin{abstract}
-Can bank loans affect the formality decision of informal firms? We match the universe of bank loans, the social security records, and the economic censuses in Mexico to observe formality, loans, and firm transitions. Three facts emerge: three quarters of firms with a bank loan are informal; informal firms pay higher rates, post more collateral and obtain smaller loans; and firms move between formality and informality, both directions. In a dynamic model, firms that need a loan and are near to indifference between formal and informal change their status when the relative terms or availability of loans change. Using leave-one-out shift-share bank credit supply shocks, we find that a ten percent credit supply expansion raises the financial advantage of formal firms and, consequently, increases formalization by 0.5 percent and decreases formal-to-informal transitions by 0.4 percent. Our contribution is to show that bank loans affect informal firms as well as formal ones, and with them the share of formal firms.
+% Can bank loans affect the formality decision of informal firms? 
+Can bank loans make informal firms formalize? We match the universe of bank loans, the social security records, and the economic censuses in Mexico to track formality, loans, and firm transitions over time. Three facts emerge. Three quarters of firms with a bank loan are informal; informal firms pay higher rates, post more collateral, and obtain smaller loans; and firms move between formality and informality in both directions. We develop a dynamic model in which firms that need a loan and are nearly indifferent between being formal and being informal change their status when the relative terms or availability of loans change. Using leave-one-out shift-share bank credit supply shocks, we find that a ten percent credit supply expansion raises the financial advantage of formal firms and, consequently, increases formalization by 0.5 percent and decreases formal-to-informal transitions by 0.4 percent. Our contribution is to show that bank loans affect informal firms and their formality decisions.
 % The effects of the financial sector on formal firms are well known in the literature. However, little is known about its effects on the informal sector. This paper closes this gap by asking: Can bank loans affect the formality decision of firms, especially of those already in the informal sector? To answer it, we match the universe of bank loans, the administrative social security records, and the economic censuses in a dataset that contains formality, bank loans, and firm transitions on the same markets over twenty years. We document three stylized facts. First, informal firms are inside the banking system, in contrast to what is commonly assumed. Second, informal firms face worse loan terms than their formal counterparts. Third, firms move regularly between formality and informality, in both directions. The paper builds a dynamic model in which firms choose whether to be formal based on the trade-off between tax costs and financial benefits. The main argument is that firms close to indifference between being formal or informal and in need of a loan reverse their formality status after a relative change in the terms or availability of loans. The empirical strategy uses a Shift-Share design to confirms the model prediction and shows that a credit supply shock raises the financial advantage of formal firms and, consequentially, increases formalization and decreases formal-to-informal transitions. The results imply that policies that affect the relative loan advantage of formal firms, from credit guarantees to bank competition, can shift the share of formal firms. 
 \end{abstract}
 
 \noindent\textbf{Keywords:} informality, firm dynamics, financial frictions, credit supply, formalization.
+\noindent\textbf{JEL codes:} O17, G21, L25
+
 \vfill
 
 \newpage
@@ -142,16 +147,30 @@ The paper proceeds as follows. Section~\ref{2} reviews the literature. Section~\
 
 \section{Literature review} \label{2}
 
-This paper speaks to three literatures. The first traces credit supply shocks to real outcomes. A within firm identification strategy introduced by \citet{khwaja2008tracing} separates bank supply from firm demand using multibank borrowers, \citet{amiti2018much} extend it to granular bank shocks, and \citet{degryse2019identifying} recover shocks from market and sector cells so that single bank firms contribute as well. On the real side, \citet{chodorow2014employment} shows that firms attached to distressed banks cut employment in the United States, \citet{greenstone2020credit} find small aggregate effects of local lending shocks in normal times, and \citet{gutierrez2023credit} show that in Mexico a one standard deviation credit supply shock raises formal employment growth by about 1.4 percentage points.\footnote{The response is not confined to marginal borrowers. \citet{melcangi2024precautionary} shows that even unconstrained firms hoard cash and shed employment in a credit crisis.} These designs share a constraint. Credit registries and social security records observe the formal sector by construction, so the outcome margin stops at the boundary of formality. By matching the universe of business loans to an economic census that counts informal establishments, we move the outcomes past that boundary and find that credit supply operates on the boundary itself. Credit expansions leave the total number of firms unchanged and recompose it instead, with more formal firms, faster formalization, and slower movement back to informality.\footnote{The instrument follows the quasi-experimental Shift-Share framework of \citet{borusyak2022quasi}, with exposure robust inference from \citet{adao2019shiftshare} and diagnostics in the spirit of \citet{goldsmith2020bartik}.}
+This paper relates to three strands of literature. The first is the effects of credit supply shocks on real outcomes. On the methods, to disentangle demand from supply in credit, \citet{khwaja2008tracing} rely on multi-bank firms and \citet{degryse2019identifying} on credit changes at the market-sector level to include also single bank firms. \citet{amiti2018much} extend the decomposition to granular bank shocks. Regarding the effects on advanced economies, \citet{chodorow2014employment} shows the reduction in employment of US firms connected to distressed banks, whereas \citet{greenstone2020credit} find a small effect on labor after a county credit shock. \citet{huber2018disentangling} finds reductions in employment and output in German counties. In developing economies, \citet{banerjee2014firms} states that small firms are credit constrained. In Mexico, \citet{morais2019international} use the supervisory data on the universe of bank loans to identify credit supply shocks from foreign monetary policy and find strong real effects on firms, \citet{gutierrez2023credit} estimate that one standard deviation credit supply shock increases formal employment by 1.4 percentage points and \citet{bruhn2014real} argue that opening a bank branch raises informal business ownership, employment and income.\footnote{In Brazil, formal employment increased after a reform that expanded credit \citep{fonseca2022financial}. \citet{melcangi2024precautionary} shows that even unconstrained firms increase their cash reserves and reduce employment in a credit crisis.}  
 
-The second literature studies informality and the policies that move it. The modern reading treats informal firms as a margin of development rather than a tax dodge alone, with \citet{la2014informality} and \citet{busso2012formal} documenting their prevalence and productivity costs, \citet{ulyssea2018firms} modeling the choice between registering the firm and hiding workers in Brazil, and \citet{meghir2015wages} embedding the sector choice in labor market search. The policy levers this literature evaluates are fiscal and administrative. Tax simplification in Brazil raised formality modestly \citep{rocha2018lower}, enforcement raises it at a cost \citep{almeida2012enforcement}, and the Mexican quasi-experimental record on tax side reforms finds formality responses near zero \citep{campos2020effects,bobba2021labor}.\footnote{Field experiments that subsidize registration find similarly small and often transitory effects, as in the Nicaraguan intervention studied by \citet{sutter2017transitioning}.} Relative to this work, the lever here is financial rather than fiscal, and the evidence is causal at the market level, so the paper documents that credit terms move the formalization margin that enacted tax reforms in the same country did not. The model matches this evidence in kind. Formality is a firm level status with entry, exit, and switching in both directions, disciplined by census transition rates, rather than an absorbing state.\footnote{\citet{adom2025structural} estimates a related transition model for Nigeria. The financial side here is richer, with participation costs, spreads, and collateral capacities by sector, and it is identified from quasi-experimental variation rather than from the cross section alone.}
+However, this literature is constrained by the fact that administrative records do not capture informal firms and household surveys do not follow the firm, its loans, or its formality status over time, so this literature is incapable to assessing whether credit affects the informal sector or the formality decision. Our contribution is to overcome this constraint by matching the universe of business loans to social security records and economic census. We show that loans also affect informal firms, not only formal ones, and the formality decision itself. In particular, we find that credit supply expansions increase formalization and decrease movement back to informality, increasing the formality share.\footnote{The instrument computation follows the quasi-experimental Shift-Share framework of \citet{borusyak2022quasi}, with exposure robust inference from \citet{adao2019shiftshare} and diagnostics in the spirit of \citet{goldsmith2020bartik}.}
 
-The third literature puts financial frictions into firm dynamics. The tradition runs from \citet{hopenhayn1992entry} through \citet{cooley2001financial} and \citet{gomes2001financing}, with borrowing limits founded on limited enforcement in \citet{albuquerque2004optimal} and \citet{clementi2006theory}, development applications in \citet{arellano2012firm}, \citet{midrigan2014finance}, and \citet{moll2014productivity}, and wealth constrained entry going back to \citet{evans1989estimated}. Closest to this paper, \citet{d2012financial} and \citet{erosa2023public} study informality in economies with financial frictions, where the sector choice responds to financing conditions.\footnote{\citet{erosa2023public} model both the intensive and the extensive margins of evasion. Here the intensive margin is deliberately shut down so that the model's sector indicator matches the census classification behind every empirical moment.} we contribute on two fronts. The estimation disciplines the financial block with quasi-experimental moments, stacking the Shift-Share coefficients with the census cross section, so the incidence of an actual credit supply shock is an estimated object rather than a calibrated one. And the estimates locate the binding friction in a place this literature rarely prices, the fixed cost of participating in formal finance, which at twenty six wage units dwarfs the spread and collateral gaps. The three strands meet in one sentence. Formality is also a financing decision.
+The second strand of literature is on informality. \citet{la2014informality} reveal that informal firms are small, unproductive, and rarely formalize. \citet{ulyssea2020informality} presents an extensive survey on the causes and consequences of informality. In Mexico, \citet{levy2018under} and \citet{busso2012formal} position informality as the main source of misallocation and low productivity, while \citet{alvarez2024informality} find that the informality growth had little effect on aggregate productivity. At the modeling level, \citet{ulyssea2018firms} separates the intensive and the extensive margins of informality, \citet{meghir2015wages} and \citet{bobba2021labor} integrate the formality choice into a job search model, and \citet{haanwinckel2021workforce} rationalize informality through compensating differentials. Regarding empirical estimations on the causes of informality, \citet{imbert2026rural} find that a labor supply shock, rural migration, affects the informality share. 
+
+However, the main margins studied are the fiscal and administrative costs of formality. In Brazil, \citet{rocha2018lower} find that lowering taxes formalizes existing informal firms, with a low elasticity, and \citet{almeida2012enforcement} that stricter enforcement raises formal employment. In Mexico, simplifying registration has modest effects on formalization, mainly on wage earners opening a business rather than on informal firms \citep{bruhn2011license, kaplan2011entry}. Moreover, policies that changed the relative cost of formality”, like non-contributory health insurance or the 2019 border zone tax cut, reduced formalization of small firms or left formal employment unchanged \citep{bosch2014trade, campos2020effects}.\footnote{Field experiments that reimburse the registration cost find similarly small effects \citep{de2013demand}.} In contrast to this literature, we explore the financial margin at the market level in a causal way. Unlike the modest effects of previous policies, we find that formality status is sensitive to loan terms. Our model allows, guided by the data evidence, that firms switch in both directions the formality decision, whereas previous models do not allow a formal firm to become informal.\footnote{\citet{adom2025structural} calibrates a dynamic model for Nigeria in which financial constraints delay the formalization of informal firms, whereas \citet{dix2021trade} study the effects of trade on informality in Brazil.}
+
+The third strand of literature relates financial frictions to firm dynamics. \citet{hopenhayn1992entry} provides the foundation of firm dynamics models, \citet{evans1989estimated} shows that wealth constrains entry into entrepreneurship, and \citet{cooley2001financial} and \citet{gomes2001financing} integrate the financial dimension into these dynamic models. \citet{albuquerque2004optimal} and \citet{clementi2006theory} add borrowing limits based on limited enforcement. \citet{buera2011finance}, \citet{arellano2012firm}, \citet{midrigan2014finance} and \citet{moll2014productivity} apply these models to development economics. Regarding the literature that links the formality choice to finance, \citet{straub2005informal} adds the credit market channel, where firms formalize to get access to credit. \citet{antunes2007start} and \citet{quintin2008contract} connect the size of the informal economy to enforcement of credit contracts. \citet{d2012financial}, \citet{d2016access}, \citet{franjo2022financial} and \citet{erosa2023public} integrate the formality choice in an economy with  heterogeneous firms, where they calibrate the financial disadvantage of informality and trace it to output, productivity, tax revenue. For Brazil, \citet{d2016access} studies formalization after the credit expansion of 2000. 
+
+The empirical literature linking informality and finance is thinner. \citet{beck2014firms} show that firm evasion is lower in places with more credit information and branch reach. \citet{gandelman2016impact} finds that industries more dependent on finance have fewer informal jobs where credit is more present. \citet{fajnzylber2011does} find that the gains from formalizing in Brazil do not run through access to credit. However, none of this evidence observes the loan terms for informal firms or follows the formality status of firms over time and the calibrated models typically exclude informal firms from credit \citep{franjo2022financial}. Our contribution is demonstrating that informal firms access credit and that the formality decision depends on the formal-informal gap of loan terms: interest rates, collateral and loan size. Moreover, instead of calibrating the financial gap, we measure it in the loan registry and change it with quasi-experimental variation, confirming the models’ predictions.
+
+% \section{Literature review} \label{2}
+
+% This paper speaks to three literatures. The first traces credit supply shocks to real outcomes. A within firm identification strategy introduced by \citet{khwaja2008tracing} separates bank supply from firm demand using multibank borrowers, \citet{amiti2018much} extend it to granular bank shocks, and \citet{degryse2019identifying} recover shocks from market and sector cells so that single bank firms contribute as well. On the real side, \citet{chodorow2014employment} shows that firms attached to distressed banks cut employment in the United States, \citet{greenstone2020credit} find small aggregate effects of local lending shocks in normal times, and \citet{gutierrez2023credit} show that in Mexico a one standard deviation credit supply shock raises formal employment growth by about 1.4 percentage points.\footnote{The response is not confined to marginal borrowers. \citet{melcangi2024precautionary} shows that even unconstrained firms hoard cash and shed employment in a credit crisis.} These designs share a constraint. Credit registries and social security records observe the formal sector by construction, so the outcome margin stops at the boundary of formality. By matching the universe of business loans to an economic census that counts informal establishments, we move the outcomes past that boundary and find that credit supply operates on the boundary itself. Credit expansions leave the total number of firms unchanged and recompose it instead, with more formal firms, faster formalization, and slower movement back to informality.\footnote{The instrument follows the quasi-experimental Shift-Share framework of \citet{borusyak2022quasi}, with exposure robust inference from \citet{adao2019shiftshare} and diagnostics in the spirit of \citet{goldsmith2020bartik}.}
+
+% The second literature studies informality and the policies that move it. The modern reading treats informal firms as a margin of development rather than a tax dodge alone, with \citet{la2014informality} and \citet{busso2012formal} documenting their prevalence and productivity costs, \citet{ulyssea2018firms} modeling the choice between registering the firm and hiding workers in Brazil, and \citet{meghir2015wages} embedding the sector choice in labor market search. The policy levers this literature evaluates are fiscal and administrative. Tax simplification in Brazil raised formality modestly \citep{rocha2018lower}, enforcement raises it at a cost \citep{almeida2012enforcement}, and the Mexican quasi-experimental record on tax side reforms finds formality responses near zero \citep{campos2020effects,bobba2021labor}.\footnote{Field experiments that subsidize registration find similarly small and often transitory effects, as in the Nicaraguan intervention studied by \citet{sutter2017transitioning}.} Relative to this work, the lever here is financial rather than fiscal, and the evidence is causal at the market level, so the paper documents that credit terms move the formalization margin that enacted tax reforms in the same country did not. The model matches this evidence in kind. Formality is a firm level status with entry, exit, and switching in both directions, disciplined by census transition rates, rather than an absorbing state.\footnote{\citet{adom2025structural} estimates a related transition model for Nigeria. The financial side here is richer, with participation costs, spreads, and collateral capacities by sector, and it is identified from quasi-experimental variation rather than from the cross section alone.}
+
+% The third literature puts financial frictions into firm dynamics. The tradition runs from \citet{hopenhayn1992entry} through \citet{cooley2001financial} and \citet{gomes2001financing}, with borrowing limits founded on limited enforcement in \citet{albuquerque2004optimal} and \citet{clementi2006theory}, development applications in \citet{arellano2012firm}, \citet{midrigan2014finance}, and \citet{moll2014productivity}, and wealth constrained entry going back to \citet{evans1989estimated}. Closest to this paper, \citet{d2012financial} and \citet{erosa2023public} study informality in economies with financial frictions, where the sector choice responds to financing conditions.\footnote{\citet{erosa2023public} model both the intensive and the extensive margins of evasion. Here the intensive margin is deliberately shut down so that the model's sector indicator matches the census classification behind every empirical moment.} we contribute on two fronts. The estimation disciplines the financial block with quasi-experimental moments, stacking the Shift-Share coefficients with the census cross section, so the incidence of an actual credit supply shock is an estimated object rather than a calibrated one. And the estimates locate the binding friction in a place this literature rarely prices, the fixed cost of participating in formal finance, which at twenty six wage units dwarfs the spread and collateral gaps. The three strands meet in one sentence. Formality is also a financing decision.
 
 \section{Data}
 \label{sec:data}
 
-This work uses three microdata sources and the Bank of Mexico definition of local labor markets in Mexico. The first data source is the credit registry and includes the universe of bank loans to formal and informal firms, where amounts, costs, and collateral requirements are observed. The second source are the social security records that measure formal employment and wages. The third dataset is the economic census, which is a quinquennial survey of formal and informal establishments, on which we can follow establishments over time. 
+This work uses three microdata sources and the Bank of Mexico definition of local labor markets in Mexico. The first data source is the credit registry and includes the universe of bank loans to formal and informal firms, where amounts, costs, and collateral requirements are observed. The second source are the social security records that measure formal employment and wages. The third dataset is the economic census, which is a quinquennial enumeration of formal and informal establishments with fixed facilities, on which we can follow establishments over time. 
 
 The credit registry is generated by the banking commission (CNBV) from the regulatory report R04C that every bank has to file by law.\footnote{There is an aggregate, public version of this data available on the commission's website. We used the individual non-public version, accessed through the Bank of Mexico secured environment, EconLab, where all the information is anonymized.} This data includes the universe of commercial bank loans to businesses, from 2005 to date, at a monthly frequency. The characteristics of each loan are included, such as the amount, the interest rate, the collateral requirement, and the anonymized identity of the firm. It includes 119 banks and 1.3 million borrowing firms, between 2005 and 2025.
 
@@ -322,129 +341,107 @@ Coverage & 0.921 & 0.110 & 0.762 & 0.967 & 1.000 & 1,394 \\
 \section{A parsimonious model of formality and finance}
 \label{sec:toy}
 
-The objective of this section is to build a parsimonious model that rationalizes the link between banking financial conditions and firm's formality decisions. The model is a stationary firm dynamics model in the tradition of \citet{hopenhayn1992entry}, with two operating regimes as in \citet{ulyssea2018firms} and costly external finance as in \citet{gomes2001financing}. We let the empirical facts observed in the data (Section~\ref{sec:descriptives}) to guide our modeling decisions. For instance, we allow firms to switch back and forth their formality status, as observed in Table~\ref{firms_transition}, and informal firms to access bank loans (Table~\ref{tab:desc_firms}, panel A and B) under sector-specific loan terms (Table~\ref{tab:desc_firms}, panel B). The model will serve as stepping stone for the empirical strategy presented in Section~\ref{empirical_strategy_section}. This model will proof helpful to grasp the intuition behind the mechanisms at play and to identify which kind of firms are the treated ones when financial conditions change.
+The objective of this section is to build a parsimonious model that rationalizes the link between bank credit conditions and firms' formality decisions. The model is a stationary firm dynamics model in the tradition of \citet{hopenhayn1992entry}, with two operating regimes as in \citet{ulyssea2018firms} and costly external finance as in \citet{gomes2001financing}. The empirical facts of Section~\ref{sec:descriptives} guide the modeling decisions. For instance, we allow firms to switch back and forth their formality status, as observed in Table~\ref{firms_transition}, and informal firms to access bank loans (Table~\ref{tab:desc_firms}, panels A and B) under sector-specific loan terms (Table~\ref{tab:desc_firms}, panel B). The model identifies which firms respond when financial conditions change and signs their response. Moreover, it serves as the stepping stone for the empirical strategy of Section~\ref{empirical_strategy_section}.
 
 \subsection{Environment}
 \label{sec:toy-env}
 
-Without loss of generality, let time to be discrete and last two-periods, $t\in\{1,2\}$. The economy is populated by two type of risk-neutral entrepreneurs: incumbents and potential entrants. An incumbent entrepreneur owns a firm that belongs to a (formal or informal) sector $s\in\{i,f\}$ and holds $k_{1}>0$ installed capital at period 1; while a potential entrant entrepreneur is endowed with financial wealth $k_{0}\geq 0$ and may or may not start a firm in sector $s\in\{i,f\}$ in period 2. Every entrepreneur discounts period 2 at factor $\beta\in(0,1)$ and consumes her dividends and the the depreciated capital, which depreciates at rate $\delta\in(0,1)$. We assume that the output is the \textit{numéraire} good, the wage $w$ is exogenous to the firm, and both, output and wages before taxes, are the same for formal and informal firms. These assumptions allows us to focus our attention on the formality transitions caused by financial conditions and are first-order inconsequential for the conclusions. 
- 
+For simplicity, time is discrete and lasts two periods, $t\in\{1,2\}$. The economy is populated by two types of risk-neutral entrepreneurs: incumbents and potential entrants. An incumbent entrepreneur owns a firm that belongs to a (formal or informal) sector $s\in\{i,f\}$ and holds $k_{1}>0$ installed capital at period 1, while a potential entrant entrepreneur is endowed with financial wealth $k_{0}\geq 0$ and may or may not start a firm in sector $s\in\{i,f\}$ in period 2. Every entrepreneur discounts period 2 at factor $\beta\in(0,1)$ and consumes her dividends and the depreciated capital, which depreciates at rate $\delta\in(0,1)$. We assume that output is the \textit{numéraire} good, the wage $w$ is exogenous to the firm, and both output and wages before taxes are the same for formal and informal firms. These assumptions allow us to focus on the formality transitions caused by financial conditions and are first-order inconsequential for the conclusions.
+
 An active firm in sector $s$ with capital $k$ and labor $\ell$ produces
 
 \begin{equation}
   y \;=\; \theta\, k^{\alpha}\ell^{\nu},
-  \qquad \alpha,\nu>0,\qquad \alpha+\nu<1 .
+  \qquad \alpha,\nu>0,\qquad \alpha+\nu<1 ,
   \label{eq:toy-tech}
 \end{equation}
 
-Where the log productivity combines transitory shocks and a permanent component $v$, drawn at birth from $\ln v\sim N(0,\sigma^{2})$ and known to the firm, such that:
+where log productivity combines a permanent component $v$, drawn at birth and known to the firm, and transitory shocks that follow an AR(1) process (Appendix~\ref{app:toy-details}). As shown below, the expectation of the profitability index $x\equiv\theta^{1/(1-\nu)}$ is the only object of this process that enters the firm's decisions.
+
+A formal firm pays a proportional tax $\tau_y\in[0,1)$ on revenue and a payroll tax $\tau_{\ell}\geq 0$ on its wage bill. An informal firm evades both taxes. Therefore, the only advantages of formality are financial, together with a survival advantage introduced below, and the only advantages of informality are fiscal and its lower fixed costs.\footnote{ For tractability, we exclude the size-dependent audit cost of informal firms used by \citet{ulyssea2018firms}. Including it would make formality always optimal for large firms, regardless of financial conditions. For smaller firms, for which this cost is negligible, the exclusion is inconsequential, the financial advantage of formality and the conclusions of the model still hold.} Static profits are
 
 \begin{equation}
-  \ln\theta_{1} \;=\; \ln v + \varepsilon_{1},
-  \quad
-  \ln\theta_{2} \;=\; \rho\,\ln\theta_{1} + (1-\rho)\ln v +
-  \varepsilon_{2},
-  \quad \varepsilon_{t}\stackrel{iid}{\sim} N(0,\sigma_{\varepsilon}^{2}),
-  \quad \rho\in(0,1)
-  \label{eq:toy-theta}
-\end{equation}
- 
-A formal firm pays a proportional tax $\tau_y\in[0,1)$ on revenue and a payroll tax $\tau_{\ell}\geq 0$ on its wage bill. An informal firm evades both taxes but is exposed to potential fines that rises with size, in the spirit of \citet{ulyssea2018firms}. Therefore, a firm in sector $s$ hires $\ell^{h}$ at the cost
-
-\begin{equation}
-  \mathcal{C}_{s}(\ell^{h}) = \begin{cases}
-      (1+\tau_{\ell})\,w\,\ell^{h} & \text{if formal, } s = f \\
-      w\,\ell^{h}\Big(1+\frac{\ell^{h}}{\eta_{i}}\Big) & \text{if informal, } s = i
-  \end{cases}
-  \label{eq:gen-Ci}
+    \pi_{s}(\theta,k)=\max_{\ell\geq0}\,(1-\tau_{y}^{s})\,\theta k^{\alpha}\ell^{\nu}-(1+\tau_{\ell}^{s})\,w\,\ell ,
 \end{equation}
 
-where $\eta_{i}>0$. Notice that informal firms therefore save $\tau_{\ell}$ per worker at small scale, however the saving erodes as the firm grows. This makes formality the optimal regime for large firms even absent financial motives. However, for small enough firms, the only advantages of formality are financial and the only advantages of informality are fiscal and its lower fixed costs. Thus, is for this firms that the financial conditions will play a role. Static profits then are
+with $\tau_{y}^{f}=\tau_{y}$, $\tau_{\ell}^{f}=\tau_{\ell}$ and $\tau_{y}^{i}=\tau_{\ell}^{i}=0$. The model excludes on purpose the possibility of the intensive margin of informality, i.e. firms paying payroll taxes only on part of their total work force. This decision is data driven. As Table \ref{transition_intensive} shows, only 0.7 and 5.3 percent of firms used the intensive margin in 2014 and 2019, respectively.
 
-\begin{equation}
-    \pi_{s}(\theta,k)=\max_{\ell^{h}\geq0}(1-\tau_{y}^{s})\theta k^{\alpha}(1+\ell^{h})^{\nu}-\mathcal{C}_{s}(\ell^{h})
-\end{equation}
-
-with $\tau_{y}^{f}=\tau_{y}$ and $\tau_{y}^{i}=0$. The model excludes on purpose the possibility of the intensive margin of informality, i.e. firms paying payroll taxes only on part of their total work force. This decision is data driven. As Table \ref{transition_intensive} shows, only 0.7 and 5.3 percent of firms used the intensive margin in 2014 and 2019, respectively. Moreover, this margin is sensitive to enforcement and labor cost policy rather than to credit supply.\footnote{Self-employment is possible in this model and happens at the corner solution $\ell^{h}=0$, which that accounts for the mass of owner only firms in the census.}
-
-Wages and taxes are paid within each period out of contemporaneous revenue and wealth. Investment, in contrast, must be paid one period ahead it becomes productive. Therefore, a firm raises external funds, denoted by $a\geq0$, to cover any difference between the cost of desired capital and its internal funds.\footnote{External finance includes a wide range of funding sources. This paper focuses on bank loans and abstracts from the optimal choice of financing instruments. More broadly, the financing-cost function can be interpreted as a reduced-form representation of other sources of costly external finance, provided that their relevant features are captured by the same specification.}. External finance entails a sector-specific cost, so a firm raising an amount $a$ incurs a financing cost of the form
+Wages and taxes are paid within each period out of contemporaneous revenue and wealth. Investment, in contrast, must be paid one period before it becomes productive. Therefore, a firm raises external funds, denoted by $a\geq0$, to cover any difference between the cost of desired capital and its internal funds.\footnote{External finance includes a wide range of funding sources. This paper focuses on bank loans and abstracts from the optimal choice of financing instruments. More broadly, the financing-cost function can be interpreted as a reduced-form representation of other sources of costly external finance, provided that their relevant features are captured by the same specification.} External finance entails a sector-specific cost, so a firm raising an amount $a$ incurs a financing cost of the form
 
 \begin{equation}
   \Phi_{s}(a) \;=\; \phi_{s}\,a , \qquad
-  \phi{_i} \;>\; \phi_{f}\;\geq\;0 ,
+  \phi_{i} \;>\; \phi_{f}\;\geq\;0 ,
   \label{eq:toy-fincost}
 \end{equation}
 
-which is paid within period and on top of the repayment of the principal. The parameter $\phi_{s}$ is therefore interpreted as the spread in each sector between the marginal cost of external funds and the risk-free rate. The spread in the informal sector is higher because informal firms cannot pledge audited accounts, registered assets, or formal payroll as information collateral, and it is in line with what is observed in the data (Table~\ref{tab:desc_firms}, panel B). 
+which is paid within period and on top of the repayment of the principal. The parameter $\phi_{s}$ is therefore interpreted as the spread in each sector between the marginal cost of external funds and the risk-free rate. The spread in the informal sector is higher because informal firms cannot pledge audited accounts, registered assets, or formal payroll as information collateral, in line with the data (Table~\ref{tab:desc_firms}, panel B).
 
-Besides the sector difference in price, there is a difference in the amount of external funds available to a firm, which are limited by a collateral constraint on the capital being installed. 
+Besides the sector difference in price, there is a difference in the amount of external funds available to a firm, which is limited by a collateral constraint on the capital being installed,
 
 \begin{equation}
   a \;\leq\; b_{s}\,k , \qquad 0\leq b_{i} <
-  b_{f} < 1 ,
+  b_{f} < 1 .
   \label{eq:toy-collateral}
-\end{equation} 
+\end{equation}
 
-This constraint means that lenders only finance a fraction $b_{s}$ of the installed capital. For formal firms this fraction is higher because being formal raises pledgeability, which is consistent with Table/Figure [x].
+This constraint means that lenders only finance a fraction $b_{s}$ of the installed capital. For formal firms this fraction is higher because being formal raises pledgeability, which is consistent with Table~\ref{tab:desc_firms}.
 
-Hence, the pair $(\phi_{s},b_{s})$ summarizes in a reduce form the financial conditions faced by sector $s$. The empirical results in Section~\ref{results} analyzes the changes in these two parameters by sector and its consequences in formality. Given its importance, all the comparative statics below are taken with respect to these parameters
+Hence, the pair $(\phi_{s},b_{s})$ summarizes in reduced form the financial conditions faced by sector $s$. The annual results of Section~\ref{annual} measure the effects of credit supply shocks on these two parameters, loan rates and collateral by sector. Given their importance, all the comparative statics below are taken with respect to these parameters.
 
-A firm faces entry, $c^{e}_{s}$, operating,  $c_{s}\geq0, \,\ c_{f}>c_{i} \geq 0$, and switching costs, $c_{if},c_{fi}\geq0$. Additionally, in period two and before producing, a sector-specific exogenous death probability is materialized, $\lambda_{s}\in[0,1), \,\ \lambda{i}\geq\lambda{f}$.\footnote{The inequality $\lambda{i}\geq\lambda{f}$ is consistent with the data observed in Table~\ref{firms_transition}.} 
+A firm faces entry, $c^{e}_{s}\geq0$, operating, $c_{s}\geq0$ with $c_{f}>c_{i} \geq 0$, and switching costs, $c_{if},c_{fi}\geq0$. Additionally, in period two and before producing, a sector-specific exogenous death probability materializes, $\lambda_{s}\in[0,1)$ with $\lambda_{i}\geq\lambda_{f}$.\footnote{The inequality $\lambda_{i}\geq\lambda_{f}$ is consistent with the data observed in Table~\ref{firms_transition}.}
 
-The timing is presented in detail in Appendix~\ref{app:toy-details}. A summary of the important aspects is described here. At time $1$, and before observing any shock ($\varepsilon_2$ for productivity and $\lambda_s$ for death), a firm or potential firm must choose her next period sector,  $d \in \{\text{out, informal, formal}\}$. In the transition stage a firm choose the next period optimal level of capital $k_2$ and the level of external funding $a \leq b_{s'}k_2$ at cost $\Phi_{s'}(a)$. Then, in period $2$ and after observing the realization of shocks, active firms produce, sell the depreciated capital and pay taxes, wages, and any cost.
+The timing is presented in detail in Appendix~\ref{app:toy-details}. At time $1$, and before observing any shock ($\varepsilon_2$ for productivity and $\lambda_s$ for death), a firm or potential firm chooses her next period sector, $d \in \{\text{out, informal, formal}\}$. In the transition stage a firm chooses the next period optimal level of capital $k_2$ and the level of external funding $a \leq b_{s'}k_2$ at cost $\Phi_{s'}(a)$. Then, in period $2$ and after observing the realization of shocks, active firms produce, sell the depreciated capital and pay taxes, wages, and any cost.
 
-The internal funds available for a firm are the operating profit of the previous period plus the resale value of depreciated capital, net of the fixed costs and any other switching or entry fee:
-
+The internal funds available to a firm are the operating profit of the previous period plus the resale value of depreciated capital, net of the fixed costs and any other switching or entry fee:
 
 \begin{equation}
   n \;=\;
   \begin{cases}
-    \pi{s}(\theta_{1},k_{1}) - c_{s} + (1-\delta)k_{1}
+    \pi_{s}(\theta_{1},k_{1}) - c_{s} + (1-\delta)k_{1}
       - c_{ss'}\mathbf{1}_{\{s'\neq s\}},
       & \text{incumbent of sector } s,\\[2pt]
-    k_{0} - c^e{s'}, & \text{entrant into } s' ,
+    k_{0} - c^e_{s'}, & \text{entrant into } s' ,
   \end{cases}
   \label{eq:toy-n}
 \end{equation}
 
-with $c_{ss}\equiv 0$. Then, an exiting incumbent simply consumes $n^{\text{exit}}=\pi{s}(\theta_{1},k_{1})-c_{s}+(1-\delta)k_{1}$ and a non-entrant consumes $k_{0}$. 
- 
+with $c_{ss}\equiv 0$. Then, an exiting incumbent simply consumes $n^{\text{exit}}=\pi_{s}(\theta_{1},k_{1})-c_{s}+(1-\delta)k_{1}$ and a non-entrant consumes $k_{0}$.
+
 \subsection{Capital and investment decisions}
 \label{sec:investment_problem}
 
 After solving the static labor problem of the firm, we can re-express her profits as
 
 \begin{equation}
-    \pi_s(\theta, k) = \Omega_s\, x\, k^{\gamma}, 
+    \pi_s(\theta, k) = \Omega_s\, x\, k^{\gamma},
 \end{equation}
 
-where $\gamma \equiv \alpha/(1-\nu) \in (0,1)$, $x \equiv \theta^{1/(1-\nu)}$ is the profitable index, and $\Omega_{s} \equiv (1-\nu)\,(1-\tau_y^{s})^{\frac{1}{1-\nu}} \left[\frac{\nu}{(1+\tau_{\ell}^{s})w}\right]^{\frac{\nu}{1-\nu}}$ collects the technology, wage, and taxes paid in sector $s$. This expression is useful because now profits are linear in $x$ and the single sufficient statistic in every decision below is the expectation of the profitability index, which is $\hat{x} \equiv E[x_2 \mid \mathcal{I}_1]$. All the statements are formally presented in Appendix~\ref{app:toy-details} and all proofs are collected in Appendix~\ref{app:toy-proofs}.
+where $\gamma \equiv \alpha/(1-\nu) \in (0,1)$, $x \equiv \theta^{1/(1-\nu)}$ is the profitability index, and $\Omega_{s} \equiv (1-\nu)\,(1-\tau_y^{s})^{\frac{1}{1-\nu}} \left[\frac{\nu}{(1+\tau_{\ell}^{s})w}\right]^{\frac{\nu}{1-\nu}}$ collects the technology, wage, and taxes paid in sector $s$. This expression is useful because profits are linear in $x$, so the single sufficient statistic in every decision below is the expectation of the profitability index, $\hat{x} \equiv E[x_2 \mid \mathcal{I}_1]$. All the statements are formally presented in Appendix~\ref{app:toy-details} and all proofs are collected in Appendix~\ref{app:toy-proofs}.
 
-Consider now the following problem of capital and external funds at the transition stage of a firm that decided to operate next period in sector $s$, with internal funds $n \geq 0$, and an expected profitability index $\hat x$.
+Consider now the problem of capital and external funds at the transition stage of a firm that decided to operate next period in sector $s$, with internal funds $n \geq 0$ and expected profitability index $\hat x$:
 
 \begin{equation}
   G_{s}(\hat x,n) \;\equiv\; \max_{k\geq0}\;
-  -k - \Phi_{s}\!\big(a\big) + \beta\Big[(1-\lambda{s})\,\Omega_{s}\hat x\,
-      k^{\gamma} + (1-\delta)k\Big], \quad a=\max\{0,k-n\} \leq b_{s}k
+  -k - \Phi_{s}\!\big(a\big) + \beta\Big[(1-\lambda_{s})\,\Omega_{s}\hat x\,
+      k^{\gamma} + (1-\delta)k\Big], \quad a=\max\{0,k-n\} \leq b_{s}k .
   \label{eq:toy-Gdef}
 \end{equation}
 
-Therefore, the value of operating in sector $s$ is $U_{s}(\hat x,n)=n+G_{s}(\hat x,n) -\beta(1-\delta_{s})c_{s}$. In other words, the entrepreneur consumes $n$ minus the resources put into the firm and expects profit net of the fixed cost if it survives plus the depreciated capital resale.
+Therefore, the value of operating in sector $s$ is $U_{s}(\hat x,n)=n+G_{s}(\hat x,n) -\beta(1-\lambda_{s})c_{s}$. In other words, the entrepreneur consumes $n$ minus the resources put into the firm and expects profit net of the fixed cost if it survives plus the depreciated capital resale.
 
-Define the cost of capital as $R^0 \equiv 1-\beta(1-\delta)$ when is acquired with internal funds and as $R_{s} \equiv R^0+\phi{s}$ when capital is paid for with external funds borrowed under sector $s$ conditions. Then, the corresponding optimal capital, $k_s^*(\hat{x}, n)$ targets under these two different prices are
- 
+Define the cost of capital as $R^0 \equiv 1-\beta(1-\delta)$ when it is acquired with internal funds and as $R_{s} \equiv R^0+\phi_{s}$ when capital is paid for with external funds borrowed under sector $s$ conditions. Then, the corresponding optimal capital targets under these two prices are
+
 \begin{equation}
   \bar{k}_{s}(\hat x)
-    = \left[\frac{\gamma \beta(1-\lambda{s})\Omega_{s} \hat x}{R^0}\right]^{\frac{1}{1-\gamma}}
+    = \left[\frac{\gamma \beta(1-\lambda_{s})\Omega_{s} \hat x}{R^0}\right]^{\frac{1}{1-\gamma}}
   \quad > \quad
   \tilde{k}_{s}(\hat x)
-    = \left[\frac{\gamma \beta(1-\lambda{s})\Omega_{s} \hat x}{R_{s}}\right]^{\frac{1}{1-\gamma}},
+    = \left[\frac{\gamma \beta(1-\lambda_{s})\Omega_{s} \hat x}{R_{s}}\right]^{\frac{1}{1-\gamma}}.
   \label{eq:toy-targets}
 \end{equation}
 
-
 Table~\ref{optimal_k_a} summarizes the solution to the capital-financing problem and distinguishes four types of firms. Cash-flow sensitivity refers to the marginal response of optimal capital to internal funds, $\partial k_s^*/\partial n$, holding $\hat{x}$ and $s$ fixed.
-
+ 
 \begin{table}[H]
     \caption{Four regions of optimal capital and external funds}
     \label{optimal_k_a}
@@ -469,9 +466,9 @@ Table~\ref{optimal_k_a} summarizes the solution to the capital-financing problem
     \end{tabular}
 \end{center}
 \end{table}
-
-The first type is an unconstrained firm with sufficient internal funds to finance its internally financed capital target ($n\geq\bar{k}_s$). This firm does not borrow, and its cash-flow sensitivity is zero. The second type is a constrained non-borrower. Its internal funds are insufficient to attain the internally financed capital target, but borrowing is not optimal. The firm therefore invests all its internal funds, so its cash-flow sensitivity is one because each additional unit of internal funds increases capital by one unit. The third type is a borrower that attains the capital target associated with the higher cost of external finance. It borrows the difference between its chosen capital expenditure and its internal funds. Its cash-flow sensitivity is zero because additional internal funds reduce borrowing without changing its capital choice. The fourth type is a collateral-constrained firm. This firm borrows up to its collateral limit and invests less than its externally financed capital target. Its cash-flow sensitivity is $1/(1-b_s) > 1$. Each additional unit of internal funds supports $1/(1-b_s)$ additional units of capital, including $b_s/(1-b_s)$ units financed through additional borrowing. Finally, notice that the borrowing incidence rises with expected productivity and falls with internal funds. Appendix~\ref{app:toy-details} states the full policy and its derivatives. 
  
+The first type is an unconstrained firm with sufficient internal funds to finance its internally financed capital target ($n\geq\bar{k}_s$). This firm does not borrow, and its cash-flow sensitivity is zero. The second type is a constrained non-borrower. Its internal funds are insufficient to attain the internally financed capital target, but borrowing is not optimal. The firm therefore invests all its internal funds, so its cash-flow sensitivity is one because each additional unit of internal funds increases capital by one unit. The third type is a borrower that attains the capital target associated with the higher cost of external finance. It borrows the difference between its chosen capital expenditure and its internal funds. Its cash-flow sensitivity is zero because additional internal funds reduce borrowing without changing its capital choice. The fourth type is a collateral-constrained firm. This firm borrows up to its collateral limit and invests less than its externally financed capital target. Its cash-flow sensitivity is $1/(1-b_s) > 1$. Each additional unit of internal funds supports $1/(1-b_s)$ additional units of capital, including $b_s/(1-b_s)$ units financed through additional borrowing. 
+
 \subsection{Sector decision}
 \label{sec:toy-sorting}
 
@@ -484,90 +481,302 @@ Define the origin $o \in$ \{out, informal-incumbent, formal-incumbent\}, the des
   \label{eq:toy-Delta}
 \end{equation}
 
-There is a unique threshold above which a firm in origin $o$ with internal funds $n_o$ decides to be formal and is defined as $\hat x_o^{if}: \Delta_{o}(\hat x_o^{if},n_{o}) = 0$ (Appendix~\ref{app:toy-details}). More in general, for each origin $o$ and a pair of destinations $d, d'$ there exists a unique productivity threshold that makes one of the destination optimal\footnote{Appendix~\ref{app:toy-details} states the conditions under which the order, unicity and existence of these thresholds hold. In particular, Assumption~\ref{ass:A1} requires that the financing advantage of formality outweighs its fiscal cost net of the survival advantage.}. Define the productivity threshold between origin $o$ and two destinations $d$ and $d'$ as $\hat x_o^{dd'}$. Then we can order each threshold in the expected productivity line such that $ \hat x_i^{oi} < \hat x_o^{oi} < \hat x_f^{oi} < \hat x_f^{if} < \hat x_o^{if} < \hat x_i^{if} $. Table~\ref{threshold} summarizes these thresholds
+There is a unique threshold above which a firm in origin $o$ with internal funds $n_o$ decides to be formal, defined by $\hat x_o^{if}$, such that $\Delta_{o}(\hat x_o^{if},n_{o}) = 0$ (Appendix~\ref{app:toy-details}). More generally, for each origin $o$ and pair of destinations $d, d'$ there exists a unique productivity threshold $\hat x_o^{dd'}$ that makes one of the destinations optimal.\footnote{Appendix~\ref{app:toy-details} states the conditions under which the order, uniqueness and existence of these thresholds hold. In particular, Assumption~\ref{ass:A1} requires that the financing advantage of formality outweighs its fiscal cost net of the survival advantage.} The thresholds are ordered on the expected productivity line such that $ \hat x_i^{oi} < \hat x_o^{oi} < \hat x_f^{oi} < \hat x_f^{if} < \hat x_o^{if} < \hat x_i^{if} $. Figure~\ref{fig:thresholds} summarizes these thresholds and previews the comparative statics below.
 
-\begin{table}[H]
-    \caption{Four regions of optimal capital and external funds}
-    \label{threshold}
-    \begin{center}
-        \begin{tikzpicture}[xscale=1.05, yscale=0.86, every node/.style={font=\normalsize}]
-          % entrant line
-          \draw[->] (0,2) -- (12,2) node[right] {$\hat x$};
-          \node[left] at (0,2) {Out/Entrant};
-          \foreach \x/\lab in {1.9/{$\hat x_o^{oi}$}, 7.5/{$\hat x_o^{if}$}}
-            \draw (\x,1.9) -- (\x,2.1) node[above] {\lab};
-          \node at (0.9,2.28) {Out};
-          \node at (4.6,2.28) {Enter Informal};
-          \node at (10,2.28) {Enter Formal};
-          % informal incumbent
-          \draw[->] (0,1) -- (12,1) node[right] {$\hat x$};
-          \node[left] at (0,1) {i-incumbent};
-          \foreach \x/\lab in {1.3/{$\hat x_i^{oi}$}, 8.2/{$\hat x_i^{if}$}}
-            \draw (\x,0.9) -- (\x,1.1) node[above] {\lab};
-          \node at (0.6,1.28) {Exit};
-          \node at (4.6,1.28) {Stay Informal};
-          \node at (10,1.28) {Switch to Formal};
-          % formal incumbent
-          \draw[->] (0,0) -- (12,0) node[right] {$\hat x$};
-          \node[left] at (0,0) {f-incumbent};
-          \foreach \x/\lab in {2.5/{$\hat x_f^{oi}$}, 6.8/{$\hat x_f^{if}$}}
-            \draw (\x,-0.1) -- (\x,0.1) node[above] {\lab};
-          \node at (1.3,0.28) {Exit};
-          \node at (4.6,0.28) {Switch to Informal};
-          \node at (10,0.28) {Stay Formal};
-        \end{tikzpicture}
-    \end{center}
-\end{table}
+\begin{figure}[H]
+    \caption{Sector thresholds by origin state and the effect of better formal credit terms}
+    \label{fig:thresholds}
+    \centering
+    \begin{tikzpicture}[xscale=1.05, yscale=1.0, every node/.style={font=\small}]
+      % entrant line
+      \draw[->] (0,3.2) -- (12,3.2) node[right] {$\hat x$};
+      \node[left] at (0,3.2) {Out/Entrant};
+      \draw (1.9,3.1) -- (1.9,3.3) node[below=4pt] {$\hat x_o^{oi}$};
+      \draw (7.5,3.1) -- (7.5,3.3) node[below=4pt] {$\hat x_o^{if}$};
+      \draw[dashed] (6.3,3.1) -- (6.3,3.3) node[below=4pt] {$\hat x_o^{if\prime}$};
+      \draw[->, thick] (7.4,3.42) -- (6.4,3.42);
+      \node at (0.9,3.6) {Out};
+      \node at (4.1,3.6) {Enter informal};
+      \node at (10,3.6) {Enter formal};
+      % informal incumbent
+      \draw[->] (0,1.6) -- (12,1.6) node[right] {$\hat x$};
+      \node[left] at (0,1.6) {$i$-incumbent};
+      \draw (1.3,1.5) -- (1.3,1.7) node[below=4pt] {$\hat x_i^{oi}$};
+      \draw (8.2,1.5) -- (8.2,1.7) node[below=4pt] {$\hat x_i^{if}$};
+      \draw[dashed] (7.0,1.5) -- (7.0,1.7) node[below=4pt] {$\hat x_i^{if\prime}$};
+      \draw[->, thick] (8.1,1.82) -- (7.1,1.82);
+      \node at (0.6,2.0) {Exit};
+      \node at (4.5,2.0) {Stay informal};
+      \node at (10.3,2.0) {Switch to formal};
+      % formal incumbent
+      \draw[->] (0,0) -- (12,0) node[right] {$\hat x$};
+      \node[left] at (0,0) {$f$-incumbent};
+      \draw (2.5,-0.1) -- (2.5,0.1) node[below=4pt] {$\hat x_f^{oi}$};
+      \draw (6.8,-0.1) -- (6.8,0.1) node[below=4pt] {$\hat x_f^{if}$};
+      \draw[dashed] (5.6,-0.1) -- (5.6,0.1) node[below=4pt] {$\hat x_f^{if\prime}$};
+      \draw[->, thick] (6.7,0.22) -- (5.7,0.22);
+      \node at (1.2,0.4) {Exit};
+      \node at (3.9,0.4) {Switch to informal};
+      \node at (9.6,0.4) {Stay formal};
+    \end{tikzpicture}
+    \par\footnotesize \textit{Notes:} Each line orders the destinations of an origin state by expected profitability. Solid ticks are the thresholds at baseline. As an example, dashed ticks and arrows show where the formality thresholds move after a relative improvement in formal loan terms with respect to informal ones ($\Delta \phi_{f} < \Delta \phi_{i} \leq 0$ or $\Delta b_{f} > \Delta b_{i} \geq 0$) for firms that borrow. The movements of the thresholds between exit and informality are not drawn, for clarity, and no threshold moves for firms that do not borrow.
+\end{figure}
 
-So far we have established two separated implications of the model. The first one was an anatomy of financially constrained firms based on the firm expected productivity and her internal funds. The second fact was an endogenous sector sorting based on the expected productivity of the firm. However, the relevant predictions of the model are in the interaction of these two implications. To see this, notice that for borrower and collateral-constrained firms (regions three and four in Table~\ref{optimal_k_a}) the sector productivity threshold depends on the financial conditions (parameters $\phi_s$ and $b_s$), this is $\hat x_o^{dd'}(\phi_s,b_s,\phi_{s'},b_{s'})$ $\forall o,d,d',s,s' \in $ \{out, informal, formal\}.
+So far we have established two separate implications of the model. The first is an anatomy of financially constrained firms based on the firm's expected productivity and her internal funds. The second is an endogenous sector sorting based on the expected productivity of the firm. However, the relevant predictions of the model are in the interaction of these two implications. To see this, notice that for borrowers and collateral-constrained firms the sector productivity thresholds depend on the financial conditions (parameters $\phi_s$ and $b_s$), that is, $\hat x_o^{dd'}(\phi_s,b_s,\phi_{s'},b_{s'})$ for all $o,d,d',s,s' \in$ \{out, informal, formal\}, whereas for unconstrained firms they do not. Proposition~\ref{prop:statics} in Appendix~\ref{app:comparative_stats} reports the sign of each threshold's response to the financial conditions for borrowing firms.\footnote{We do not draw implications or predictions for the exit margins. This is on purpose, the model does not incorporate competition among firms, which would make the modeling of the exit margin more realistic, and it was not built for that. It was built to make predictions about formalization and entry, not about exit.}
 
-Let $D_o \equiv (\phi_i - \phi_f) n_{o} + (1+\phi_{f})\,\kappa_{of} - (1+\phi_{i})\,\kappa_{oi} + \beta\big[(1-\lambda_{f})c_{f} -(1-\lambda_{i})c_{i}\big] $ and $\Psi_{s}(\hat x;R)\equiv(1-\gamma)\,\gamma^{\frac{\gamma}{1-\gamma}} \big(\beta(1-\lambda{s})\Omega_{s} \hat x\big)^{\frac{1}{1-\gamma}}R^{-\frac{\gamma}{1-\gamma}}$, then for borrowing (borrowers and collateral-constrained) firms, Table~\ref{comparative_stats} summarizes how each sector threshold react to changes in the financial conditions. 
+These signs yield testable predictions that are tested against the empirical results in Section~\ref{results}. A relative improvement of the loan terms for formal firms with respect to those faced by informal firms lowers every formality threshold, the arrows of Figure~\ref{fig:thresholds}.\footnote{When both sectors improve, the formality thresholds fall whenever the formal improvement is larger once weighted by the firm's borrowing in each sector, $a^{*}_{f}|\Delta\phi_{f}|>a^{*}_{i}|\Delta\phi_{i}|$ by the first row of Proposition~\ref{prop:statics}, with the analogous condition for collateral. When only formal terms improve, they fall unconditionally.} This means that relatively cheaper or more abundant credit in the formal sector ($\Delta \phi_{f} < \Delta \phi_{i} \leq 0$ or $\Delta b_{f} > \Delta b_{i} \geq 0$) increases formal entry, raises informal-to-formal switching, and reduces formal-to-informal switching. Anticipating the results, Section~\ref{annual} shows that this is the case. A bank credit supply shock improves the loan terms of formal borrowers by more and, as the model predicts, formalization rises and de-formalization falls (Tables~\ref{main_t_table} and \ref{main_table}).
 
-\begin{table}[H]
-    \caption{Comparative-statics of sector thresholds with respect to financial conditions}
-    \label{comparative_stats}
-    \begin{center}
-        \small
-        \renewcommand{\arraystretch}{1.7}
-        \begin{tabular}{lcccc}
-            \hline
-             & $\phi_{f}\uparrow$ & $\phi_{i}\uparrow$
-             & $b_{f}\uparrow$ & $b_{i}\uparrow$ \\
-            \hline
-            Formality margins
-            $\hat x^F_{e},\hat x^F_{i},\hat x^F_{f}$ &
-            $\dfrac{(1-\gamma)\,a^{*}_{\fml}}{D_{o}}>0$ &
-            $-\dfrac{(1-\gamma)\,a^{*}_{i}}{D_{o}}<0$ &
-            $\leq 0$ &
-            $\geq 0$ \\
-            Informal entry/exit $\hat x^E_{i},\hat x^X_{i}$ &
-            $0$ &
-            $\dfrac{a^{*}_{i}}{\Psi'_{i}}>0$ &
-            $0$ &
-            $\leq 0$ \\
-            Formal exit $\hat x^X_{f}$ &
-            $0$ &
-            $\dfrac{a^{*}_{i}}{\Psi'_{i}}>0$ &
-            $ 0$ &
-            $\leq 0$ \\
-            \hline
-            \multicolumn{5}{@{}p{0.97\linewidth}@{}}{\footnotesize\emph{Note}: entries assume the threshold ordering of Proposition~\ref{prop:ordering}, so the formal incumbent's relevant alternative at its exit margin is the switch-down option; off that ordering the formal-exit row picks up $\geq0$ ($\phi_{f}$) and $\leq0$ ($b_{f}$) terms through the value of staying formal. The first row reports $\partial\ln(\text{threshold})/ \partial(\text{parameter})$; the second and third rows report level derivatives, with $a^{*}_{i}$ evaluated at the margin's funds ($n$ for informal exit/entry, $n-c_{fi}$ for formal exit).}\\
-        \end{tabular}
-    \end{center}
-\end{table}
+Notice that the size of the transitions after a change in loan terms depends on the density of firms near the thresholds, so the market level elasticities of Section~\ref{results} are large where many firms sit close to the formality margin.\footnote{Appendix~\ref{app:toy-details} derives the transition semi-elasticities and Appendix~\ref{app:estimand} works out what the Shift-Share coefficient identifies through the lens of the model.}
 
-The results of the model in Table~\ref{comparative_stats} yield testable predictions that will be verified against the empirical results in Section~\ref{results}. The first prediction is that cheaper or more abundant credit in the formal sector (a fall in $\phi_{f}$ or a rise in $b_{f}$) should lower every formality threshold and increase formal entry, more informal-to-formal switching, and less formal-to-informal switching. The second prediction is cheaper or more abundant credit in the informal sector (a fall in $\phi_{i}$ or a rise in $b_{i}$) lowers the thresholds of informal entry, informal exit, and formal exit, which would raise informal entry, lower exit from either sector, reduce formalization, and raise de-formalization. 
+% \section{A parsimonious model of formality and finance}
+% \label{sec:toy}
 
+% The objective of this section is to build a parsimonious model that rationalizes the link between banking financial conditions and firm's formality decisions. The model is a stationary firm dynamics model in the tradition of \citet{hopenhayn1992entry}, with two operating regimes as in \citet{ulyssea2018firms} and costly external finance as in \citet{gomes2001financing}. We let the empirical facts observed in the data (Section~\ref{sec:descriptives}) to guide our modeling decisions. For instance, we allow firms to switch back and forth their formality status, as observed in Table~\ref{firms_transition}, and informal firms to access bank loans (Table~\ref{tab:desc_firms}, panel A and B) under sector-specific loan terms (Table~\ref{tab:desc_firms}, panel B). The model will serve as stepping stone for the empirical strategy presented in Section~\ref{empirical_strategy_section}. This model will proof helpful to grasp the intuition behind the mechanisms at play and to identify which kind of firms are the treated ones when financial conditions change.
 
-Notice that what matters for the model prediction about formality threshold and the size of the transitions is the difference between the financial conditions in the formal and informal sector and the density of firms sitting next to the thresholds, both for intensive loan deepening by continuing borrowers and loans created for new borrowers. Appendix~\ref{app:toy-details} presents the generic closed form and Appendix~\ref{app:estimand} works out the informality-mass case in detail.
+% \subsection{Environment}
+% \label{sec:toy-env}
 
-Add a Figure [X] with two dimension threshold: productivity and internal funds.
-
-% The model, finally, makes precise what the Leave-One-Out Shift-Share coefficient identifies through the lens of the model: to first order, the model counterpart of the IV estimand is the ratio of two equilibrium responses to the same financial-conditions shift, a density-weighted sum of threshold shifts in the numerator over a denominator that mixes intensive loan deepening by continuing borrowers with loans created and swapped at the margins. Appendix~\ref{app:toy-details} presents the generic closed form and Appendix~\ref{app:estimand} works out the informality-mass case in detail. Three lessons carry, first, the IV coefficient is large where many firms sit near their thresholds, which rationalizes why the gross-flow elasticities exceed the net stock response, flows add up threshold crossings while the stock nets them out, and why the responses concentrate on the formal side, the sector whose borrowing terms the shock improves. 
-
-% Proposition~\ref{prop:statics} carries three observations. First, cheaper or more abundant formal credit (a fall in $\phi_{f}$ or a rise in $b_{f}$) lowers every formality threshold. This produces more formal entry, more informal-to-formal switching, and less formal-to-informal switching. It leaves the formal exit margin unchanged, because the exiting formal firm's relevant alternative is the switch-down option, and formal-side terms do not enter it. This is the pattern of the IV estimates: formal entry and formalization rise, and de-formalization falls. Second, cheaper or more abundant informal credit (a fall in $\phi_{i}$ or a rise in $b_{i}$) lowers the informal entry, informal exit, and formal exit thresholds. It would raise informal entry, lower exit from either sector, reduce formalization, and raise de-formalization. The estimates show none of these movements, informal entry is flat and exit rises, so the data assign the shock a predominantly formal-side incidence. The structural estimation of Section~\ref{sec:estimation} agrees: the informal-side loading of the shock is small but positive, about two thirds of the formal loading. Third, all effects are zero for unconstrained firms. They are proportional to equilibrium borrowing at the margin for constrained firms, and hence concentrated on firms with high growth needs relative to internal funds.
+% Without loss of generality, let time to be discrete and last two-periods, $t\in\{1,2\}$. The economy is populated by two type of risk-neutral entrepreneurs: incumbents and potential entrants. An incumbent entrepreneur owns a firm that belongs to a (formal or informal) sector $s\in\{i,f\}$ and holds $k_{1}>0$ installed capital at period 1; while a potential entrant entrepreneur is endowed with financial wealth $k_{0}\geq 0$ and may or may not start a firm in sector $s\in\{i,f\}$ in period 2. Every entrepreneur discounts period 2 at factor $\beta\in(0,1)$ and consumes her dividends and the the depreciated capital, which depreciates at rate $\delta\in(0,1)$. We assume that the output is the \textit{numéraire} good, the wage $w$ is exogenous to the firm, and both, output and wages before taxes, are the same for formal and informal firms. These assumptions allows us to focus our attention on the formality transitions caused by financial conditions and are first-order inconsequential for the conclusions. 
  
-% A remark on what this implies for the general quantitative model. The exact zeros in the table are exclusion restrictions delivered by the two-period structure. However, with an infinite horizon, continuation values embed the option to switch sectors again later, so a formal-side parameter leaks into an informal continuation value at second order (and conversely). The general model therefore preserves the table's sign pattern and its near-diagonal loading, each margin responds first and foremost to its own sector's terms, in proportion to marginal borrowing, but not the literal zeros. Section~\ref{sec:estimation} verifies exactly this at the estimated parameters, by reporting the full Jacobian of moments with respect to parameters: the quantitative counterpart of this table.
+% An active firm in sector $s$ with capital $k$ and labor $\ell$ produces
+
+% \begin{equation}
+%   y \;=\; \theta\, k^{\alpha}\ell^{\nu},
+%   \qquad \alpha,\nu>0,\qquad \alpha+\nu<1 .
+%   \label{eq:toy-tech}
+% \end{equation}
+
+% Where the log productivity combines transitory shocks and a permanent component $v$, drawn at birth from $\ln v\sim N(0,\sigma^{2})$ and known to the firm, such that:
+
+% \begin{equation}
+%   \ln\theta_{1} \;=\; \ln v + \varepsilon_{1},
+%   \quad
+%   \ln\theta_{2} \;=\; \rho\,\ln\theta_{1} + (1-\rho)\ln v +
+%   \varepsilon_{2},
+%   \quad \varepsilon_{t}\stackrel{iid}{\sim} N(0,\sigma_{\varepsilon}^{2}),
+%   \quad \rho\in(0,1)
+%   \label{eq:toy-theta}
+% \end{equation}
+ 
+% A formal firm pays a proportional tax $\tau_y\in[0,1)$ on revenue and a payroll tax $\tau_{\ell}\geq 0$ on its wage bill. An informal firm evades both taxes but is exposed to potential fines that rises with size, in the spirit of \citet{ulyssea2018firms}. Therefore, a firm in sector $s$ hires $\ell^{h}$ at the cost
+
+% \begin{equation}
+%   \mathcal{C}_{s}(\ell^{h}) = \begin{cases}
+%       (1+\tau_{\ell})\,w\,\ell^{h} & \text{if formal, } s = f \\
+%       w\,\ell^{h}\Big(1+\frac{\ell^{h}}{\eta_{i}}\Big) & \text{if informal, } s = i
+%   \end{cases}
+%   \label{eq:gen-Ci}
+% \end{equation}
+
+% where $\eta_{i}>0$. Notice that informal firms therefore save $\tau_{\ell}$ per worker at small scale, however the saving erodes as the firm grows. This makes formality the optimal regime for large firms even absent financial motives. However, for small enough firms, the only advantages of formality are financial and the only advantages of informality are fiscal and its lower fixed costs. Thus, is for this firms that the financial conditions will play a role. Static profits then are
+
+% \begin{equation}
+%     \pi_{s}(\theta,k)=\max_{\ell^{h}\geq0}(1-\tau_{y}^{s})\theta k^{\alpha}(1+\ell^{h})^{\nu}-\mathcal{C}_{s}(\ell^{h})
+% \end{equation}
+
+% with $\tau_{y}^{f}=\tau_{y}$ and $\tau_{y}^{i}=0$. The model excludes on purpose the possibility of the intensive margin of informality, i.e. firms paying payroll taxes only on part of their total work force. This decision is data driven. As Table \ref{transition_intensive} shows, only 0.7 and 5.3 percent of firms used the intensive margin in 2014 and 2019, respectively. Moreover, this margin is sensitive to enforcement and labor cost policy rather than to credit supply.\footnote{Self-employment is possible in this model and happens at the corner solution $\ell^{h}=0$, which that accounts for the mass of owner only firms in the census.}
+
+% Wages and taxes are paid within each period out of contemporaneous revenue and wealth. Investment, in contrast, must be paid one period ahead it becomes productive. Therefore, a firm raises external funds, denoted by $a\geq0$, to cover any difference between the cost of desired capital and its internal funds.\footnote{External finance includes a wide range of funding sources. This paper focuses on bank loans and abstracts from the optimal choice of financing instruments. More broadly, the financing-cost function can be interpreted as a reduced-form representation of other sources of costly external finance, provided that their relevant features are captured by the same specification.}. External finance entails a sector-specific cost, so a firm raising an amount $a$ incurs a financing cost of the form
+
+% \begin{equation}
+%   \Phi_{s}(a) \;=\; \phi_{s}\,a , \qquad
+%   \phi{_i} \;>\; \phi_{f}\;\geq\;0 ,
+%   \label{eq:toy-fincost}
+% \end{equation}
+
+% which is paid within period and on top of the repayment of the principal. The parameter $\phi_{s}$ is therefore interpreted as the spread in each sector between the marginal cost of external funds and the risk-free rate. The spread in the informal sector is higher because informal firms cannot pledge audited accounts, registered assets, or formal payroll as information collateral, and it is in line with what is observed in the data (Table~\ref{tab:desc_firms}, panel B). 
+
+% Besides the sector difference in price, there is a difference in the amount of external funds available to a firm, which are limited by a collateral constraint on the capital being installed. 
+
+% \begin{equation}
+%   a \;\leq\; b_{s}\,k , \qquad 0\leq b_{i} <
+%   b_{f} < 1 ,
+%   \label{eq:toy-collateral}
+% \end{equation} 
+
+% This constraint means that lenders only finance a fraction $b_{s}$ of the installed capital. For formal firms this fraction is higher because being formal raises pledgeability, which is consistent with Table~\ref{tab:desc_firms}.
+
+% Hence, the pair $(\phi_{s},b_{s})$ summarizes in a reduce form the financial conditions faced by sector $s$. The empirical results in Section~\ref{results} analyzes the changes in these two parameters by sector and its consequences in formality. Given its importance, all the comparative statics below are taken with respect to these parameters
+
+% A firm faces entry, $c^{e}_{s}$, operating,  $c_{s}\geq0, \,\ c_{f}>c_{i} \geq 0$, and switching costs, $c_{if},c_{fi}\geq0$. Additionally, in period two and before producing, a sector-specific exogenous death probability is materialized, $\lambda_{s}\in[0,1), \,\ \lambda{i}\geq\lambda{f}$.\footnote{The inequality $\lambda{i}\geq\lambda{f}$ is consistent with the data observed in Table~\ref{firms_transition}.} 
+
+% The timing is presented in detail in Appendix~\ref{app:toy-details}. A summary of the important aspects is described here. At time $1$, and before observing any shock ($\varepsilon_2$ for productivity and $\lambda_s$ for death), a firm or potential firm must choose her next period sector,  $d \in \{\text{out, informal, formal}\}$. In the transition stage a firm choose the next period optimal level of capital $k_2$ and the level of external funding $a \leq b_{s'}k_2$ at cost $\Phi_{s'}(a)$. Then, in period $2$ and after observing the realization of shocks, active firms produce, sell the depreciated capital and pay taxes, wages, and any cost.
+
+% The internal funds available for a firm are the operating profit of the previous period plus the resale value of depreciated capital, net of the fixed costs and any other switching or entry fee:
+
+
+% \begin{equation}
+%   n \;=\;
+%   \begin{cases}
+%     \pi{s}(\theta_{1},k_{1}) - c_{s} + (1-\delta)k_{1}
+%       - c_{ss'}\mathbf{1}_{\{s'\neq s\}},
+%       & \text{incumbent of sector } s,\\[2pt]
+%     k_{0} - c^e{s'}, & \text{entrant into } s' ,
+%   \end{cases}
+%   \label{eq:toy-n}
+% \end{equation}
+
+% with $c_{ss}\equiv 0$. Then, an exiting incumbent simply consumes $n^{\text{exit}}=\pi{s}(\theta_{1},k_{1})-c_{s}+(1-\delta)k_{1}$ and a non-entrant consumes $k_{0}$. 
+ 
+% \subsection{Capital and investment decisions}
+% \label{sec:investment_problem}
+
+% After solving the static labor problem of the firm, we can re-express her profits as
+
+% \begin{equation}
+%     \pi_s(\theta, k) = \Omega_s\, x\, k^{\gamma}, 
+% \end{equation}
+
+% where $\gamma \equiv \alpha/(1-\nu) \in (0,1)$, $x \equiv \theta^{1/(1-\nu)}$ is the profitable index, and $\Omega_{s} \equiv (1-\nu)\,(1-\tau_y^{s})^{\frac{1}{1-\nu}} \left[\frac{\nu}{(1+\tau_{\ell}^{s})w}\right]^{\frac{\nu}{1-\nu}}$ collects the technology, wage, and taxes paid in sector $s$. This expression is useful because now profits are linear in $x$ and the single sufficient statistic in every decision below is the expectation of the profitability index, which is $\hat{x} \equiv E[x_2 \mid \mathcal{I}_1]$. All the statements are formally presented in Appendix~\ref{app:toy-details} and all proofs are collected in Appendix~\ref{app:toy-proofs}.
+
+% Consider now the following problem of capital and external funds at the transition stage of a firm that decided to operate next period in sector $s$, with internal funds $n \geq 0$, and an expected profitability index $\hat x$.
+
+% \begin{equation}
+%   G_{s}(\hat x,n) \;\equiv\; \max_{k\geq0}\;
+%   -k - \Phi_{s}\!\big(a\big) + \beta\Big[(1-\lambda{s})\,\Omega_{s}\hat x\,
+%       k^{\gamma} + (1-\delta)k\Big], \quad a=\max\{0,k-n\} \leq b_{s}k
+%   \label{eq:toy-Gdef}
+% \end{equation}
+
+% Therefore, the value of operating in sector $s$ is $U_{s}(\hat x,n)=n+G_{s}(\hat x,n) -\beta(1-\delta_{s})c_{s}$. In other words, the entrepreneur consumes $n$ minus the resources put into the firm and expects profit net of the fixed cost if it survives plus the depreciated capital resale.
+
+% Define the cost of capital as $R^0 \equiv 1-\beta(1-\delta)$ when is acquired with internal funds and as $R_{s} \equiv R^0+\phi{s}$ when capital is paid for with external funds borrowed under sector $s$ conditions. Then, the corresponding optimal capital, $k_s^*(\hat{x}, n)$ targets under these two different prices are
+ 
+% \begin{equation}
+%   \bar{k}_{s}(\hat x)
+%     = \left[\frac{\gamma \beta(1-\lambda{s})\Omega_{s} \hat x}{R^0}\right]^{\frac{1}{1-\gamma}}
+%   \quad > \quad
+%   \tilde{k}_{s}(\hat x)
+%     = \left[\frac{\gamma \beta(1-\lambda{s})\Omega_{s} \hat x}{R_{s}}\right]^{\frac{1}{1-\gamma}},
+%   \label{eq:toy-targets}
+% \end{equation}
+
+
+% Table~\ref{optimal_k_a} summarizes the solution to the capital-financing problem and distinguishes four types of firms. Cash-flow sensitivity refers to the marginal response of optimal capital to internal funds, $\partial k_s^*/\partial n$, holding $\hat{x}$ and $s$ fixed.
+
+% \begin{table}[H]
+%     \caption{Four regions of optimal capital and external funds}
+%     \label{optimal_k_a}
+%     \begin{center}
+%     \renewcommand{\arraystretch}{1.25}\small
+%     \begin{tabular}{lllll}
+%         \toprule
+%          Region & Funds ($n$) vs. $k^{*}_{s}$ & Capital $k^{*}_{s}$ &
+%          Borrowing $a^{*}_{s}$ & Cash sensitivity \\
+%         \midrule
+%         1: Unconstrained & $n\geq\bar k_{s}$ & $\bar k_{s}(\hat{x})$
+%          & 0 & 0 \\
+%         2: Constrained & $\tilde k_{s}\leq n<\bar k_{s}$ &
+%          $n$ & 0 & 1 \\
+%         3: Borrower & $(1-b_{s})\tilde k_{s}\leq n
+%          <\tilde k_{s}$ & $\tilde k_{s}(\hat{x})$ & $\tilde k_{s}-n$
+%          & 0 \\
+%         4: Collateral-constrained & $n<(1-b_{s})\tilde k_{s}$ &
+%          $\dfrac{n}{1-b_{s}}$ & $b_{s}k^{*}_{s}$ &
+%          $\dfrac{1}{1-b_{s}}$ \\
+%         \bottomrule
+%     \end{tabular}
+% \end{center}
+% \end{table}
+
+% The first type is an unconstrained firm with sufficient internal funds to finance its internally financed capital target ($n\geq\bar{k}_s$). This firm does not borrow, and its cash-flow sensitivity is zero. The second type is a constrained non-borrower. Its internal funds are insufficient to attain the internally financed capital target, but borrowing is not optimal. The firm therefore invests all its internal funds, so its cash-flow sensitivity is one because each additional unit of internal funds increases capital by one unit. The third type is a borrower that attains the capital target associated with the higher cost of external finance. It borrows the difference between its chosen capital expenditure and its internal funds. Its cash-flow sensitivity is zero because additional internal funds reduce borrowing without changing its capital choice. The fourth type is a collateral-constrained firm. This firm borrows up to its collateral limit and invests less than its externally financed capital target. Its cash-flow sensitivity is $1/(1-b_s) > 1$. Each additional unit of internal funds supports $1/(1-b_s)$ additional units of capital, including $b_s/(1-b_s)$ units financed through additional borrowing. Finally, notice that the borrowing incidence rises with expected productivity and falls with internal funds. Appendix~\ref{app:toy-details} states the full policy and its derivatives. 
+ 
+% \subsection{Sector decision}
+% \label{sec:toy-sorting}
+
+% Define the origin $o \in$ \{out, informal-incumbent, formal-incumbent\}, the destination $d \in$ \{out, informal, formal\}, and the internal funds available before paying the origin-specific fee of each destination as $n_{o}$. Thus, the destination $s$ leaves internal funds $n_{o,s}=n_{o}-\kappa_{os}$ inside the firm, where $\kappa_{os}\in\{c^e_{s},c_{i f},c_{f i},0\}$ per \eqref{eq:toy-n}. Then, the firm's formality decision compares
+
+% \begin{equation}
+%   \Delta_{o}(\hat x,n_{o}) \;\equiv\;
+%   U_{f}(\hat x,n_{o}-\kappa_{of})
+%   -U_{i}(\hat x,n_{o}-\kappa_{oi}) .
+%   \label{eq:toy-Delta}
+% \end{equation}
+
+% There is a unique threshold above which a firm in origin $o$ with internal funds $n_o$ decides to be formal and is defined as $\hat x_o^{if}: \Delta_{o}(\hat x_o^{if},n_{o}) = 0$ (Appendix~\ref{app:toy-details}). More in general, for each origin $o$ and a pair of destinations $d, d'$ there exists a unique productivity threshold that makes one of the destination optimal\footnote{Appendix~\ref{app:toy-details} states the conditions under which the order, unicity and existence of these thresholds hold. In particular, Assumption~\ref{ass:A1} requires that the financing advantage of formality outweighs its fiscal cost net of the survival advantage.}. Define the productivity threshold between origin $o$ and two destinations $d$ and $d'$ as $\hat x_o^{dd'}$. Then we can order each threshold in the expected productivity line such that $ \hat x_i^{oi} < \hat x_o^{oi} < \hat x_f^{oi} < \hat x_f^{if} < \hat x_o^{if} < \hat x_i^{if} $. Table~\ref{threshold} summarizes these thresholds
+
+% \begin{table}[H]
+%     \caption{Four regions of optimal capital and external funds}
+%     \label{threshold}
+%     \begin{center}
+%         \begin{tikzpicture}[xscale=1.05, yscale=0.86, every node/.style={font=\normalsize}]
+%           % entrant line
+%           \draw[->] (0,2) -- (12,2) node[right] {$\hat x$};
+%           \node[left] at (0,2) {Out/Entrant};
+%           \foreach \x/\lab in {1.9/{$\hat x_o^{oi}$}, 7.5/{$\hat x_o^{if}$}}
+%             \draw (\x,1.9) -- (\x,2.1) node[above] {\lab};
+%           \node at (0.9,2.28) {Out};
+%           \node at (4.6,2.28) {Enter Informal};
+%           \node at (10,2.28) {Enter Formal};
+%           % informal incumbent
+%           \draw[->] (0,1) -- (12,1) node[right] {$\hat x$};
+%           \node[left] at (0,1) {i-incumbent};
+%           \foreach \x/\lab in {1.3/{$\hat x_i^{oi}$}, 8.2/{$\hat x_i^{if}$}}
+%             \draw (\x,0.9) -- (\x,1.1) node[above] {\lab};
+%           \node at (0.6,1.28) {Exit};
+%           \node at (4.6,1.28) {Stay Informal};
+%           \node at (10,1.28) {Switch to Formal};
+%           % formal incumbent
+%           \draw[->] (0,0) -- (12,0) node[right] {$\hat x$};
+%           \node[left] at (0,0) {f-incumbent};
+%           \foreach \x/\lab in {2.5/{$\hat x_f^{oi}$}, 6.8/{$\hat x_f^{if}$}}
+%             \draw (\x,-0.1) -- (\x,0.1) node[above] {\lab};
+%           \node at (1.3,0.28) {Exit};
+%           \node at (4.6,0.28) {Switch to Informal};
+%           \node at (10,0.28) {Stay Formal};
+%         \end{tikzpicture}
+%     \end{center}
+% \end{table}
+
+% So far we have established two separated implications of the model. The first one was an anatomy of financially constrained firms based on the firm expected productivity and her internal funds. The second fact was an endogenous sector sorting based on the expected productivity of the firm. However, the relevant predictions of the model are in the interaction of these two implications. To see this, notice that for borrower and collateral-constrained firms (regions three and four in Table~\ref{optimal_k_a}) the sector productivity threshold depends on the financial conditions (parameters $\phi_s$ and $b_s$), this is $\hat x_o^{dd'}(\phi_s,b_s,\phi_{s'},b_{s'})$ $\forall o,d,d',s,s' \in $ \{out, informal, formal\}.
+
+% Let $D_o \equiv (\phi_i - \phi_f) n_{o} + (1+\phi_{f})\,\kappa_{of} - (1+\phi_{i})\,\kappa_{oi} + \beta\big[(1-\lambda_{f})c_{f} -(1-\lambda_{i})c_{i}\big] $ and $\Psi_{s}(\hat x;R)\equiv(1-\gamma)\,\gamma^{\frac{\gamma}{1-\gamma}} \big(\beta(1-\lambda{s})\Omega_{s} \hat x\big)^{\frac{1}{1-\gamma}}R^{-\frac{\gamma}{1-\gamma}}$, then for borrowing (borrowers and collateral-constrained) firms, Table~\ref{comparative_stats} summarizes how each sector threshold react to changes in the financial conditions. 
+
+% \begin{table}[H]
+%     \caption{Comparative-statics of sector thresholds with respect to financial conditions}
+%     \label{comparative_stats}
+%     \begin{center}
+%         \small
+%         \renewcommand{\arraystretch}{1.7}
+%         \begin{tabular}{lcccc}
+%             \hline
+%              & $\phi_{f}\uparrow$ & $\phi_{i}\uparrow$
+%              & $b_{f}\uparrow$ & $b_{i}\uparrow$ \\
+%             \hline
+%             Formality margins
+%             $\hat x^F_{e},\hat x^F_{i},\hat x^F_{f}$ &
+%             $\dfrac{(1-\gamma)\,a^{*}_{\fml}}{D_{o}}>0$ &
+%             $-\dfrac{(1-\gamma)\,a^{*}_{i}}{D_{o}}<0$ &
+%             $\leq 0$ &
+%             $\geq 0$ \\
+%             Informal entry/exit $\hat x^E_{i},\hat x^X_{i}$ &
+%             $0$ &
+%             $\dfrac{a^{*}_{i}}{\Psi'_{i}}>0$ &
+%             $0$ &
+%             $\leq 0$ \\
+%             Formal exit $\hat x^X_{f}$ &
+%             $0$ &
+%             $\dfrac{a^{*}_{i}}{\Psi'_{i}}>0$ &
+%             $ 0$ &
+%             $\leq 0$ \\
+%             \hline
+%             \multicolumn{5}{@{}p{0.97\linewidth}@{}}{\footnotesize\emph{Note}: entries assume the threshold ordering of Proposition~\ref{prop:ordering}, so the formal incumbent's relevant alternative at its exit margin is the switch-down option; off that ordering the formal-exit row picks up $\geq0$ ($\phi_{f}$) and $\leq0$ ($b_{f}$) terms through the value of staying formal. The first row reports $\partial\ln(\text{threshold})/ \partial(\text{parameter})$; the second and third rows report level derivatives, with $a^{*}_{i}$ evaluated at the margin's funds ($n$ for informal exit/entry, $n-c_{fi}$ for formal exit).}\\
+%         \end{tabular}
+%     \end{center}
+% \end{table}
+
+% The results of the model in Table~\ref{comparative_stats} yield testable predictions that will be verified against the empirical results in Section~\ref{results}. The first prediction is that cheaper or more abundant credit in the formal sector (a fall in $\phi_{f}$ or a rise in $b_{f}$) should lower every formality threshold and increase formal entry, more informal-to-formal switching, and less formal-to-informal switching. The second prediction is cheaper or more abundant credit in the informal sector (a fall in $\phi_{i}$ or a rise in $b_{i}$) lowers the thresholds of informal entry, informal exit, and formal exit, which would raise informal entry, lower exit from either sector, reduce formalization, and raise de-formalization. 
+
+
+% Notice that what matters for the model prediction about formality threshold and the size of the transitions is the difference between the financial conditions in the formal and informal sector and the density of firms sitting next to the thresholds, both for intensive loan deepening by continuing borrowers and loans created for new borrowers. Appendix~\ref{app:toy-details} presents the generic closed form and Appendix~\ref{app:estimand} works out the informality-mass case in detail.
+
+% Add a Figure [X] with two dimension threshold: productivity and internal funds.
+
+% % The model, finally, makes precise what the Leave-One-Out Shift-Share coefficient identifies through the lens of the model: to first order, the model counterpart of the IV estimand is the ratio of two equilibrium responses to the same financial-conditions shift, a density-weighted sum of threshold shifts in the numerator over a denominator that mixes intensive loan deepening by continuing borrowers with loans created and swapped at the margins. Appendix~\ref{app:toy-details} presents the generic closed form and Appendix~\ref{app:estimand} works out the informality-mass case in detail. Three lessons carry, first, the IV coefficient is large where many firms sit near their thresholds, which rationalizes why the gross-flow elasticities exceed the net stock response, flows add up threshold crossings while the stock nets them out, and why the responses concentrate on the formal side, the sector whose borrowing terms the shock improves. 
+
+% % Proposition~\ref{prop:statics} carries three observations. First, cheaper or more abundant formal credit (a fall in $\phi_{f}$ or a rise in $b_{f}$) lowers every formality threshold. This produces more formal entry, more informal-to-formal switching, and less formal-to-informal switching. It leaves the formal exit margin unchanged, because the exiting formal firm's relevant alternative is the switch-down option, and formal-side terms do not enter it. This is the pattern of the IV estimates: formal entry and formalization rise, and de-formalization falls. Second, cheaper or more abundant informal credit (a fall in $\phi_{i}$ or a rise in $b_{i}$) lowers the informal entry, informal exit, and formal exit thresholds. It would raise informal entry, lower exit from either sector, reduce formalization, and raise de-formalization. The estimates show none of these movements, informal entry is flat and exit rises, so the data assign the shock a predominantly formal-side incidence. The structural estimation of Section~\ref{sec:estimation} agrees: the informal-side loading of the shock is small but positive, about two thirds of the formal loading. Third, all effects are zero for unconstrained firms. They are proportional to equilibrium borrowing at the margin for constrained firms, and hence concentrated on firms with high growth needs relative to internal funds.
+ 
+% % A remark on what this implies for the general quantitative model. The exact zeros in the table are exclusion restrictions delivered by the two-period structure. However, with an infinite horizon, continuation values embed the option to switch sectors again later, so a formal-side parameter leaks into an informal continuation value at second order (and conversely). The general model therefore preserves the table's sign pattern and its near-diagonal loading, each margin responds first and foremost to its own sector's terms, in proportion to marginal borrowing, but not the literal zeros. Section~\ref{sec:estimation} verifies exactly this at the estimated parameters, by reporting the full Jacobian of moments with respect to parameters: the quantitative counterpart of this table.
  
 \section{Empirical strategy} \label{empirical_strategy_section}
 
@@ -834,9 +1043,10 @@ On the identifying assumption, we provide evidence that the instrument is as goo
 
 On the instrument construction, three variants of the instrument leave the results unchanged: the conventional version without the leave-one-out correction (Appendix Table~\ref{naive_table}), renormalizing the instrument by coverage (Appendix Table~\ref{renormalized_table}), and moving the coverage threshold from zero to $0.8$ (Appendix Table~\ref{sensitivity_table}). Additionally, Appendix Table~\ref{drop_top_bank_table} drops the largest lender from the shocks and exposure shares. The point estimates are unchanged, at the cost of a lower first stage ($F$ of $35$), confirming that the results do not rely on a single bank. 
 
-On the estimation sample, excluding the three largest metropolitan areas (Mexico City, Monterrey and Guadalajara), leaves the formality composition results intact (Appendix Table~\ref{iv_nometros_table}). Dropping the credit weights weakens the results (Appendix Table~\ref{unweighted_table}); however, the interpretation of the estimation changes and the effect is now on the typical market. We therefore interpret this result as a statement that the identifying variation resides in the markets carrying the credit, and not as a contradiction. Finally, Appendix Table~\ref{bank_table} makes the analysis at the shock (bank) level, instead of at the share (market) level, where the credit supply shocks are re-identified with market-sector-year fixed effects, instead of firm-year fixed effects, as in \citet{degryse2019identifying}. This specification allows single-bank firms to also contribute to the estimation. Although nothing mechanical links this design to the market-level one, it reproduces the composition of the response.
+On the estimation sample, excluding the three largest metropolitan areas (Mexico City, Monterrey and Guadalajara), leaves the formality composition results intact (Appendix Table~\ref{iv_nometros_table}). Finally, Appendix Table~\ref{bank_table} makes the analysis at the shock (bank) level, instead of at the share (market) level, where the credit supply shocks are re-identified with market-sector-year fixed effects, instead of firm-year fixed effects, as in \citet{degryse2019identifying}. This specification allows single-bank firms to also contribute to the estimation. Although nothing mechanical links this design to the market-level one, it reproduces the composition of the response.
+% Dropping the credit weights weakens the results (Appendix Table~\ref{unweighted_table}); however, the interpretation of the estimation changes and the effect is now on the typical market. We therefore interpret this result as a statement that the identifying variation resides in the markets carrying the credit, and not as a contradiction.
 
-As a whole, the main result is sound and is not the product of any single methodological choice. It survives the balance, pretrend and placebo tests; every reconstruction of the instrument; the removal of the largest lender and of the largest markets; and a shock-level design with re-identified shocks. Weights and population only matter for precision and the labor and value-added responses are the margins that depend on the specification, which is why the paper does not lean on them.
+As a whole, the main results are sound and are not the product of any single methodological choice. It survives the balance, pretrend and placebo tests; every reconstruction of the instrument; the removal of the largest lender and of the largest markets; and a shock-level design with re-identified shocks. Weights and population only matter for precision and the labor and value-added responses are the margins that depend on the specification, which is why the paper does not lean on them.
 
 \section{Conclusion}
 \label{conclusion}
@@ -1220,7 +1430,7 @@ As a model-free check on our identification, Table~\ref{reduced_form_table} repo
 
 The credit-weighted regression places disproportionate weight on the three largest metropolitan areas (Mexico City, Monterrey, and Guadalajara). To address the concern that the main estimates reflect dynamics specific to these urban banking centers, Table~\ref{iv_nometros_table} re-estimates every specification excluding them, nine of the 1,394 market-year observations. The composition core is essentially unchanged, with the formal-firm response at $0.049$ against $0.050$ and formal entry identical at $0.067$, and several margins strengthen outside the metros (the employment response rises to $0.028$ and the informal value-added decline deepens to $-0.115$). Two results soften and are disclosed as such: the informal-to-formal switching flow loses significance, with the composition shift operating instead through formal retention ($0.055$), fewer switches into informality ($-0.049$), and a declining count of informal stayers ($-0.025$), and the mean-wage decline disappears, indicating that the wage-composition effect of marginal hires is a metropolitan phenomenon. Dropping the largest markets therefore leaves the formalization core intact.
 
-The credit weights in our main specification imply that the elasticities in Tables~\ref{main_table}--\ref{main_econ_table} are credit-weighted averages of market-specific responses, in which markets with larger base-period credit, notably the three metropolitan areas, carry proportionally more weight. Table~\ref{unweighted_table} therefore re-estimates the main specification with every market-year contributing equally, which shifts the estimand toward the typical market, a market with roughly \$2.5 million (USD) of credit outstanding at baseline, on estimation samples identical to the weighted ones. The first stage remains adequate (Kleibergen--Paap $F$ between $27$ and $54$) and the margins that remain measurable keep their signs: the formal-firm stock is $0.063$ against the credit-weighted $0.050$, though imprecisely estimated (AKM s.e.\ $0.078$), the informal stock is insignificant, entry stays positive, and the informal value-added decline persists ($-0.299$). The transition flows and formal exit are a different matter: without credit weights their exposure-robust standard errors widen by an order of magnitude, and their point estimates wander to either side of zero while remaining within a small fraction of a standard error of both zero and the weighted estimates, so we read them as uninformative in this design rather than as reversals. What changes, then, is precision: the employment and wage-bill responses lose significance and the mean-wage dip flips to marginally positive, and we read the unweighted results as a statement about where the identifying power of the design resides, in the markets carrying the credit, rather than as a contradiction.
+% The credit weights in our main specification imply that the elasticities in Tables~\ref{main_table}--\ref{main_econ_table} are credit-weighted averages of market-specific responses, in which markets with larger base-period credit, notably the three metropolitan areas, carry proportionally more weight. Table~\ref{unweighted_table} therefore re-estimates the main specification with every market-year contributing equally, which shifts the estimand toward the typical market, a market with roughly \$2.5 million (USD) of credit outstanding at baseline, on estimation samples identical to the weighted ones. The first stage remains adequate (Kleibergen--Paap $F$ between $27$ and $54$) and the margins that remain measurable keep their signs: the formal-firm stock is $0.063$ against the credit-weighted $0.050$, though imprecisely estimated (AKM s.e.\ $0.078$), the informal stock is insignificant, entry stays positive, and the informal value-added decline persists ($-0.299$). The transition flows and formal exit are a different matter: without credit weights their exposure-robust standard errors widen by an order of magnitude, and their point estimates wander to either side of zero while remaining within a small fraction of a standard error of both zero and the weighted estimates, so we read them as uninformative in this design rather than as reversals. What changes, then, is precision: the employment and wage-bill responses lose significance and the mean-wage dip flips to marginally positive, and we read the unweighted results as a statement about where the identifying power of the design resides, in the markets carrying the credit, rather than as a contradiction.
 
 As a direct test of the identifying assumption that our Shift-Share instrument is uncorrelated with pre-existing dynamics in local outcomes, Table~\ref{placebo_table} reports placebo IV estimates in which the dependent variable is the five-year log change of each outcome before the shock window, $\Delta_5 Y_{t-5} = \ln Y_{t-5} - \ln Y_{t-10}$, with the endogenous regressor, instrument, controls, weights, and sample condition unchanged. The answer is margin-specific and disclosed in full. The stock of existing firms displays a positive pre-period correlation that is common to the two sectors rather than differential (formal $0.016$, informal $0.019$), whereas the main specification's estimated effects load entirely on formal firms. Moreover, the pre-period correlation is not what drives the estimates: adding the lagged outcome change to the main specification leaves the contemporaneous formal-firm effect essentially unchanged, $0.048$ against $0.050$. Wages and value added attract significant negative placebo coefficients ($-0.164$ for average value added), which we read as mean reversion in bank lending: shocks were directed disproportionately toward markets whose financial and real conditions had been deteriorating, so the contemporaneous wage and value-added estimates partly capture recoveries and we do not lean on them. The entry, exit, and formality-transition placebos are uninformative, because the required further lag exists in a single census window and the first stage collapses (a Kleibergen--Paap $F$ of about $1.9$), and we report them for transparency rather than as evidence in either direction.
 
@@ -1278,15 +1488,15 @@ The formality composition result at the center of the paper is not the product o
     \input{iv_nometros_table}
 \end{table}
 
-\subsection{Unweighted Shift-Share IV estimates} \label{unweighted}
+% \subsection{Unweighted Shift-Share IV estimates} \label{unweighted}
 
-\begin{table}[H]
-    \caption{Unweighted Shift-Share IV estimates}
-    \label{unweighted_table}
-    \centering
-    \small
-    \input{unweighted_table}
-\end{table}
+% \begin{table}[H]
+%     \caption{Unweighted Shift-Share IV estimates}
+%     \label{unweighted_table}
+%     \centering
+%     \small
+%     \input{unweighted_table}
+% \end{table}
 
 \subsection{Shift-Share IV Placebo test} \label{placebo}
 
@@ -1395,6 +1605,18 @@ Figure~\ref{fig:toy-timing} summarizes the timing, which mirrors the recursive m
 
 \subsection{Static problem: labor demand and the profit function}
 \label{sec:toy-static}
+
+Log productivity combines transitory shocks and a permanent component $v$, drawn at birth from $\ln v\sim N(0,\sigma^{2})$ and known to the firm, such that
+ 
+\begin{equation}
+  \ln\theta_{1} \;=\; \ln v + \varepsilon_{1},
+  \quad
+  \ln\theta_{2} \;=\; \rho\,\ln\theta_{1} + (1-\rho)\ln v +
+  \varepsilon_{2},
+  \quad \varepsilon_{t}\stackrel{iid}{\sim} N(0,\sigma_{\varepsilon}^{2}),
+  \quad \rho\in(0,1).
+  \label{eq:toy-theta}
+\end{equation}
  
 Let $\tau_y^{s}$ and $\tau_{\ell}^{s}$ denote the taxes effectively paid in sector $s$: $\tau_y^{f}=\tau_y$, $\tau_{\ell}^{f}=\tau_{\ell}$, $\tau_y^{i}=\tau_{\ell}^{i}=0$. Conditional on operating with state $(\theta,k)$, the firm solves $\max_{\ell\geq0}\,(1-\tau_y^{s})\theta k^{\alpha}\ell^{\nu} - (1+\tau_{\ell}^{s})w\,\ell$; substituting the optimal $\ell$ back into the objective yields the operating-profit function
 
@@ -1495,7 +1717,7 @@ with borrowing $a^{*}_{s}=\max\{0,k^{*}_{s}-n\}$, strictly positive exactly in R
 \end{align}
 \end{lemma}
  
-Three observations connect Lemma~\ref{lem:kpolicy} to the data. First, investment-cash-flow sensitivity ($\partial k^{*}/\partial n>0$) is positive only for constrained firms (R2, R4), and is largest exactly where the collateral constraint binds (R4). This is the firm-level footprint of the credit channel that the Shift-Share design picks up at the market level. Second, the marginal cost of external funds $\phi_{s}$ acts on the intensive margin of constrained borrowers (R3), while collateral capacity $b_{s}$ acts on the most severely constrained firms (R4), typically young, low-$n$ entrants. Therefore, the two instruments of a credit expansion reach different parts of the firm distribution. Third, borrowing incidence $\mathbb{P}(a^{*}>0)$ rises with expected productivity and falls with internal funds. Finally, notice that this four-region finance-restriction policy is a generalization of the hierarchy of finance with three endogenous regimes of \cite{bond1994dynamic}.
+Three observations connect Lemma~\ref{lem:kpolicy} to the data. First, investment-cash-flow sensitivity ($\partial k^{*}/\partial n>0$) is positive only for constrained firms (R2, R4), and is largest exactly where the collateral constraint binds (R4). This is the firm-level evidence of the credit channel that the Shift-Share design picks up at the market level. Second, the marginal cost of external funds $\phi_{s}$ acts on the intensive margin of constrained borrowers (R3), while collateral capacity $b_{s}$ acts on the most severely constrained firms (R4), typically young, low-$n$ entrants. Therefore, the two instruments of a credit expansion reach different parts of the firm distribution. Third, borrowing incidence $\mathbb{P}(a^{*}>0)$ rises with expected productivity and falls with internal funds. Finally, notice that this four-region finance-restriction policy is a generalization of the hierarchy of finance with three endogenous regimes of \cite{bond1994dynamic}.
  
 \begin{lemma}[Value of operating]
 \label{lem:value}
